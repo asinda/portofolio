@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administration - Portfolio</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <!-- Page de connexion -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-user-shield"></i>
+                <h1>Administration</h1>
+                <p>Connexion au tableau de bord</p>
+            </div>
+            <form id="loginForm" class="login-form">
+                <div class="form-group">
+                    <label for="email">
+                        <i class="fas fa-envelope"></i> Email
+                    </label>
+                    <input type="email" id="email" required placeholder="votre@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i> Mot de passe
+                    </label>
+                    <input type="password" id="password" required placeholder="••••••••">
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-sign-in-alt"></i> Se connecter
+                </button>
+                <div class="error-message" id="loginError"></div>
+            </form>
+            <div class="login-footer">
+                <a href="../index.html">
+                    <i class="fas fa-arrow-left"></i> Retour au portfolio
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard principal -->
+    <div class="admin-container" id="adminContainer" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-cog"></i> Admin</h2>
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="userEmail"></span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                    <i class="fas fa-th-large"></i> Tableau de bord
+                </a>
+                <a href="#profile" class="nav-item" data-section="profile">
+                    <i class="fas fa-user"></i> Profil
+                </a>
+                <a href="#experience" class="nav-item" data-section="experience">
+                    <i class="fas fa-briefcase"></i> Expériences
+                </a>
+                <a href="#education" class="nav-item" data-section="education">
+                    <i class="fas fa-graduation-cap"></i> Formation
+                </a>
+                <a href="#projects" class="nav-item" data-section="projects">
+                    <i class="fas fa-project-diagram"></i> Projets
+                </a>
+                <a href="#skills" class="nav-item" data-section="skills">
+                    <i class="fas fa-code"></i> Compétences
+                </a>
+                <a href="#certifications" class="nav-item" data-section="certifications">
+                    <i class="fas fa-certificate"></i> Certifications
+                </a>
+                <a href="#media" class="nav-item" data-section="media">
+                    <i class="fas fa-images"></i> Médias
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <button class="btn btn-secondary btn-block" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </button>
+            </div>
+        </aside>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <header class="content-header">
+                <h1 id="sectionTitle">Tableau de bord</h1>
+                <div class="header-actions">
+                    <button class="btn btn-success" id="syncBtn">
+                        <i class="fas fa-sync"></i> Synchroniser
+                    </button>
+                    <a href="../index.html" class="btn btn-outline" target="_blank">
+                        <i class="fas fa-eye"></i> Voir le site
+                    </a>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- Dashboard -->
+                <section class="content-section active" id="section-dashboard">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-briefcase"></i>
+                            <h3 id="statsExperience">0</h3>
+                            <p>Expériences</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-project-diagram"></i>
+                            <h3 id="statsProjects">0</h3>
+                            <p>Projets</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-code"></i>
+                            <h3 id="statsSkills">0</h3>
+                            <p>Compétences</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-certificate"></i>
+                            <h3 id="statsCertifications">0</h3>
+                            <p>Certifications</p>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-info">
+                        <div class="info-card">
+                            <h3><i class="fas fa-info-circle"></i> Bienvenue dans l'administration</h3>
+                            <p>Utilisez le menu latéral pour gérer les différentes sections de votre portfolio.</p>
+                            <ul>
+                                <li><strong>Profil</strong> : Informations personnelles et contact</li>
+                                <li><strong>Expériences</strong> : Historique professionnel</li>
+                                <li><strong>Formation</strong> : Parcours académique</li>
+                                <li><strong>Projets</strong> : Portfolio de projets</li>
+                                <li><strong>Compétences</strong> : Compétences techniques et interpersonnelles</li>
+                                <li><strong>Certifications</strong> : Certifications et réalisations</li>
+                                <li><strong>Médias</strong> : Gestion des images</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profil -->
+                <section class="content-section" id="section-profile">
+                    <form id="profileForm" class="admin-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profileName">Nom complet *</label>
+                                <input type="text" id="profileName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profileTitle">Titre professionnel *</label>
+                                <input type="text" id="profileTitle" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profileEmail">Email *</label>
+                                <input type="email" id="profileEmail" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="profilePhone">Téléphone</label>
+                                <input type="tel" id="profilePhone">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profileLocation">Localisation</label>
+                                <input type="text" id="profileLocation">
+                            </div>
+                            <div class="form-group">
+                                <label for="profilePhoto">Photo de profil (URL)</label>
+                                <input type="url" id="profilePhoto">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="profileAbout">À propos *</label>
+                            <textarea id="profileAbout" rows="5" required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="profileLinkedin">LinkedIn</label>
+                                <input type="url" id="profileLinkedin">
+                            </div>
+                            <div class="form-group">
+                                <label for="profileGithub">GitHub</label>
+                                <input type="url" id="profileGithub">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Enregistrer
+                            </button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Expériences -->
+                <section class="content-section" id="section-experience">
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="addExperienceBtn">
+                            <i class="fas fa-plus"></i> Nouvelle expérience
+                        </button>
+                    </div>
+                    <div id="experienceList" class="items-list"></div>
+                </section>
+
+                <!-- Formation -->
+                <section class="content-section" id="section-education">
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="addEducationBtn">
+                            <i class="fas fa-plus"></i> Nouvelle formation
+                        </button>
+                    </div>
+                    <div id="educationList" class="items-list"></div>
+                </section>
+
+                <!-- Projets -->
+                <section class="content-section" id="section-projects">
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="addProjectBtn">
+                            <i class="fas fa-plus"></i> Nouveau projet
+                        </button>
+                    </div>
+                    <div id="projectsList" class="items-list"></div>
+                </section>
+
+                <!-- Compétences -->
+                <section class="content-section" id="section-skills">
+                    <div class="skills-tabs">
+                        <button class="tab-btn active" data-tab="technical">Techniques</button>
+                        <button class="tab-btn" data-tab="languages">Langues</button>
+                        <button class="tab-btn" data-tab="soft">Interpersonnelles</button>
+                    </div>
+
+                    <div class="tab-content active" id="tab-technical">
+                        <div class="section-actions">
+                            <button class="btn btn-primary" id="addTechnicalSkillBtn">
+                                <i class="fas fa-plus"></i> Ajouter
+                            </button>
+                        </div>
+                        <div id="technicalSkillsList" class="skills-list"></div>
+                    </div>
+
+                    <div class="tab-content" id="tab-languages">
+                        <div class="section-actions">
+                            <button class="btn btn-primary" id="addLanguageBtn">
+                                <i class="fas fa-plus"></i> Ajouter
+                            </button>
+                        </div>
+                        <div id="languagesList" class="skills-list"></div>
+                    </div>
+
+                    <div class="tab-content" id="tab-soft">
+                        <div class="section-actions">
+                            <button class="btn btn-primary" id="addSoftSkillBtn">
+                                <i class="fas fa-plus"></i> Ajouter
+                            </button>
+                        </div>
+                        <div id="softSkillsList" class="skills-list"></div>
+                    </div>
+                </section>
+
+                <!-- Certifications -->
+                <section class="content-section" id="section-certifications">
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="addCertificationBtn">
+                            <i class="fas fa-plus"></i> Nouvelle certification
+                        </button>
+                    </div>
+                    <div id="certificationsList" class="items-list"></div>
+                </section>
+
+                <!-- Médias -->
+                <section class="content-section" id="section-media">
+                    <div class="media-upload">
+                        <h3><i class="fas fa-upload"></i> Télécharger des fichiers</h3>
+                        <p>Utilisez Supabase Storage pour gérer vos images et fichiers</p>
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <p>Glissez-déposez vos fichiers ici ou cliquez pour parcourir</p>
+                            <input type="file" id="fileInput" multiple accept="image/*">
+                        </div>
+                    </div>
+                    <div id="mediaGallery" class="media-gallery"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal pour formulaires -->
+    <div class="modal" id="formModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Formulaire</h2>
+                <button class="modal-close" id="modalClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Notification Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <!-- Custom JS -->
+    <script src="js/config.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
