@@ -1,0 +1,112 @@
+{
+  "profile": {
+    "name": "Alice Sindayigaya",
+    "title": "Votre Titre Professionnel",
+    "location": "Votre Ville, Pays",
+    "email": "votre.email@example.com",
+    "phone": "+XXX XXX XXX XXX",
+    "linkedin": "https://www.linkedin.com/in/alicesindayigaya",
+    "github": "https://github.com/votreprofil",
+    "website": "https://votresite.com",
+    "photo": "images/profile.jpg",
+    "about": "Présentez-vous ici. Décrivez votre parcours professionnel, vos passions, et ce qui vous motive dans votre domaine. Cette section doit captiver l'attention du lecteur et donner un aperçu de votre personnalité professionnelle."
+  },
+  "experience": [
+    {
+      "position": "Titre du Poste",
+      "company": "Nom de l'Entreprise",
+      "location": "Ville, Pays",
+      "startDate": "Mois Année",
+      "endDate": "Présent",
+      "current": true,
+      "description": "Décrivez vos responsabilités et réalisations principales dans ce poste.",
+      "achievements": [
+        "Réalisation ou responsabilité importante #1",
+        "Réalisation ou responsabilité importante #2",
+        "Réalisation ou responsabilité importante #3"
+      ]
+    },
+    {
+      "position": "Poste Précédent",
+      "company": "Entreprise Précédente",
+      "location": "Ville, Pays",
+      "startDate": "Mois Année",
+      "endDate": "Mois Année",
+      "current": false,
+      "description": "Description du poste et de vos contributions.",
+      "achievements": [
+        "Réalisation importante #1",
+        "Réalisation importante #2"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Nom du Diplôme",
+      "institution": "Nom de l'Institution",
+      "location": "Ville, Pays",
+      "startDate": "Année",
+      "endDate": "Année",
+      "description": "Mention, spécialisation, ou détails pertinents"
+    }
+  ],
+  "skills": {
+    "technical": [
+      "Compétence Technique 1",
+      "Compétence Technique 2",
+      "Compétence Technique 3",
+      "Compétence Technique 4",
+      "Compétence Technique 5",
+      "Compétence Technique 6"
+    ],
+    "languages": [
+      {"name": "Français", "level": "Natif"},
+      {"name": "Anglais", "level": "Courant"},
+      {"name": "Autre Langue", "level": "Intermédiaire"}
+    ],
+    "soft": [
+      "Compétence Interpersonnelle 1",
+      "Compétence Interpersonnelle 2",
+      "Compétence Interpersonnelle 3"
+    ]
+  },
+  "projects": [
+    {
+      "title": "Nom du Projet 1",
+      "description": "Description détaillée du projet, des technologies utilisées et de votre rôle.",
+      "image": "images/project1.jpg",
+      "technologies": ["Tech 1", "Tech 2", "Tech 3"],
+      "link": "https://lien-vers-projet.com",
+      "github": "https://github.com/vous/projet"
+    },
+    {
+      "title": "Nom du Projet 2",
+      "description": "Description du deuxième projet avec ses spécificités.",
+      "image": "images/project2.jpg",
+      "technologies": ["Tech 1", "Tech 2", "Tech 3"],
+      "link": "https://lien-vers-projet2.com",
+      "github": "https://github.com/vous/projet2"
+    },
+    {
+      "title": "Nom du Projet 3",
+      "description": "Description du troisième projet.",
+      "image": "images/project3.jpg",
+      "technologies": ["Tech 1", "Tech 2"],
+      "link": "https://lien-vers-projet3.com",
+      "github": "https://github.com/vous/projet3"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Nom de la Certification",
+      "issuer": "Organisme Émetteur",
+      "date": "Mois Année",
+      "link": "https://lien-vers-certification.com"
+    }
+  ],
+  "achievements": [
+    "Réalisation professionnelle notable 1",
+    "Réalisation professionnelle notable 2",
+    "Réalisation professionnelle notable 3"
+  ]
+}
