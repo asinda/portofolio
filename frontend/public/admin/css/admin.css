@@ -1,32 +1,44 @@
 /* ===================================
-   Variables CSS Admin
+   Variables CSS Admin - Palette Moderne 2025
    =================================== */
 :root {
-    --admin-primary: #3b82f6;
-    --admin-primary-dark: #2563eb;
-    --admin-success: #10b981;
-    --admin-danger: #ef4444;
-    --admin-warning: #f59e0b;
-    --admin-info: #06b6d4;
+    /* Couleurs principales - Indigo & Cyan vibrants */
+    --admin-primary: #6366F1;        /* Indigo vibrant */
+    --admin-primary-dark: #4F46E5;   /* Indigo profond */
+    --admin-primary-light: #818CF8;  /* Indigo clair */
+    --admin-success: #10B981;        /* Vert émeraude */
+    --admin-danger: #EF4444;         /* Rouge moderne */
+    --admin-warning: #F59E0B;        /* Ambre */
+    --admin-info: #06B6D4;           /* Cyan moderne */
+    --admin-accent: #EC4899;         /* Rose magenta */
 
-    --admin-bg: #f8fafc;
-    --admin-bg-secondary: #ffffff;
-    --admin-bg-tertiary: #f1f5f9;
+    /* Backgrounds */
+    --admin-bg: #F8FAFC;
+    --admin-bg-secondary: #FFFFFF;
+    --admin-bg-tertiary: #F1F5F9;
 
-    --admin-text: #1e293b;
-    --admin-text-secondary: #64748b;
-    --admin-text-tertiary: #94a3b8;
+    /* Texte */
+    --admin-text: #1E293B;
+    --admin-text-secondary: #64748B;
+    --admin-text-tertiary: #94A3B8;
 
-    --admin-border: #e2e8f0;
-    --admin-border-light: #f1f5f9;
+    /* Bordures */
+    --admin-border: #E2E8F0;
+    --admin-border-light: #F1F5F9;
 
+    /* Layout */
     --sidebar-width: 260px;
     --header-height: 70px;
 
+    /* Ombres */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
     --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+
+    /* Gradients modernes */
+    --gradient-primary: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
+    --gradient-secondary: linear-gradient(135deg, #06B6D4 0%, #3B82F6 50%, #6366F1 100%);
 }
 
 /* ===================================
@@ -53,7 +65,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--admin-primary) 0%, #8b5cf6 100%);
+    background: var(--gradient-primary);
     padding: 20px;
 }
 

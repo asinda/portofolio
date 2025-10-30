@@ -1,0 +1,11 @@
+# Dépendances Python pour les scripts LinkedIn
+
+# Pour linkedin_import.py - Conversion des exports LinkedIn
+pandas>=2.0.0
+
+# Pour linkedin_scraper.py - Scraping (déconseillé)
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Optionnel : Pour un scraping plus avancé (non recommandé)
+# selenium>=4.15.0

@@ -1,210 +1,308 @@
 # Portfolio Professionnel - Alice Sindayigaya
 
-Portfolio personnel moderne et responsive développé avec HTML, CSS et JavaScript vanilla.
+Portfolio moderne avec architecture frontend/backend séparée.
 
-## Caractéristiques
-
-### Frontend
-- Design moderne et professionnel
-- Entièrement responsive (mobile, tablette, desktop)
-- Mode sombre/clair
-- Animations fluides au scroll
-- Sections complètes : À propos, Expérience, Formation, Projets, Compétences, Contact
-- Chargement dynamique des données depuis JSON ou Supabase
-- Formulaire de contact fonctionnel
-- SEO optimisé
-
-### Administration (Nouveau !)
-- 🎯 **Panneau d'administration complet** dans `/admin/`
-- 🔐 **Authentification sécurisée** avec Supabase
-- 📊 **Tableau de bord** avec statistiques
-- ✏️ **Gestion CRUD complète** pour toutes les sections
-- 📁 **Gestion des médias** (upload d'images)
-- 🗄️ **Base de données PostgreSQL** via Supabase (gratuite et open source)
-- 🌐 **Temps réel** - les modifications sont instantanées
-
-## Structure du Projet
+## Architecture
 
 ```
 portofolio/
-├── index.html          # Page principale
-├── admin/              # 🆕 Panel d'administration
-│   ├── index.html      #    Interface admin
-│   ├── css/
-│   │   └── admin.css   #    Styles admin
-│   └── js/
-│       ├── config.js   #    Configuration Supabase
-│       └── admin.js    #    Logique admin
-├── css/
-│   └── styles.css      # Styles personnalisés
-├── js/
-│   └── script.js       # Fonctionnalités JavaScript
-├── images/             # Images du portfolio
-├── assets/             # Fichiers supplémentaires (CV, etc.)
-├── data.json           # Données du portfolio (mode local)
-└── README.md           # Documentation
+├── frontend/              # Application client
+│   ├── public/           # Site statique
+│   │   ├── index.html    # Portfolio public
+│   │   ├── admin/        # Panel d'administration
+│   │   ├── css/          # Styles
+│   │   ├── js/           # Scripts
+│   │   ├── images/       # Images
+│   │   └── assets/       # Fichiers (CV, etc.)
+│   └── README.md
+├── backend/              # API REST
+│   ├── src/
+│   │   ├── routes/       # Routes API
+│   │   ├── controllers/  # Logique métier
+│   │   ├── config/       # Configuration
+│   │   └── middleware/   # Auth, CORS, etc.
+│   ├── server.js         # Serveur Express
+│   ├── package.json
+│   └── README.md
+├── docs/                 # Documentation
+│   ├── CLAUDE.md         # Guide Claude Code
+│   ├── ADMIN_GUIDE.md
+│   ├── SUPABASE_SETUP.md
+│   └── ...
+└── README.md             # Ce fichier
 ```
 
-## Installation et Utilisation
+## Stack Technique
 
-### 1. Cloner ou télécharger le projet
+### Frontend
+- HTML5, CSS3, JavaScript (ES6+)
+- Design responsive avec mode sombre/clair
+- Animations fluides et interactions modernes
+- Font Awesome 6.4.0
+- Google Fonts (Poppins, Playfair Display)
+
+### Backend
+- Node.js + Express.js
+- Supabase (PostgreSQL + Auth)
+- API REST complète
+- Sécurité : Helmet, CORS, Rate Limiting
+- Authentification JWT via Supabase Auth
+
+## Démarrage Rapide
+
+### Option 1 : Avec Backend (Recommandé)
+
+#### 1. Backend
 
 ```bash
-git clone <url-du-repo>
-cd portofolio
+cd backend
+
+# Installer les dépendances
+npm install
+
+# Configurer les variables d'environnement
+cp .env.example .env
+# Éditer .env avec vos clés Supabase
+
+# Démarrer le serveur
+npm run dev
 ```
 
-### 2. Personnaliser vos données
+Le backend démarre sur `http://localhost:5000`
 
-Éditez le fichier `data.json` avec vos informations personnelles :
-
-- Profil (nom, titre, contact, à propos)
-- Expérience professionnelle
-- Formation
-- Compétences techniques et interpersonnelles
-- Projets réalisés
-- Certifications
-
-### 3. Ajouter vos images
-
-Placez vos images dans le dossier `images/` :
-
-- `profile.jpg` : Votre photo de profil
-- `project1.jpg`, `project2.jpg`, etc. : Images de vos projets
-- `favicon.png` : Icône du site
-
-### 4. Ajouter votre CV
-
-Placez votre CV PDF dans le dossier `assets/` avec le nom `cv.pdf`
-
-### 5. Lancer le site
-
-Ouvrez simplement `index.html` dans votre navigateur, ou utilisez un serveur local :
+#### 2. Frontend
 
 ```bash
-# Avec Python
+cd frontend/public
+
+# Lancer un serveur local
 python -m http.server 8000
-
-# Avec Node.js (http-server)
-npx http-server
-
-# Avec PHP
-php -S localhost:8000
+# OU
+npx http-server -p 8000
 ```
 
-Puis accédez à `http://localhost:8000`
+Le frontend est accessible sur `http://localhost:8000`
 
-### 6. Utiliser l'administration (Optionnel mais recommandé)
+### Option 2 : Frontend seul (Mode Fallback)
 
-L'administration vous permet de gérer votre portfolio via une interface graphique au lieu de modifier manuellement les fichiers.
+Si vous ne voulez pas configurer le backend :
 
-#### Configuration en 3 étapes :
+```bash
+cd frontend/public
+python -m http.server 8000
+```
 
-1. **Configurer Supabase** (5 minutes) :
-   - Suivez le guide complet : [SUPABASE_SETUP.md](SUPABASE_SETUP.md)
-   - Créez un compte gratuit sur [Supabase](https://supabase.com)
-   - Créez les tables nécessaires
-   - Obtenez vos clés API
+Le site utilisera `data.json` local au lieu de l'API.
 
-2. **Configurer l'application** :
-   - Ouvrez `admin/js/config.js`
-   - Remplacez `SUPABASE_URL` et `SUPABASE_ANON_KEY` par vos valeurs
+## Configuration
 
-3. **Se connecter** :
-   - Accédez à `http://localhost:8000/admin/`
-   - Créez votre compte utilisateur (voir guide Supabase)
-   - Connectez-vous et gérez votre portfolio !
+### 1. Configurer Supabase
 
-#### Avantages de l'administration :
+Suivre le guide complet : [`docs/SUPABASE_SETUP.md`](docs/SUPABASE_SETUP.md)
 
-- ✅ Interface intuitive pour gérer tout votre contenu
-- ✅ Pas besoin de modifier le code
-- ✅ Upload d'images simplifié
-- ✅ Modifications en temps réel
-- ✅ Base de données sécurisée et gratuite
+Résumé :
+1. Créer un compte sur [Supabase](https://supabase.com)
+2. Créer un nouveau projet
+3. Exécuter les scripts SQL pour créer les tables
+4. Récupérer les clés API
 
-#### Continuer sans l'administration :
+### 2. Configurer le Backend
 
-Si vous préférez ne pas utiliser l'administration pour le moment :
-- Continuez à modifier le fichier `data.json` manuellement
-- Vous pourrez configurer Supabase plus tard
+```bash
+cd backend
+cp .env.example .env
+```
 
-## Personnalisation Avancée
+Éditer `.env` :
+```env
+PORT=5000
+SUPABASE_URL=https://votre-projet.supabase.co
+SUPABASE_ANON_KEY=votre_cle_publique
+SUPABASE_SERVICE_KEY=votre_cle_service
+ALLOWED_ORIGINS=http://localhost:8000
+```
 
-### Modifier les couleurs
+### 3. Configurer le Frontend
 
-Éditez les variables CSS dans `css/styles.css` :
+Éditer `frontend/public/js/apiConfig.js` :
+
+```javascript
+const API_BASE_URL = 'http://localhost:5000/api'; // Dev
+// Pour la production :
+// const API_BASE_URL = 'https://votre-api.com/api';
+```
+
+## Fonctionnalités
+
+### Frontend
+
+✅ **Portfolio Public**
+- Design moderne et responsive
+- Mode sombre/clair
+- Animations au scroll
+- Sections : À propos, Expérience, Formation, Projets, Compétences, Contact
+- Filtrage des projets
+- Formulaire de contact
+
+✅ **Panel d'Administration**
+- Authentification sécurisée
+- Tableau de bord avec statistiques
+- Gestion CRUD complète (Expérience, Formation, Projets, etc.)
+- Upload d'images
+- Interface intuitive
+
+### Backend
+
+✅ **API REST**
+- Routes publiques (GET) pour le portfolio
+- Routes protégées (POST/PUT/DELETE) pour l'admin
+- Authentification JWT
+- CORS configuré
+- Rate limiting (100 req/15min)
+- Health check endpoint
+
+## Documentation
+
+- [**Frontend README**](frontend/README.md) : Guide complet du frontend
+- [**Backend README**](backend/README.md) : Documentation de l'API
+- [**SUPABASE_SETUP**](docs/SUPABASE_SETUP.md) : Configuration de la base de données
+- [**ADMIN_GUIDE**](docs/ADMIN_GUIDE.md) : Guide d'utilisation de l'admin
+- [**CLAUDE.md**](docs/CLAUDE.md) : Instructions pour Claude Code
+
+## API Endpoints
+
+### Publics (GET)
+
+- `GET /api/portfolio/profile` - Profil
+- `GET /api/portfolio/experience` - Expériences
+- `GET /api/portfolio/education` - Formations
+- `GET /api/portfolio/projects` - Projets
+- `GET /api/portfolio/skills/technical` - Compétences techniques
+- `GET /api/portfolio/certifications` - Certifications
+
+### Protégés (Auth requise)
+
+- `POST /api/auth/login` - Connexion
+- `POST /api/portfolio/experience` - Créer une expérience
+- `PUT /api/portfolio/experience/:id` - Modifier une expérience
+- `DELETE /api/portfolio/experience/:id` - Supprimer une expérience
+- *(Même pattern pour education, projects, skills, certifications)*
+
+Voir [backend/README.md](backend/README.md) pour la liste complète.
+
+## Déploiement
+
+### Frontend
+
+**GitHub Pages / Netlify / Vercel**
+- Déployer le contenu de `frontend/public/`
+- Mettre à jour `API_BASE_URL` avec l'URL de production du backend
+
+### Backend
+
+**Heroku / Railway / Render**
+
+Exemple avec Heroku :
+```bash
+cd backend
+heroku create mon-portfolio-api
+git push heroku main
+heroku config:set SUPABASE_URL=xxx SUPABASE_SERVICE_KEY=xxx
+```
+
+**Variables d'environnement à configurer** :
+- `PORT` (auto sur Heroku)
+- `NODE_ENV=production`
+- `SUPABASE_URL`
+- `SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_KEY`
+- `ALLOWED_ORIGINS` (URL du frontend)
+
+## Scripts Disponibles
+
+### Backend
+```bash
+npm start       # Production
+npm run dev     # Développement avec nodemon
+```
+
+### Frontend
+Pas de build requis - servir les fichiers statiques directement.
+
+## Personnalisation
+
+### Couleurs
+
+Modifier `frontend/public/css/styles.css` :
 
 ```css
 :root {
     --primary-color: #2563eb;
     --secondary-color: #8b5cf6;
     --accent-color: #f59e0b;
-    /* ... */
 }
 ```
 
-### Modifier les titres animés
+### Données
 
-Éditez le tableau `titles` dans `js/script.js` (fonction `initTypingEffect`) :
+**Avec backend** : Utiliser le panel admin
+**Sans backend** : Éditer `backend/src/data.json`
 
-```javascript
-const titles = [
-    'Votre Titre 1',
-    'Votre Titre 2',
-    'Votre Titre 3'
-];
-```
+## Sécurité
 
-### Configurer le formulaire de contact
+- ✅ Authentification JWT via Supabase
+- ✅ CORS configuré pour origines spécifiques
+- ✅ Rate limiting (anti-abus)
+- ✅ Helmet (sécurisation headers HTTP)
+- ✅ Variables sensibles dans .env (non commitées)
 
-Le formulaire utilise actuellement une simulation. Pour l'activer réellement, vous pouvez :
-
-1. Utiliser **FormSubmit** (gratuit, sans backend)
-2. Utiliser **EmailJS** (gratuit, jusqu'à 200 emails/mois)
-3. Créer votre propre backend
-
-Exemple avec FormSubmit :
-```html
-<form action="https://formsubmit.co/votre-email@example.com" method="POST">
-```
-
-## Déploiement
-
-### GitHub Pages
-
-1. Poussez votre code sur GitHub
-2. Allez dans Settings > Pages
-3. Sélectionnez la branche `main` et le dossier `/root`
-4. Votre site sera disponible à `https://votre-username.github.io/portofolio`
-
-### Netlify
-
-1. Connectez votre dépôt GitHub à Netlify
-2. Le déploiement est automatique à chaque push
-
-### Vercel
-
-```bash
-npm i -g vercel
-vercel
-```
-
-## Support des Navigateurs
+## Support Navigateurs
 
 - Chrome (dernières versions)
 - Firefox (dernières versions)
 - Safari (dernières versions)
 - Edge (dernières versions)
 
+## Dépannage
+
+### Le frontend ne charge pas les données
+
+1. Vérifier que le backend est démarré (`http://localhost:5000/api/health`)
+2. Vérifier `API_BASE_URL` dans `frontend/public/js/apiConfig.js`
+3. Vérifier la console du navigateur pour les erreurs CORS
+
+### Erreur CORS
+
+Ajouter l'origine du frontend dans `backend/.env` :
+```env
+ALLOWED_ORIGINS=http://localhost:8000,http://localhost:3000
+```
+
+### Le backend ne démarre pas
+
+1. Vérifier que le fichier `.env` existe
+2. Vérifier que les clés Supabase sont correctes
+3. Installer les dépendances : `npm install`
+
+### Données non sauvegardées dans l'admin
+
+1. Vérifier que vous êtes connecté
+2. Vérifier les tables Supabase (voir SUPABASE_SETUP.md)
+3. Vérifier la console du navigateur pour les erreurs
+
+## Contribution
+
+Ce portfolio est personnel, mais vous pouvez l'utiliser comme template.
+
 ## Licence
 
-Ce projet est libre d'utilisation pour votre portfolio personnel.
+MIT - Libre d'utilisation pour votre propre portfolio.
 
 ## Auteur
 
-Alice Sindayigaya
-- LinkedIn: [alicesindayigaya](https://www.linkedin.com/in/alicesindayigaya)
+**Alice Sindayigaya**
+- LinkedIn : [alicesindayigaya](https://www.linkedin.com/in/alicesindayigaya)
+- GitHub : [asinda](https://github.com/asinda)
 
 ---
 
