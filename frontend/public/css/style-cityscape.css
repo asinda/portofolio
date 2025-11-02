@@ -577,8 +577,8 @@ section:nth-child(even) {
 
 .about-content {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: var(--spacing-xl);
+    grid-template-columns: 1fr 0.8fr;
+    gap: var(--spacing-lg);
     align-items: center;
 }
 
@@ -590,6 +590,8 @@ section:nth-child(even) {
     position: relative;
     border-radius: var(--radius-lg);
     overflow: hidden;
+    min-width: 500px;
+    max-width: 700px;
 }
 
 .image-wrapper img {
@@ -597,6 +599,21 @@ section:nth-child(even) {
     height: auto;
     display: block;
     border-radius: var(--radius-lg);
+    object-fit: cover;
+    transform: scale(1.1);
+}
+
+.about-text {
+    font-size: 0.95rem;
+}
+
+.about-text .section-title {
+    font-size: 2rem;
+}
+
+.about-text .section-description {
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .image-decoration {
@@ -2064,6 +2081,16 @@ section:nth-child(even) {
         gap: var(--spacing-lg);
     }
 
+    .image-wrapper {
+        min-width: 400px;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .about-text .section-title {
+        font-size: 1.8rem;
+    }
+
     .cv-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
@@ -2107,6 +2134,19 @@ section:nth-child(even) {
 
     section {
         padding: var(--spacing-xl) 0;
+    }
+
+    .image-wrapper {
+        min-width: 280px;
+        max-width: 100%;
+    }
+
+    .about-text .section-title {
+        font-size: 1.5rem;
+    }
+
+    .about-text .section-description {
+        font-size: 0.95rem;
     }
 
     .projects-grid,

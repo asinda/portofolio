@@ -87,17 +87,24 @@ app.use((err, req, res, next) => {
 // DÉMARRAGE DU SERVEUR
 // =====================
 
-app.listen(PORT, () => {
-    console.log('🚀 ================================');
-    console.log(`✅ Serveur démarré sur le port ${PORT}`);
-    console.log(`🌍 Environnement: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`📡 API disponible sur: http://localhost:${PORT}/api`);
-    console.log(`💚 Health check: http://localhost:${PORT}/api/health`);
-    console.log('🚀 ================================');
-});
+// Démarrer le serveur seulement si ce fichier est exécuté directement
+// Permet d'exporter l'app pour les tests
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log('🚀 ================================');
+        console.log(`✅ Serveur démarré sur le port ${PORT}`);
+        console.log(`🌍 Environnement: ${process.env.NODE_ENV || 'development'}`);
+        console.log(`📡 API disponible sur: http://localhost:${PORT}/api`);
+        console.log(`💚 Health check: http://localhost:${PORT}/api/health`);
+        console.log('🚀 ================================');
+    });
 
-// Gestion des erreurs non gérées
-process.on('unhandledRejection', (err) => {
-    console.error('❌ Erreur non gérée:', err);
-    process.exit(1);
-});
+    // Gestion des erreurs non gérées
+    process.on('unhandledRejection', (err) => {
+        console.error('❌ Erreur non gérée:', err);
+        process.exit(1);
+    });
+}
+
+// Exporter l'app pour les tests
+export default app;
