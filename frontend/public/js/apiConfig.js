@@ -9,7 +9,7 @@
 
 const API_BASE_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:5000/api'
-    : 'VOTRE_URL_RENDER/api'; // À REMPLACER après déploiement Render
+    : 'https://portfolio-backend-uj9f.onrender.com/api';
 
 // Export pour utilisation dans d'autres fichiers
 if (typeof module !== 'undefined' && module.exports) {
