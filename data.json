@@ -1,0 +1,108 @@
+{
+  "profile": {
+    "name": "Alice Sindayigaya",
+    "title": "Développeuse / Analyste",
+    "location": "France",
+    "email": "alicesindayigaya@gmail.com",
+    "phone": "+33 X XX XX XX XX",
+    "linkedin": "https://www.linkedin.com/in/alicesindayigaya",
+    "github": "https://github.com/asinda",
+    "website": "",
+    "photo": "images/profile.svg",
+    "about": "Professionnelle passionnée par la technologie et l'innovation. Spécialisée dans le développement et l'analyse de solutions numériques."
+  },
+  "experience": [
+    {
+      "position": "Votre Poste Actuel",
+      "company": "Cegedim",
+      "location": "France",
+      "startDate": "Mois Année",
+      "endDate": "Présent",
+      "current": true,
+      "description": "Décrivez vos responsabilités principales...",
+      "achievements": [
+        "Réalisation importante #1",
+        "Réalisation importante #2",
+        "Réalisation importante #3"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Votre Diplôme",
+      "institution": "Votre École/Université",
+      "location": "Ville, Pays",
+      "startDate": "Année",
+      "endDate": "Année",
+      "description": "Spécialisation, mention..."
+    }
+  ],
+  "skills": {
+    "technical": [
+      {
+        "name": "JavaScript",
+        "level": "Avancé",
+        "category": "Frontend"
+      },
+      {
+        "name": "Python",
+        "level": "Intermédiaire",
+        "category": "Backend"
+      },
+      {
+        "name": "SQL",
+        "level": "Avancé",
+        "category": "Database"
+      },
+      {
+        "name": "Git",
+        "level": "Avancé",
+        "category": "Outils"
+      }
+    ],
+    "languages": [
+      {
+        "name": "Français",
+        "level": "Natif"
+      },
+      {
+        "name": "Anglais",
+        "level": "Courant"
+      }
+    ],
+    "soft": [
+      {
+        "name": "Travail d'équipe",
+        "level": "Excellent"
+      },
+      {
+        "name": "Communication",
+        "level": "Excellent"
+      },
+      {
+        "name": "Résolution de problèmes",
+        "level": "Excellent"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "title": "Portfolio Personnel",
+      "description": "Développement d'un portfolio moderne avec backend API et panel d'administration",
+      "startDate": "Octobre 2024",
+      "endDate": "Présent",
+      "url": "",
+      "image": "images/project1.svg",
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Node.js",
+        "Supabase"
+      ],
+      "category": "Personnel",
+      "featured": true
+    }
+  ],
+  "certifications": []
+}
