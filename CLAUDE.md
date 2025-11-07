@@ -2,192 +2,270 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Instructions pour Claude Code
+## Communication Language
 
-- **Langue de communication** : Réponds toujours en français
-- Toutes les explications et interactions doivent être en français
+**IMPORTANT**: Always respond in French when working with this codebase. The project owner is French-speaking and all documentation, comments, and interactions should be in French.
 
-## Aperçu du Projet
+## Project Overview
 
-Portfolio professionnel moderne pour Alice Sindayigaya, développé avec HTML, CSS et JavaScript vanilla (sans framework).
+Professional portfolio for Alice Sindayigaya with a modern frontend/backend architecture.
 
-LinkedIn Profile: www.linkedin.com/in/alicesindayigaya
+- **LinkedIn**: [alicesindayigaya](https://www.linkedin.com/in/alicesindayigaya)
+- **GitHub**: [asinda](https://github.com/asinda)
+- **Architecture**: Separated frontend (vanilla JS) and backend (Node.js + Express + Supabase)
 
-## Stack Technique
+## Tech Stack
 
-- **Frontend** : HTML5, CSS3, JavaScript (ES6+)
-- **Fonts** : Google Fonts (Poppins, Playfair Display)
-- **Icons** : Font Awesome 6.4.0
-- **Données** : Format JSON (data.json)
-- **Pas de build system** : Fichiers statiques servis directement
+### Backend
+- **Runtime**: Node.js v18+ with ES modules (`"type": "module"`)
+- **Framework**: Express.js
+- **Database**: Supabase (PostgreSQL)
+- **Authentication**: Supabase Auth (JWT)
+- **Security**: Helmet, CORS, Express Rate Limiting
+- **Dependencies**: `@supabase/supabase-js`, `cheerio`, `cors`, `dotenv`, `express`, `express-rate-limit`, `helmet`, `multer`, `node-fetch`
 
-## Structure du Projet
+### Frontend
+- **Pure vanilla**: HTML5, CSS3, JavaScript ES6+ (no framework, no build system)
+- **Icons**: Font Awesome 6.4.0
+- **Fonts**: Google Fonts (Poppins, Playfair Display)
+- **Features**: Dark/light mode, responsive design, Intersection Observer animations, typewriter effect
 
-```
-portofolio/
-├── index.html          # Page principale unique (SPA-like)
-├── css/
-│   └── styles.css      # Tous les styles (variables CSS, responsive)
-├── js/
-│   └── script.js       # Toutes les fonctionnalités JS
-├── images/             # Photos et images de projets
-├── assets/             # Fichiers téléchargeables (CV, etc.)
-├── data.json           # Données du portfolio (structure JSON)
-├── README.md           # Documentation utilisateur
-└── CLAUDE.md           # Guide pour Claude Code
-```
+## Development Commands
 
-## Architecture et Concepts Clés
-
-### 1. Système de données centralisé (data.json)
-
-Toutes les données du portfolio sont dans `data.json` avec cette structure :
-- `profile` : Informations personnelles, contact, à propos
-- `experience` : Historique professionnel avec achievements
-- `education` : Parcours académique
-- `skills` : Compétences techniques, langues, soft skills
-- `projects` : Portfolio de projets avec technologies utilisées
-- `certifications` : Certifications et réalisations
-
-### 2. Système de thème clair/sombre
-
-Utilise l'attribut `data-theme` sur l'élément HTML :
-- Variables CSS différentes selon le thème dans `:root` et `[data-theme="dark"]`
-- Sauvegarde dans localStorage pour persistance
-- Toggle via bouton dans la navigation
-
-### 3. Navigation et Sections
-
-- Navigation fixe avec effet de scroll (classe `.scrolled` ajoutée dynamiquement)
-- Menu mobile avec toggle hamburger
-- Intersection Observer pour mettre à jour le lien actif selon la section visible
-- Smooth scroll natif CSS + JavaScript pour les ancres
-
-### 4. Animations
-
-- **Au chargement** : Loading screen avec spinner
-- **Hero** : Effet de frappe (typewriter) pour les titres alternés
-- **Scroll** : Intersection Observer pour fade-in des cartes
-- **Compteurs** : Animation incrémentale des statistiques
-- **Hover** : Transitions CSS sur les cartes, boutons, liens
-
-### 5. Responsive Design
-
-Breakpoints principaux :
-- Mobile : < 640px
-- Tablette : < 968px
-- Desktop : ≥ 968px
-
-Grid/Flexbox utilisés pour tous les layouts, avec `grid-template-columns: repeat(auto-fit, minmax(...))` pour l'adaptabilité.
-
-## Commandes de Développement
-
-### Lancer un serveur local
+### Backend
 
 ```bash
-# Python (recommandé pour développement)
+cd backend
+
+# Install dependencies (first time only)
+npm install
+
+# Setup environment variables (first time only)
+cp .env.example .env
+# Then edit .env with Supabase credentials
+
+# Development mode with auto-reload (nodemon)
+npm run dev
+
+# Production mode
+npm start
+```
+
+Backend runs on `http://localhost:5000`
+
+### Frontend
+
+```bash
+cd frontend/public
+
+# Using Python (recommended for dev)
 python -m http.server 8000
 
-# Node.js (nécessite installation globale)
+# Using Node.js
 npx http-server -p 8000
 
-# PHP
+# Using PHP
 php -S localhost:8000
 ```
 
-Accès : http://localhost:8000
+Frontend accessible at:
+- Portfolio: `http://localhost:8000`
+- Admin panel: `http://localhost:8000/admin`
 
-### Tester sur mobile (même réseau local)
+## Architecture
 
-```bash
-# Trouver votre IP locale
-ipconfig  # Windows
-ifconfig  # Mac/Linux
+### Backend Structure (`backend/`)
 
-# Lancer le serveur et accéder via http://[VOTRE-IP]:8000
+```
+backend/
+├── server.js                    # Entry point, middleware setup, route registration
+├── src/
+│   ├── config/
+│   │   └── supabase.js         # Supabase client initialization
+│   ├── middleware/
+│   │   ├── auth.js             # JWT authentication middleware
+│   │   └── cors.js             # CORS configuration
+│   ├── routes/
+│   │   ├── auth.js             # Auth routes (login, register, logout, user)
+│   │   └── portfolio.js        # Portfolio CRUD routes (all entities)
+│   ├── controllers/
+│   │   ├── profileController.js # Profile-specific logic
+│   │   └── crudController.js    # Generic CRUD controller for all entities
+│   └── data.json               # Fallback data (used when Supabase unavailable)
 ```
 
-### Valider le HTML
+**Key architectural patterns**:
+- **Generic CRUD controller**: `crudController.js` exports a factory function that creates CRUD operations for any Supabase table
+- **Auth middleware**: Protects routes that modify data (POST/PUT/DELETE)
+- **Rate limiting**: 100 requests per 15 minutes per IP on all `/api/` routes
 
-```bash
-# Utiliser le validator W3C en ligne
-# ou installer localement :
-npm install -g html-validate
-html-validate index.html
+### Frontend Structure (`frontend/public/`)
+
+```
+public/
+├── index.html              # Main portfolio page (single page)
+├── admin/                  # Admin panel
+│   └── (admin files)
+├── css/
+│   └── styles.css          # All styles (CSS variables, responsive)
+├── js/
+│   ├── apiConfig.js        # API base URL configuration
+│   └── script.js           # Main logic (data loading, animations, interactions)
+├── images/                 # Portfolio images
+└── assets/                 # Downloadable files (CV, etc.)
 ```
 
-## Personnalisation du Portfolio
+**Key frontend patterns**:
+- **Data loading**: `script.js` tries to fetch from backend API first, falls back to local `data.json` if unavailable
+- **Theme management**: Uses `data-theme` HTML attribute with localStorage persistence
+- **Animations**: Intersection Observer for scroll animations, custom typewriter effect
+- **No build step**: All files are served statically as-is
 
-### Modifier les données
+## Important Configuration Files
 
-Éditer `data.json` - le JavaScript charge automatiquement les nouvelles données.
+### Backend `.env` (required)
 
-### Changer les couleurs
+```env
+PORT=5000
+NODE_ENV=development
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your_anon_key
+SUPABASE_SERVICE_KEY=your_service_key
+ALLOWED_ORIGINS=http://localhost:8000,http://localhost:3000
+```
 
-Modifier les variables CSS dans `css/styles.css` ligne 6-30 (section `:root`).
+### Frontend `apiConfig.js`
 
-### Ajouter une section
+Toggle between local development and production API:
 
-1. Ajouter le HTML dans `index.html`
-2. Créer les styles dans `css/styles.css`
-3. Ajouter la logique JS si nécessaire dans `js/script.js`
-4. Ajouter le lien dans la navigation
+```javascript
+const API_BASE_URL = window.location.hostname === 'localhost'
+    ? 'http://localhost:5000/api'
+    : 'https://your-production-api.com/api';
+```
 
-### Configurer le formulaire de contact
+## Database Schema (Supabase)
 
-Options :
-- **FormSubmit** : Changer l'action du form vers `https://formsubmit.co/email`
-- **EmailJS** : Ajouter SDK et configurer dans `initContactForm()`
-- **Backend custom** : Créer un endpoint et faire un fetch dans `initContactForm()`
+The backend expects these tables in Supabase:
+- `profile` - User profile information
+- `experiences` - Work experience entries
+- `education` - Educational background
+- `projects` - Portfolio projects
+- `technical_skills` - Technical skills
+- `languages` - Language proficiency
+- `soft_skills` - Soft skills
+- `certifications` - Certifications and achievements
 
-## Fichiers Importants
+**Setup**: Run SQL scripts in [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) to create all tables.
 
-### index.html
-Page unique contenant toutes les sections. Structure sémantique avec sections identifiées par `id`.
+## API Routes
 
-### css/styles.css
-Organisation :
-1. Variables CSS
-2. Reset & Base
-3. Components (navbar, hero, sections...)
-4. Responsive (@media queries à la fin)
+### Public (no auth)
+- `GET /api/health` - Health check
+- `GET /api/portfolio/profile` - Get profile
+- `GET /api/portfolio/experience` - List experiences
+- `GET /api/portfolio/education` - List education
+- `GET /api/portfolio/projects` - List projects
+- `GET /api/portfolio/skills/technical` - Technical skills
+- `GET /api/portfolio/skills/languages` - Languages
+- `GET /api/portfolio/skills/soft` - Soft skills
+- `GET /api/portfolio/certifications` - Certifications
 
-### js/script.js
-Modules fonctionnels :
-- `loadPortfolioData()` : Charge et injecte data.json dans le DOM
-- `initNavigation()` : Gère menu, scroll, active states
-- `initThemeToggle()` : Mode sombre/clair
-- `initTypingEffect()` : Animation typewriter
-- `initScrollAnimations()` : Intersection Observer pour animations
-- `initCounters()` : Compteurs animés
-- `initProjectFilters()` : Filtrage de projets
-- `initContactForm()` : Soumission formulaire
-- `initBackToTop()` : Bouton retour haut de page
+### Protected (require JWT auth)
+- `POST /api/auth/login` - Login
+- `POST /api/portfolio/{entity}` - Create entry
+- `PUT /api/portfolio/{entity}/:id` - Update entry
+- `DELETE /api/portfolio/{entity}/:id` - Delete entry
 
-## Déploiement
+**Auth header**: `Authorization: Bearer <jwt_token>`
 
-### GitHub Pages
-Le plus simple pour un site statique :
-1. Push vers GitHub
-2. Settings > Pages > Source: main branch
+## Common Development Workflows
 
-### Netlify/Vercel
-Drag & drop du dossier ou connexion au repo Git.
+### Adding a new portfolio entity type
 
-## Optimisations Possibles
+1. **Backend**: The generic `crudController.js` handles most CRUD operations automatically. For a new table `foo`:
+   ```javascript
+   // In routes/portfolio.js
+   import { getCrudController } from '../controllers/crudController.js';
+   const fooController = getCrudController('foo');
+   router.get('/foo', fooController.getAll);
+   router.post('/foo', authMiddleware, fooController.create);
+   // etc.
+   ```
 
-- Compresser les images (WebP, lazy loading)
-- Minifier CSS/JS pour la production
-- Ajouter un Service Worker pour PWA
-- Utiliser un CDN pour les assets
-- Implémenter le cache navigateur via headers
+2. **Database**: Add table to Supabase with proper schema
 
-## Dépannage Courant
+3. **Frontend**: Update `script.js` to fetch and display the new entity
 
-**Les images ne s'affichent pas** : Vérifier les chemins dans data.json et que les fichiers existent dans `images/`.
+### Modifying styles
 
-**Le formulaire ne fonctionne pas** : C'est normal, c'est une simulation. Voir README pour configuration réelle.
+Edit `frontend/public/css/styles.css`. Key sections:
+- Lines 1-30: CSS variables (colors, spacing, fonts)
+- Theme-specific variables in `:root` and `[data-theme="dark"]`
+- Responsive breakpoints at bottom (@media queries)
 
-**Erreur CORS avec data.json** : Utiliser un serveur local, pas file:// directement.
+### Testing API endpoints
 
-**Les animations ne marchent pas** : Vérifier que JavaScript est activé et qu'il n'y a pas d'erreurs console.
+```bash
+# Health check
+curl http://localhost:5000/api/health
+
+# Get profile (public)
+curl http://localhost:5000/api/portfolio/profile
+
+# Create experience (protected - requires JWT)
+curl -X POST http://localhost:5000/api/portfolio/experience \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"position":"Developer","company":"ACME","start_date":"2024-01"}'
+```
+
+## Deployment
+
+### Backend
+- **Recommended platforms**: Heroku, Railway, Render
+- **Required env vars**: All variables from `.env.example`
+- **Important**: Set `NODE_ENV=production` and update `ALLOWED_ORIGINS` with frontend URL
+
+### Frontend
+- **Recommended platforms**: GitHub Pages, Netlify, Vercel
+- **Deploy**: Upload contents of `frontend/public/` folder
+- **Important**: Update `apiConfig.js` with production API URL
+
+## Troubleshooting
+
+**CORS errors**: Add frontend origin to `ALLOWED_ORIGINS` in backend `.env`
+
+**Supabase connection fails**: Verify `.env` has correct `SUPABASE_URL` and keys. Check [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md)
+
+**Frontend shows "fallback mode"**: Backend is unreachable. Verify it's running on correct port and CORS is configured
+
+**Auth token invalid**: Tokens expire. Re-login through admin panel to get fresh JWT
+
+**Images not loading**: Check paths in database match actual files in `frontend/public/images/`
+
+## Code Style Conventions
+
+- **Language**: All code comments, commit messages, and documentation in French
+- **Backend**: Use ES modules (`import/export`), async/await for async operations
+- **Frontend**: Vanilla JS (no frameworks), use modern ES6+ features
+- **Naming**: camelCase for variables/functions, PascalCase for classes
+- **Error handling**: Always return proper HTTP status codes and JSON error responses
+
+## Testing
+
+Currently no automated tests are configured. To add tests:
+
+```bash
+# In backend/
+npm install --save-dev jest supertest
+# Create tests in backend/tests/
+```
+
+## Documentation Files
+
+- [README.md](README.md) - Main project overview and setup guide
+- [backend/README.md](backend/README.md) - Backend API documentation
+- [frontend/README.md](frontend/README.md) - Frontend features and customization
+- [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) - Complete Supabase setup guide
+- [docs/ADMIN_GUIDE.md](docs/ADMIN_GUIDE.md) - Admin panel usage guide

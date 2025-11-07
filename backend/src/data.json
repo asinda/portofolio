@@ -1,0 +1,280 @@
+{
+  "profile": {
+    "name": "Alice Sindayigaya",
+    "title": "Ingénieure DevOps",
+    "location": "Toulouse, France",
+    "email": "alicesindayigaya@gmail.com",
+    "phone": "07 61 29 12 84",
+    "linkedin": "https://www.linkedin.com/in/alicesindayigaya",
+    "github": "https://github.com/asinda",
+    "website": "https://alicesindayigaya.com",
+    "photo": "images/profile.jpg",
+    "about": "Passionnée par l'innovation et l'excellence technique, j'ai développé une expertise solide en DevOps et Cloud Engineering à travers des expériences enrichissantes. Actuellement Responsable de Plateforme chez Cegedim Cloud, je conçois et optimise des architectures PaaS haute performance sur OpenSearch et MongoDB. Mon approche combine rigueur technique, vision stratégique et passion pour l'automatisation. J'aime relever des défis complexes, partager mes connaissances et contribuer à l'évolution des pratiques DevOps dans l'écosystème tech."
+  },
+  "experience": [
+    {
+      "position": "Ingénieure DevOps - Responsable de plateforme",
+      "company": "Cegedim Cloud",
+      "location": "Labège, France",
+      "startDate": "Janvier 2024",
+      "endDate": "Présent",
+      "current": true,
+      "description": "Responsable du développement et de l'exploitation des plateformes PaaS OpenSearch et MongoDB dans un environnement cloud haute disponibilité.",
+      "achievements": [
+        "Conception, déploiement et optimisation des plateformes OpenSearch et MongoDB",
+        "Intégration des plateformes dans l'écosystème cloud existant",
+        "Garantie de la sécurité, de la performance et de la scalabilité des environnements",
+        "Mise en place de processus d'automatisation pour le déploiement et la maintenance"
+      ]
+    },
+    {
+      "position": "Ingénieure DevOps - Elasticsearch",
+      "company": "Inetum (Coperbee)",
+      "location": "Toulouse, France",
+      "startDate": "Septembre 2021",
+      "endDate": "Décembre 2023",
+      "current": false,
+      "description": "Mise en place et maintenance de la plateforme de logs basée sur la stack ELK pour Airbus Defence and Space / Geo.",
+      "achievements": [
+        "Déploiement et gestion de la stack ELK (Elasticsearch, Logstash, Kibana) en production",
+        "Automatisation du déploiement avec Ansible, Terraform, Python et Bash",
+        "Supervision des plateformes avec Centreon, Grafana et Prometheus",
+        "Support niveau 3 et optimisation des performances des clusters Elasticsearch"
+      ]
+    },
+    {
+      "position": "Ingénieure DevOps",
+      "company": "Neosoft",
+      "location": "Toulouse, France",
+      "startDate": "Avril 2021",
+      "endDate": "Septembre 2021",
+      "current": false,
+      "description": "Mise en place et maintenance des outils CI/CD pour BPCE-IT dans le cadre d'une mission de conseil.",
+      "achievements": [
+        "Déploiement et configuration de GitLab, SonarQube, Artifactory et Jenkins",
+        "Support utilisateurs pour la prise en main des outils CI/CD",
+        "Documentation des processus et bonnes pratiques",
+        "Formation des équipes de développement aux pratiques DevOps"
+      ]
+    },
+    {
+      "position": "Ingénieure DevOps",
+      "company": "CTS IT",
+      "location": "Toulouse, France",
+      "startDate": "Novembre 2018",
+      "endDate": "Avril 2021",
+      "current": false,
+      "description": "Mise en place et maintenance des outils de supervision réseau et cybersécurité dans un environnement multi-cloud.",
+      "achievements": [
+        "Déploiement et exploitation de solutions de supervision (Spectrum, Centreon, Nagios)",
+        "Automatisation du déploiement des équipements Cisco avec Ansible, GitLab et Jenkins",
+        "Migration et gestion d'infrastructures sur AWS et OpenShift",
+        "Développement d'outils de contrôle de conformité des équipements réseau",
+        "Orchestration de conteneurs avec Kubernetes"
+      ]
+    },
+    {
+      "position": "Stagiaire Développeuse Web (Flask-Python-JavaScript)",
+      "company": "Airbus Operations SAS",
+      "location": "Toulouse, France",
+      "startDate": "Mars 2018",
+      "endDate": "Août 2018",
+      "current": false,
+      "description": "Stage de fin d'études axé sur le développement web et l'introduction aux pratiques DevOps.",
+      "achievements": [
+        "Développement de web services pour le calcul de performance des moteurs d'avion",
+        "Amélioration des interfaces web d'administration",
+        "Participation à la mise en place d'outils DevOps (GitLab, Artifactory, Jenkins, SonarQube)",
+        "Intégration de tests automatisés dans les pipelines CI/CD"
+      ]
+    },
+    {
+      "position": "Stagiaire Développeuse Web (SharePoint-JavaScript)",
+      "company": "Limagrain",
+      "location": "Saint-Rémy-de-Provence, France",
+      "startDate": "Avril 2017",
+      "endDate": "Août 2017",
+      "current": false,
+      "description": "Développement du module intranet pour la recherche végétale.",
+      "achievements": [
+        "Développement du module « Phenotyping tools » du site intranet SharePoint",
+        "Mise en place d'une base de données pour la recherche végétale",
+        "Création d'une base de connaissance collaborative"
+      ]
+    },
+    {
+      "position": "Stagiaire Développeuse Web (Symfony 2.8)",
+      "company": "ENEDIS",
+      "location": "Clermont-Ferrand, France",
+      "startDate": "Avril 2016",
+      "endDate": "Août 2016",
+      "current": false,
+      "description": "Refonte d'une application web de gestion logistique avec intégration SAP.",
+      "achievements": [
+        "Refonte complète d'une application web de gestion des magasins",
+        "Automatisation des commandes de réapprovisionnement vers SAP",
+        "Développement en Symfony 2.8 avec architecture MVC"
+      ]
+    },
+    {
+      "position": "Responsable du Service Informatique",
+      "company": "SOGEA-SATOM BURUNDI",
+      "location": "Bujumbura, Burundi",
+      "startDate": "Septembre 2009",
+      "endDate": "Août 2013",
+      "current": false,
+      "description": "Gestion complète du service informatique d'une entreprise de BTP sur 6 sites.",
+      "achievements": [
+        "Traitement des incidents complexes et diagnostic niveau 3",
+        "Formation et intégration de nouveaux collaborateurs",
+        "Management d'une équipe de 6 techniciens répartis sur 6 sites",
+        "Reporting et suivi des projets informatiques auprès de la direction",
+        "Gestion du budget IT et des investissements matériels"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "degree": "Master 2 Informatique",
+      "institution": "Université Clermont Auvergne",
+      "location": "Clermont-Ferrand, France",
+      "startDate": "2016",
+      "endDate": "2018",
+      "description": "Mention Bien - Spécialisation en développement logiciel et systèmes distribués"
+    },
+    {
+      "degree": "Master 1 Informatique",
+      "institution": "Université Blaise Pascal",
+      "location": "Clermont-Ferrand, France",
+      "startDate": "2015",
+      "endDate": "2016",
+      "description": "Mention Bien"
+    },
+    {
+      "degree": "Licence Informatique",
+      "institution": "Université Blaise Pascal",
+      "location": "Clermont-Ferrand, France",
+      "startDate": "2013",
+      "endDate": "2014",
+      "description": "Mention Bien"
+    },
+    {
+      "degree": "Licence Informatique de Gestion",
+      "institution": "Université Lumière de Bujumbura",
+      "location": "Bujumbura, Burundi",
+      "startDate": "2004",
+      "endDate": "2009",
+      "description": "Mention Très Bien"
+    }
+  ],
+  "skills": {
+    "technical": [
+      "Python",
+      "Java",
+      "PHP",
+      "Bash",
+      "Ansible",
+      "Terraform",
+      "OpenSearch",
+      "Elasticsearch",
+      "ELK Stack",
+      "Centreon",
+      "Spectrum",
+      "Grafana",
+      "Prometheus",
+      "Loki",
+      "Kubernetes",
+      "GCP",
+      "AWS",
+      "OpenShift",
+      "OpenStack",
+      "GitLab",
+      "Jenkins",
+      "SonarQube",
+      "Artifactory",
+      "MongoDB",
+      "Docker",
+      "CI/CD",
+      "Linux"
+    ],
+    "languages": [
+      {"name": "Français", "level": "Courant"},
+      {"name": "Anglais", "level": "Intermédiaire"}
+    ],
+    "soft": [
+      "Leadership d'équipe",
+      "Autonomie et proactivité",
+      "Résolution de problèmes complexes",
+      "Communication technique",
+      "Gestion de projets",
+      "Formation et mentorat",
+      "Adaptabilité",
+      "Travail en équipe"
+    ]
+  },
+  "projects": [
+    {
+      "title": "Plateforme PaaS OpenSearch",
+      "description": "Conception et déploiement d'une plateforme PaaS OpenSearch haute disponibilité pour Cegedim Cloud. Architecture multi-cluster avec réplication, monitoring avancé et automatisation complète du cycle de vie.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+      "technologies": "OpenSearch, Kubernetes, Ansible, Terraform, Grafana, Python",
+      "category": "cloud",
+      "link": "",
+      "github": ""
+    },
+    {
+      "title": "Plateforme PaaS MongoDB",
+      "description": "Mise en place d'une plateforme MongoDB as a Service avec provisionnement automatisé, backup automatique, monitoring et scaling automatique. Support de milliers de bases de données en production.",
+      "image": "https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=600&q=80",
+      "technologies": "MongoDB, Kubernetes, Terraform, Ansible, Prometheus",
+      "category": "cloud",
+      "link": "",
+      "github": ""
+    },
+    {
+      "title": "Stack ELK Airbus",
+      "description": "Déploiement et exploitation d'une plateforme de logs centralisée basée sur Elasticsearch, Logstash et Kibana pour Airbus Defence and Space. Gestion de plusieurs To de logs par jour avec haute disponibilité.",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80",
+      "technologies": "Elasticsearch, Logstash, Kibana, Ansible, Terraform, Centreon",
+      "category": "monitoring",
+      "link": "",
+      "github": ""
+    },
+    {
+      "title": "Infrastructure CI/CD BPCE-IT",
+      "description": "Mise en place complète de la chaîne CI/CD pour BPCE-IT incluant GitLab, Jenkins, SonarQube et Artifactory. Formation des équipes et documentation des bonnes pratiques DevOps.",
+      "image": "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=600&q=80",
+      "technologies": "GitLab, Jenkins, SonarQube, Artifactory, Docker",
+      "category": "automation",
+      "link": "",
+      "github": ""
+    },
+    {
+      "title": "Automatisation Réseau Cisco",
+      "description": "Développement d'outils d'automatisation pour le déploiement et la configuration d'équipements réseau Cisco. Pipelines CI/CD pour la gestion de configuration as code et contrôle de conformité.",
+      "image": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=600&q=80",
+      "technologies": "Ansible, Python, GitLab, Jenkins, Kubernetes",
+      "category": "automation",
+      "link": "",
+      "github": ""
+    },
+    {
+      "title": "Plateforme de Supervision Multi-Cloud",
+      "description": "Architecture de supervision centralisée pour environnements AWS et OpenShift avec Spectrum, Centreon et Nagios. Alerting intelligent et tableaux de bord temps réel.",
+      "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80",
+      "technologies": "Spectrum, Centreon, Nagios, AWS, OpenShift, Grafana",
+      "category": "monitoring",
+      "link": "",
+      "github": ""
+    }
+  ],
+  "certifications": [],
+  "achievements": [
+    "Responsable de plateformes PaaS critiques gérant plusieurs To de données",
+    "Déploiement de solutions DevOps pour de grands groupes (Airbus, BPCE)",
+    "Plus de 7 ans d'expérience en DevOps et Cloud Engineering",
+    "Plus de 15 ans d'expérience en IT",
+    "Management d'équipes techniques distribuées",
+    "Membre actif de la communauté tech et associations humanitaires"
+  ]
+}
