@@ -25,7 +25,6 @@ portofolio/
 │   ├── package.json
 │   └── README.md
 ├── docs/                 # Documentation
-│   ├── CLAUDE.md         # Guide Claude Code
 │   ├── ADMIN_GUIDE.md
 │   ├── SUPABASE_SETUP.md
 │   └── ...
@@ -167,7 +166,7 @@ const API_BASE_URL = 'http://localhost:5000/api'; // Dev
 - [**Backend README**](backend/README.md) : Documentation de l'API
 - [**SUPABASE_SETUP**](docs/SUPABASE_SETUP.md) : Configuration de la base de données
 - [**ADMIN_GUIDE**](docs/ADMIN_GUIDE.md) : Guide d'utilisation de l'admin
-- [**CLAUDE.md**](docs/CLAUDE.md) : Instructions pour Claude Code
+
 
 ## API Endpoints
 
