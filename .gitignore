@@ -37,7 +37,13 @@ yarn.lock
 # Fichiers personnels (à décommenter si nécessaire)
 # images/profile.jpg
 # assets/cv.pdf
-# Dossier Claude
-docs/CLAUDE.md
+
+# Configuration Claude Code et assistants IA
+.claude/
+.clauderc
+claude.json
 CLAUDE.md
-./claude
+docs/CLAUDE.md
+.cursor/
+.cursorrules
+.github/copilot-instructions.md
