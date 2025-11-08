@@ -1,0 +1,111 @@
+name: Déploiement Backend (Render)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - 'render.yaml'
+      - '.github/workflows/deploy-backend.yml'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environnement de déploiement'
+        required: true
+        default: 'production'
+        type: choice
+        options:
+          - production
+          - staging
+
+jobs:
+  test:
+    name: Tests avant déploiement
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: 📦 Installation des dépendances
+        working-directory: ./backend
+        run: npm ci
+
+      - name: 🧪 Exécution des tests
+        working-directory: ./backend
+        run: npm test
+        env:
+          NODE_ENV: test
+
+  deploy:
+    name: Déploiement sur Render
+    runs-on: ubuntu-latest
+    needs: test
+    environment:
+      name: production
+      url: https://portfolio-backend-uj9f.onrender.com
+
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+
+      - name: 🚀 Déclenchement du déploiement Render
+        uses: johnbeynon/render-deploy-action@v0.0.8
+        with:
+          service-id: ${{ secrets.RENDER_SERVICE_ID }}
+          api-key: ${{ secrets.RENDER_API_KEY }}
+          wait-for-success: true
+
+      - name: ⏳ Attente de la disponibilité du service
+        run: |
+          echo "⏳ Attente du démarrage du service..."
+          sleep 30
+
+      - name: ✅ Vérification du health check
+        run: |
+          echo "🔍 Vérification du health check..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://portfolio-backend-uj9f.onrender.com/api/health)
+          if [ $response -eq 200 ]; then
+            echo "✅ API déployée avec succès !"
+          else
+            echo "❌ Échec du health check (HTTP $response)"
+            exit 1
+          fi
+
+      - name: 📊 Test des endpoints critiques
+        run: |
+          echo "🔍 Test des endpoints..."
+
+          # Test du profil
+          curl -f https://portfolio-backend-uj9f.onrender.com/api/portfolio/profile || exit 1
+          echo "✅ Endpoint /profile OK"
+
+          # Test des expériences
+          curl -f https://portfolio-backend-uj9f.onrender.com/api/portfolio/experience || exit 1
+          echo "✅ Endpoint /experience OK"
+
+          # Test des projets
+          curl -f https://portfolio-backend-uj9f.onrender.com/api/portfolio/projects || exit 1
+          echo "✅ Endpoint /projects OK"
+
+      - name: 📢 Notification de succès
+        if: success()
+        run: |
+          echo "🎉 Déploiement réussi !"
+          echo "🔗 URL: https://portfolio-backend-uj9f.onrender.com"
+          echo "📅 Date: $(date)"
+          echo "🔖 Commit: ${{ github.sha }}"
+
+      - name: ❌ Notification d'échec
+        if: failure()
+        run: |
+          echo "❌ Échec du déploiement"
+          echo "🔍 Vérifiez les logs sur Render Dashboard"
+          echo "🔖 Commit: ${{ github.sha }}"
