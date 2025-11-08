@@ -1,0 +1,22 @@
+[build]
+  # Pas de build command - site statique
+  publish = "frontend/public"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Redirections pour SPA (optionnel)
+[[redirects]]
+  from = "/api/*"
+  to = "https://portfolio-backend-uj9f.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+# Headers de sécurité
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
