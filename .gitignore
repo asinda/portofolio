@@ -38,5 +38,6 @@ yarn.lock
 # images/profile.jpg
 # assets/cv.pdf
 # Dossier Claude
-portofolio/docs/CLAUDE.md
-portofolio/CLAUDE.md
+docs/CLAUDE.md
+CLAUDE.md
+./claude
