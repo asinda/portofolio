@@ -48,6 +48,27 @@
 
     <!-- Custom CSS - Cityscape Design -->
     <link rel="stylesheet" href="css/style-cityscape.css">
+
+    <!-- Theme System - Light/Dark Mode -->
+    <link rel="stylesheet" href="css/theme-system.css">
+
+    <!-- Hero Variants - 4 Styles -->
+    <link rel="stylesheet" href="css/hero-variants.css">
+
+    <!-- Micro-Interactions Avancées -->
+    <link rel="stylesheet" href="css/micro-interactions.css">
+
+    <!-- Animations Scroll Avancées -->
+    <link rel="stylesheet" href="css/animations-scroll.css">
+
+    <!-- Effets 3D - Grilles, Néons, Depth -->
+    <link rel="stylesheet" href="css/effects-3d.css">
+
+    <!-- Performance Optimizations -->
+    <link rel="stylesheet" href="css/performance-optimizations.css">
+
+    <!-- Responsive Advanced -->
+    <link rel="stylesheet" href="css/responsive-advanced.css">
 </head>
 <body>
     <!-- Header / Navigation -->
@@ -83,30 +104,43 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-bg"></div>
+
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <span class="hero-label">Ingénieure DevOps</span>
+                    <span class="hero-label">
+                        <i class="fas fa-code pulse-icon"></i> Ingénieure DevOps
+                    </span>
+
                     <h1 class="hero-title">
-                        Alice <span class="gradient-text">Sindayigaya</span>
+                        <span class="hero-greeting">Bonjour, je suis</span>
+                        <span class="hero-name gradient-text" data-typewriter>Alice Sindayigaya</span>
                     </h1>
-                    <p class="hero-description">
-                        Architecte de solutions Cloud passionnée, je transforme des infrastructures complexes
-                        en plateformes performantes et évolutives. Spécialiste PaaS (OpenSearch, MongoDB),
-                        CI/CD et automatisation chez Cegedim Cloud.
-                    </p>
+
+                    <p class="hero-description rotating-text" data-phrases='[
+                        "Architecte Cloud passionnée | Kubernetes & Terraform",
+                        "Experte DevOps | CI/CD & Automatisation",
+                        "Spécialiste PaaS | OpenSearch & MongoDB",
+                        "Ingénieure Infrastructure | AWS & GCP"
+                    ]'>Architecte Cloud passionnée | Kubernetes & Terraform</p>
+
                     <div class="hero-cta">
-                        <a href="#cv" class="btn btn-primary">
-                            Découvrir mon CV
+                        <a href="#cv" class="btn btn-primary btn-magnetic">
+                            <span>Découvrir mon CV</span>
                             <i class="fas fa-arrow-right"></i>
                         </a>
-                        <a href="#projects" class="btn btn-secondary">
-                            Voir mes projets
+                        <a href="#projects" class="btn btn-secondary btn-magnetic">
+                            <span>Mes Projets</span>
                         </a>
-                        <a href="#blog" class="btn btn-outline">
+                        <a href="#blog" class="btn btn-outline btn-magnetic">
                             <i class="fas fa-book"></i>
-                            Blog & Tutos
+                            <span>Blog & Tutos</span>
                         </a>
+                    </div>
+
+                    <div class="scroll-indicator">
+                        <span>Scroll Down</span>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
                 </div>
                 <div class="hero-image">
@@ -717,6 +751,11 @@
         </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Retour en haut de la page">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- Scripts -->
     <!-- GSAP Core + Plugins (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -729,6 +768,13 @@
     <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
 
     <!-- Portfolio Scripts -->
+    <script src="js/theme-switcher.js"></script>
+    <script src="js/canvas-effects.js"></script>
+    <script src="js/hero-variants.js"></script>
+    <script src="js/micro-interactions.js"></script>
+    <script src="js/parallax-layers.js"></script>
+    <script src="js/scroll-reveals.js"></script>
+    <script src="js/performance-monitor.js"></script>
     <script src="js/data.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>

@@ -1,0 +1,335 @@
+/* ===================================
+   HERO VARIANTS - STYLES
+   Design Tech Futuriste Professionnel 2025
+   =================================== */
+
+/* Conteneur des variantes hero */
+.hero-variant-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* Canvas d'effets */
+.hero-effect-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ===================================
+   ANIMATIONS DE TRANSITION
+   =================================== */
+
+/* Fade in pour nouvelles variantes */
+@keyframes variantFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.hero-variant-container.loading {
+    animation: variantFadeIn 0.8s ease forwards;
+}
+
+/* ===================================
+   STYLES SPÉCIFIQUES PAR VARIANTE
+   =================================== */
+
+/* Variante Particules - Optimisations */
+.hero-variant-container[data-variant="particles"] canvas {
+    will-change: contents;
+}
+
+/* Variante Matrix - Style terminal */
+.hero-variant-container[data-variant="matrix"] {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Variante Grid 3D - Perspective */
+.hero-variant-container[data-variant="grid-3d"] {
+    perspective: 1000px;
+    perspective-origin: center center;
+}
+
+/* Variante Gradient Mesh - Blur background */
+.hero-variant-container[data-variant="gradient-mesh"] {
+    backdrop-filter: blur(2px);
+}
+
+/* ===================================
+   SÉLECTEUR DE VARIANTES (UI ADMIN)
+   =================================== */
+
+.hero-variant-selector {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.hero-variant-selector label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.variant-select {
+    width: 100%;
+    padding: var(--spacing-sm);
+    background: var(--bg-dark);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.variant-select:hover {
+    border-color: var(--primary);
+    background: var(--bg-hover);
+}
+
+.variant-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-transparent-20);
+}
+
+.variant-select option {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    padding: var(--spacing-sm);
+}
+
+/* ===================================
+   PREVIEW THUMBNAILS (pour admin)
+   =================================== */
+
+.hero-variant-previews {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+}
+
+.variant-preview {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius);
+    border: 2px solid var(--border-color);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    background: var(--bg-darker);
+}
+
+.variant-preview:hover {
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-glow);
+}
+
+.variant-preview.active {
+    border-color: var(--primary);
+    box-shadow: var(--neon-cyan);
+}
+
+.variant-preview-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.variant-preview-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--gradient-overlay);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.variant-preview-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+/* Mobile - Réduire la complexité */
+@media (max-width: 768px) {
+    .hero-variant-container {
+        opacity: 0.7; /* Moins visible sur mobile */
+    }
+
+    /* Réduire les particules sur mobile (géré en JS mais backup CSS) */
+    .hero-variant-container[data-variant="particles"] {
+        opacity: 0.6;
+    }
+
+    /* Masquer gradient mesh sur très petits écrans (trop lourd) */
+    @media (max-width: 480px) {
+        .hero-variant-container[data-variant="gradient-mesh"] {
+            display: none;
+        }
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .hero-variant-container {
+        opacity: 0.85;
+    }
+}
+
+/* Desktop - Pleine puissance */
+@media (min-width: 1024px) {
+    .hero-variant-container {
+        opacity: 1;
+    }
+}
+
+/* ===================================
+   SUPPORT PREFERS-REDUCED-MOTION
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-variant-container,
+    .hero-effect-canvas {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* Désactiver complètement les variantes animées si préférence */
+    .hero-variant-container[data-variant="matrix"],
+    .hero-variant-container[data-variant="gradient-mesh"] {
+        opacity: 0.3;
+    }
+
+    .hero-variant-container[data-variant="particles"],
+    .hero-variant-container[data-variant="grid-3d"] {
+        opacity: 0.5;
+    }
+}
+
+/* ===================================
+   DARK/LIGHT MODE ADJUSTMENTS
+   =================================== */
+
+/* Light mode - Réduire l'intensité */
+:root[data-theme="light"] .hero-variant-container {
+    opacity: 0.6;
+}
+
+:root[data-theme="light"] .hero-variant-container[data-variant="matrix"] {
+    opacity: 0.4; /* Encore plus discret en light */
+}
+
+/* Dark mode - Pleine intensité */
+:root[data-theme="dark"] .hero-variant-container {
+    opacity: 1;
+}
+
+/* ===================================
+   PERFORMANCE OPTIMIZATIONS
+   =================================== */
+
+/* GPU Acceleration pour animations fluides */
+.hero-variant-container,
+.hero-effect-canvas {
+    will-change: opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Contenir les repaint/reflow au conteneur */
+.hero-variant-container {
+    contain: layout style paint;
+}
+
+/* ===================================
+   LOADING STATE
+   =================================== */
+
+.hero-variant-container.loading {
+    opacity: 0;
+}
+
+.hero-variant-container.loaded {
+    opacity: 1;
+    transition: opacity 0.5s ease;
+}
+
+/* Spinner de chargement (optionnel) */
+.hero-variant-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 3px solid var(--primary-transparent-20);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ===================================
+   ERROR STATE
+   =================================== */
+
+.hero-variant-error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    text-align: center;
+    padding: var(--spacing-md);
+}
+
+.hero-variant-error-icon {
+    font-size: 2rem;
+    color: var(--error);
+    margin-bottom: var(--spacing-sm);
+}

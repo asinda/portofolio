@@ -1,0 +1,369 @@
+/* ===================================
+   EFFETS 3D - GRILLES, NÉONS, DEPTH
+   Design Tech Futuriste Professionnel 2025
+   =================================== */
+
+/* ===================================
+   GRILLE 3D ISOMÉTRIQUE
+   =================================== */
+
+.grid-3d {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(0deg, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: perspective(1000px) rotateX(60deg);
+    transform-origin: center bottom;
+    animation: grid-flow 20s linear infinite;
+    pointer-events: none;
+    opacity: 0.6;
+    z-index: 0;
+}
+
+/* Animation défilement grille */
+@keyframes grid-flow {
+    0% {
+        transform: perspective(1000px) rotateX(60deg) translateY(0);
+    }
+    100% {
+        transform: perspective(1000px) rotateX(60deg) translateY(60px);
+    }
+}
+
+/* Points lumineux sur la grille */
+.grid-3d::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient(circle, var(--grid-glow) 2px, transparent 2px);
+    background-size: 60px 60px;
+    animation: grid-pulse 3s ease-in-out infinite;
+}
+
+@keyframes grid-pulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ===================================
+   NÉONS SUBTILS PROFESSIONNELS
+   =================================== */
+
+/* Lignes néon à gauche des sections importantes */
+.neon-line {
+    position: relative;
+    padding-left: var(--spacing-lg);
+}
+
+.neon-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--primary) 50%,
+        transparent 100%
+    );
+    box-shadow: var(--neon-cyan);
+    animation: neon-flicker 4s infinite;
+}
+
+@keyframes neon-flicker {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    55% {
+        opacity: 1;
+    }
+    57% {
+        opacity: 0.9;
+    }
+}
+
+/* Texte avec glow subtil au hover */
+.text-glow {
+    transition: text-shadow 0.3s ease, color 0.3s ease;
+}
+
+.text-glow:hover {
+    color: var(--primary-light);
+    text-shadow:
+        0 0 10px var(--primary-transparent-50),
+        0 0 20px var(--primary-transparent-30);
+}
+
+/* Border glow au focus (accessibilité) */
+.focus-glow:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow:
+        0 0 0 3px var(--primary-transparent-20),
+        var(--neon-cyan);
+}
+
+/* ===================================
+   DEPTH LAYERS - 5 NIVEAUX ÉLÉVATION
+   =================================== */
+
+/* Niveau 1 - Très subtil */
+.depth-1 {
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.2),
+        0 0 15px var(--primary-transparent-10);
+}
+
+/* Niveau 2 - Subtil */
+.depth-2 {
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(0, 229, 255, 0.08);
+}
+
+/* Niveau 3 - Moyen (cards standard) */
+.depth-3 {
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(0, 229, 255, 0.12);
+}
+
+/* Niveau 4 - Prononcé */
+.depth-4 {
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(0, 229, 255, 0.15);
+}
+
+/* Niveau 5 - Maximum */
+.depth-5 {
+    box-shadow:
+        0 24px 64px rgba(0, 0, 0, 0.6),
+        0 0 50px rgba(0, 229, 255, 0.2);
+}
+
+/* Élévation au hover */
+.depth-1:hover { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25), 0 0 20px rgba(0, 229, 255, 0.12); }
+.depth-2:hover { box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 25px rgba(0, 229, 255, 0.15); }
+.depth-3:hover { box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45), 0 0 35px rgba(0, 229, 255, 0.18); }
+.depth-4:hover { box-shadow: 0 20px 56px rgba(0, 0, 0, 0.55), 0 0 45px rgba(0, 229, 255, 0.22); }
+.depth-5:hover { box-shadow: 0 28px 72px rgba(0, 0, 0, 0.65), 0 0 60px rgba(0, 229, 255, 0.25); }
+
+/* ===================================
+   GLASSMORPHISM AVANCÉ
+   =================================== */
+
+.glass-advanced {
+    background: rgba(30, 37, 65, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(0, 229, 255, 0.1);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 0 20px rgba(0, 229, 255, 0.05);
+}
+
+.glass-advanced:hover {
+    background: rgba(30, 37, 65, 0.5);
+    border-color: rgba(0, 229, 255, 0.3);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        inset 0 0 30px rgba(0, 229, 255, 0.08);
+}
+
+/* ===================================
+   SCANLINE EFFECT (optionnel)
+   =================================== */
+
+.scanline {
+    position: relative;
+    overflow: hidden;
+}
+
+.scanline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    animation: scanline-move 3s linear infinite;
+    pointer-events: none;
+    opacity: 0.3;
+}
+
+@keyframes scanline-move {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+/* ===================================
+   HOLOGRAM EFFECT
+   =================================== */
+
+.hologram {
+    position: relative;
+    animation: hologram-flicker 0.15s infinite;
+}
+
+@keyframes hologram-flicker {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.98;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.hologram::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 229, 255, 0.03) 0px,
+        transparent 2px,
+        transparent 4px
+    );
+    pointer-events: none;
+}
+
+/* ===================================
+   LIGHT MODE ADJUSTMENTS
+   =================================== */
+
+:root[data-theme="light"] .grid-3d {
+    opacity: 0.3;
+}
+
+:root[data-theme="light"] .neon-line::before {
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--primary) 50%,
+        transparent 100%
+    );
+    box-shadow: 0 0 15px rgba(2, 132, 199, 0.2);
+}
+
+:root[data-theme="light"] .depth-1 {
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.1),
+        0 0 10px rgba(2, 132, 199, 0.05);
+}
+
+:root[data-theme="light"] .depth-2 {
+    box-shadow:
+        0 4px 16px rgba(0, 0, 0, 0.12),
+        0 0 15px rgba(2, 132, 199, 0.08);
+}
+
+:root[data-theme="light"] .depth-3 {
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        0 0 20px rgba(2, 132, 199, 0.1);
+}
+
+:root[data-theme="light"] .glass-advanced {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(2, 132, 199, 0.2);
+}
+
+/* ===================================
+   RESPONSIVE - MOBILE
+   =================================== */
+
+@media (max-width: 768px) {
+    .grid-3d {
+        opacity: 0.3;
+        animation: none; /* Désactiver animation sur mobile */
+    }
+
+    .neon-line {
+        padding-left: var(--spacing-md);
+    }
+
+    .neon-line::before {
+        width: 2px;
+        box-shadow: none; /* Désactiver glow sur mobile */
+    }
+
+    /* Réduire profondeur shadows */
+    .depth-3, .depth-4, .depth-5 {
+        box-shadow: var(--shadow-md);
+    }
+
+    .scanline {
+        display: none; /* Trop lourd pour mobile */
+    }
+
+    .hologram {
+        animation: none; /* Désactiver flicker */
+    }
+}
+
+/* ===================================
+   PREFERS-REDUCED-MOTION
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .grid-3d,
+    .neon-line::before,
+    .scanline::before,
+    .hologram {
+        animation: none !important;
+    }
+
+    .grid-3d {
+        opacity: 0.2;
+    }
+}
+
+/* ===================================
+   PERFORMANCE OPTIMIZATIONS
+   =================================== */
+
+.grid-3d,
+.neon-line::before,
+.glass-advanced {
+    will-change: auto;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Désactiver will-change après animation */
+.grid-3d,
+.scanline::before {
+    animation-play-state: running;
+}
+
+@media (hover: none) {
+    /* Désactiver certains effets sur touch devices */
+    .depth-1:hover,
+    .depth-2:hover,
+    .depth-3:hover,
+    .depth-4:hover,
+    .depth-5:hover {
+        box-shadow: inherit;
+    }
+}

@@ -1,0 +1,53 @@
+/* ===================================
+   PERFORMANCE OPTIMIZATIONS
+   Design Tech Futuriste Professionnel 2025
+   =================================== */
+
+/* GPU Acceleration */
+.hero, .project-card, .service-card,
+.hero-bg, .particles-container {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* Will-change sur hover uniquement */
+.btn:hover, .project-card:hover,
+.hero-card:hover {
+    will-change: transform;
+}
+
+.btn, .project-card, .hero-card {
+    will-change: auto;
+}
+
+/* CSS Containment */
+.project-card, .service-card, .blog-card {
+    contain: layout style paint;
+}
+
+/* Reduce motion mobile */
+@media (max-width: 768px) {
+    .particles-container {
+        opacity: 0.3;
+    }
+
+    .cursor-follower, .magnetic-active {
+        display: none !important;
+    }
+
+    * { animation-duration: 0.1s !important; }
+}
+
+/* Prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .particles-container, .grid-3d {
+        display: none !important;
+    }
+}

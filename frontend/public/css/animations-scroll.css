@@ -1,0 +1,430 @@
+/* ===================================
+   ANIMATIONS SCROLL - KEYFRAMES & STYLES
+   Design Tech Futuriste Professionnel 2025
+   =================================== */
+
+/* ===================================
+   SCROLL PROGRESS CIRCLE
+   =================================== */
+
+.scroll-progress-circle {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    z-index: var(--z-fixed);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.scroll-progress-circle.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: all;
+}
+
+.scroll-progress-circle svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+}
+
+.scroll-progress-circle .progress-ring-bg {
+    stroke: var(--bg-card);
+    stroke-width: 4;
+}
+
+.scroll-progress-circle .progress-ring {
+    stroke: var(--primary);
+    stroke-width: 4;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.1s linear;
+}
+
+.scroll-progress-circle .progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--primary);
+    pointer-events: none;
+}
+
+/* Hover effect */
+.scroll-progress-circle:hover {
+    transform: scale(1.15);
+}
+
+.scroll-progress-circle:hover .progress-ring {
+    stroke: var(--primary-light);
+    filter: drop-shadow(0 0 10px var(--primary));
+}
+
+/* Active (click) */
+.scroll-progress-circle:active {
+    transform: scale(1.05);
+}
+
+/* ===================================
+   SECTION INDICATORS (DOTS NAV)
+   =================================== */
+
+.section-indicators {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    z-index: var(--z-fixed);
+}
+
+.indicator {
+    position: relative;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block;
+}
+
+.indicator::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.3s ease;
+    z-index: -1;
+}
+
+.indicator:hover {
+    border-color: var(--primary);
+    transform: scale(1.3);
+}
+
+.indicator:hover::before {
+    opacity: 0.3;
+    transform: scale(1);
+}
+
+/* Indicator actif */
+.indicator.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-transparent-50);
+    transform: scale(1.5);
+}
+
+/* Tooltip sur hover */
+.indicator[data-tooltip]::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: calc(100% + 15px);
+    top: 50%;
+    transform: translateY(-50%) translateX(10px);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    border-radius: var(--radius);
+    border: 1px solid var(--primary);
+    box-shadow: var(--shadow-card);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.indicator:hover[data-tooltip]::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+}
+
+/* ===================================
+   KEYFRAMES - RÉVÉLATIONS
+   =================================== */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes rotateIn {
+    from {
+        opacity: 0;
+        transform: rotate(-180deg) scale(0);
+    }
+    to {
+        opacity: 1;
+        transform: rotate(0) scale(1);
+    }
+}
+
+@keyframes clipReveal {
+    from {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    to {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
+
+/* ===================================
+   CLASSES UTILITAIRES D'ANIMATION
+   =================================== */
+
+.fade-in-up {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+.fade-in-right {
+    animation: fadeInRight 0.8s ease forwards;
+}
+
+.fade-in-left {
+    animation: fadeInLeft 0.8s ease forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.6s ease forwards;
+}
+
+.rotate-in {
+    animation: rotateIn 0.6s ease forwards;
+}
+
+.clip-reveal {
+    animation: clipReveal 1s ease forwards;
+}
+
+/* Delays pour stagger manuel */
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* ===================================
+   PARALLAX LAYERS - CLASSES
+   =================================== */
+
+.layer-background,
+.layer-midground,
+.layer-foreground {
+    will-change: transform;
+}
+
+/* ===================================
+   REVEAL CLASSES (pour GSAP)
+   =================================== */
+
+.reveal-clip {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+}
+
+.animate-text {
+    overflow: hidden;
+}
+
+/* ===================================
+   RESPONSIVE - MOBILE
+   =================================== */
+
+@media (max-width: 768px) {
+    .scroll-progress-circle {
+        bottom: 20px;
+        right: 20px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .scroll-progress-circle .progress-text {
+        font-size: 0.7rem;
+    }
+
+    .section-indicators {
+        right: 20px;
+        gap: var(--spacing-xs);
+    }
+
+    .indicator {
+        width: 10px;
+        height: 10px;
+    }
+
+    /* Masquer tooltips sur mobile */
+    .indicator[data-tooltip]::after {
+        display: none;
+    }
+}
+
+/* Très petits écrans - Simplifier */
+@media (max-width: 480px) {
+    .scroll-progress-circle {
+        width: 45px;
+        height: 45px;
+    }
+
+    .section-indicators {
+        display: none; /* Masquer sur très petits écrans */
+    }
+}
+
+/* ===================================
+   TABLET
+   =================================== */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .scroll-progress-circle {
+        bottom: 25px;
+        right: 25px;
+    }
+
+    .section-indicators {
+        right: 25px;
+    }
+}
+
+/* ===================================
+   PREFERS-REDUCED-MOTION
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .scroll-progress-circle,
+    .indicator {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .fade-in-up,
+    .fade-in-right,
+    .fade-in-left,
+    .scale-in,
+    .rotate-in,
+    .clip-reveal {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+        clip-path: none !important;
+    }
+
+    .layer-background,
+    .layer-midground,
+    .layer-foreground {
+        will-change: auto !important;
+    }
+}
+
+/* ===================================
+   LIGHT MODE ADJUSTMENTS
+   =================================== */
+
+:root[data-theme="light"] .scroll-progress-circle .progress-ring {
+    stroke: var(--primary);
+}
+
+:root[data-theme="light"] .indicator {
+    background: var(--bg-light);
+    border-color: var(--border-color);
+}
+
+:root[data-theme="light"] .indicator.active {
+    background: var(--primary);
+    box-shadow: 0 0 10px rgba(2, 132, 199, 0.3);
+}
+
+/* ===================================
+   PERFORMANCE OPTIMIZATIONS
+   =================================== */
+
+/* GPU Acceleration */
+.scroll-progress-circle,
+.indicator,
+.layer-background,
+.layer-midground,
+.layer-foreground {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Contenir les repaint */
+.scroll-progress-circle,
+.section-indicators {
+    contain: layout style paint;
+}
+
+/* ===================================
+   Z-INDEX MANAGEMENT
+   =================================== */
+
+.scroll-progress-circle {
+    z-index: 1030; /* Au-dessus du contenu, sous les modals */
+}
+
+.section-indicators {
+    z-index: 1025; /* Légèrement sous progress circle */
+}
+
+/* ===================================
+   PRINT - Masquer éléments UI
+   =================================== */
+
+@media print {
+    .scroll-progress-circle,
+    .section-indicators {
+        display: none !important;
+    }
+}

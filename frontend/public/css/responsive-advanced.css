@@ -1,0 +1,145 @@
+/* ===================================
+   RESPONSIVE ADVANCED - BREAKPOINTS
+   Design Tech Futuriste Professionnel 2025
+   =================================== */
+
+/* Mobile Portrait 320px-480px */
+@media (max-width: 480px) {
+    :root {
+        font-size: 14px;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 8vw, 2.5rem) !important;
+    }
+
+    .section-title {
+        font-size: 1.5rem !important;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+    }
+
+    .hero-card, .project-card {
+        margin-bottom: 1rem;
+    }
+
+    .theme-toggle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .particles-container {
+        display: none !important;
+    }
+}
+
+/* Mobile Landscape & Portrait 481px-767px */
+@media (min-width: 481px) and (max-width: 767px) {
+    .hero-title {
+        font-size: clamp(2rem, 6vw, 3rem) !important;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem;
+    }
+
+    .particles-container {
+        opacity: 0.4;
+    }
+}
+
+/* Tablet 768px-1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .container {
+        max-width: 720px;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section-indicators {
+        right: 20px;
+    }
+}
+
+/* Desktop 1024px-1279px */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .container {
+        max-width: 960px;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .hero-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Large Desktop 1280px-1919px */
+@media (min-width: 1280px) and (max-width: 1919px) {
+    .container {
+        max-width: 1140px;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Ultra-Wide 1920px+ */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    .hero-title {
+        font-size: 5rem !important;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Touch Devices */
+@media (hover: none) and (pointer: coarse) {
+    .magnetic-active,
+    .cursor-follower {
+        display: none !important;
+    }
+
+    .btn:hover,
+    .project-card:hover {
+        transform: none !important;
+    }
+}
+
+/* Print */
+@media print {
+    .header, .scroll-progress-circle,
+    .section-indicators, .particles-container,
+    .grid-3d, .back-to-top {
+        display: none !important;
+    }
+
+    body {
+        font-size: 12pt;
+    }
+}

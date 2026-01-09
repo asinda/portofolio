@@ -1,0 +1,600 @@
+/* ===================================
+   MICRO-INTERACTIONS AVANCÉES
+   Design Tech Futuriste Professionnel 2025
+   =================================== */
+
+/* ===================================
+   BOUTONS - HALO NÉON
+   =================================== */
+
+.btn {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+/* Halo néon derrière le bouton */
+.btn::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-primary);
+    border-radius: inherit;
+    opacity: 0;
+    filter: blur(12px);
+    z-index: -1;
+    transition: opacity 0.4s ease;
+}
+
+.btn:hover::before {
+    opacity: 1;
+    animation: pulse-glow 1.5s infinite;
+}
+
+/* Animation pulse du glow */
+@keyframes pulse-glow {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.7;
+    }
+}
+
+/* Effet de brillance au survol */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s ease;
+}
+
+.btn:hover::after {
+    left: 100%;
+}
+
+/* Bouton primaire - Glow cyan */
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 24px rgba(0, 229, 255, 0.3),
+        0 0 40px rgba(0, 229, 255, 0.2),
+        inset 0 0 20px rgba(0, 229, 255, 0.1);
+}
+
+/* Bouton secondaire - Glow subtil */
+.btn-secondary:hover {
+    box-shadow:
+        0 6px 20px rgba(96, 165, 250, 0.3),
+        inset 0 0 15px rgba(96, 165, 250, 0.05);
+}
+
+/* Bouton outline - Border glow */
+.btn-outline {
+    border: 2px solid var(--primary);
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: var(--primary-transparent-10);
+    border-color: var(--primary-light);
+    box-shadow:
+        0 0 20px var(--primary-transparent-30),
+        inset 0 0 20px var(--primary-transparent-10);
+}
+
+/* Active state - Légère compression */
+.btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ===================================
+   CARDS - GLARE EFFECT
+   =================================== */
+
+.project-card,
+.service-card,
+.blog-card,
+.hero-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Effet de brillance diagonal */
+.project-card::after,
+.service-card::after,
+.blog-card::after,
+.hero-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%) translateY(-100%);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+
+.project-card:hover::after,
+.service-card:hover::after,
+.blog-card:hover::after,
+.hero-card:hover::after {
+    transform: translateX(0) translateY(0);
+}
+
+/* Élévation au hover */
+.project-card:hover,
+.service-card:hover,
+.blog-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 40px var(--primary-transparent-20),
+        inset 0 0 40px rgba(0, 229, 255, 0.05);
+}
+
+.hero-card:hover {
+    transform: translateY(-8px) rotateX(2deg);
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.3),
+        0 0 30px var(--primary-transparent-20);
+}
+
+/* Border glow au hover */
+.project-card:hover,
+.service-card:hover,
+.blog-card:hover,
+.hero-card:hover {
+    border-color: var(--primary);
+}
+
+/* ===================================
+   LINKS - UNDERLINE NÉON ANIMÉ
+   =================================== */
+
+.nav-link,
+a:not(.btn):not(.logo) {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after,
+a:not(.btn):not(.logo):not([class*="footer"])::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    box-shadow: 0 0 10px var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+a:not(.btn):not(.logo):not([class*="footer"]):hover::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+a:not(.btn):not(.logo):hover {
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary-transparent-30);
+}
+
+/* Link actif */
+.nav-link.active {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* ===================================
+   IMAGES - ZOOM & BRIGHTNESS
+   =================================== */
+
+img {
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.project-card img:hover,
+.blog-card img:hover {
+    transform: scale(1.1);
+    filter: brightness(1.1);
+}
+
+/* Container doit avoir overflow hidden */
+.project-card figure,
+.blog-card figure {
+    overflow: hidden;
+}
+
+/* ===================================
+   INPUTS & FORMS - FOCUS GLOW
+   =================================== */
+
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select {
+    transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow:
+        0 0 0 3px var(--primary-transparent-20),
+        0 0 20px var(--primary-transparent-30);
+    background: var(--bg-card);
+}
+
+input:focus::placeholder,
+textarea:focus::placeholder {
+    color: var(--text-tertiary);
+    opacity: 0.7;
+}
+
+/* ===================================
+   CHECKBOX & RADIO - CUSTOM STYLES
+   =================================== */
+
+input[type="checkbox"],
+input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+input[type="radio"] {
+    border-radius: 50%;
+}
+
+input[type="checkbox"]:hover,
+input[type="radio"]:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px var(--primary-transparent-20);
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-transparent-30);
+}
+
+/* Checkmark */
+input[type="checkbox"]:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Radio dot */
+input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+}
+
+/* ===================================
+   ICONS - ROTATION & PULSE
+   =================================== */
+
+.fas,
+.fab,
+.far {
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Rotation au hover */
+a:hover .fas,
+a:hover .fab,
+a:hover .far,
+button:hover .fas {
+    transform: rotate(5deg) scale(1.1);
+}
+
+/* Icons spécifiques - rotations complètes */
+.fa-arrow-right {
+    transition: transform 0.3s ease;
+}
+
+a:hover .fa-arrow-right {
+    transform: translateX(5px);
+}
+
+.fa-external-link-alt {
+    transition: transform 0.3s ease;
+}
+
+a:hover .fa-external-link-alt {
+    transform: translateY(-2px) translateX(2px);
+}
+
+/* Social icons - Couleurs spécifiques */
+.fa-linkedin:hover {
+    color: #0A66C2;
+    text-shadow: 0 0 10px rgba(10, 102, 194, 0.5);
+}
+
+.fa-github:hover {
+    color: #333;
+    text-shadow: 0 0 10px rgba(51, 51, 51, 0.5);
+}
+
+:root[data-theme="dark"] .fa-github:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* ===================================
+   BADGES & TAGS - PULSE
+   =================================== */
+
+.badge,
+.tag,
+.skill-tag {
+    transition: all 0.3s ease;
+}
+
+.badge:hover,
+.tag:hover,
+.skill-tag:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.2),
+        0 0 15px var(--primary-transparent-20);
+}
+
+/* ===================================
+   BACK TO TOP BUTTON
+   =================================== */
+
+.back-to-top {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.back-to-top:hover {
+    transform: translateY(-4px) scale(1.1);
+    box-shadow:
+        0 8px 24px rgba(0, 0, 0, 0.3),
+        0 0 30px var(--primary-transparent-30);
+}
+
+.back-to-top:active {
+    transform: translateY(-2px) scale(1.05);
+}
+
+/* ===================================
+   SCROLL INDICATOR - BOUNCE
+   =================================== */
+
+.scroll-indicator {
+    animation: scroll-bounce 2s infinite;
+}
+
+@keyframes scroll-bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(10px);
+    }
+}
+
+.scroll-indicator:hover {
+    animation-play-state: paused;
+    transform: translateY(5px) scale(1.1);
+}
+
+/* ===================================
+   LOADING STATES
+   =================================== */
+
+.loading,
+[data-loading="true"] {
+    position: relative;
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.loading::after,
+[data-loading="true"]::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--primary-transparent-20);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+/* ===================================
+   TOOLTIPS - GLOW
+   =================================== */
+
+[data-tooltip] {
+    position: relative;
+}
+
+[data-tooltip]::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-5px);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    white-space: nowrap;
+    border-radius: var(--radius);
+    border: 1px solid var(--primary);
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.3),
+        0 0 20px var(--primary-transparent-20);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+[data-tooltip]::after {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--primary);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+[data-tooltip]:hover::before,
+[data-tooltip]:hover::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* ===================================
+   RIPPLE CONTAINER (pour JS)
+   =================================== */
+
+.ripple-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(0, 229, 255, 0.6) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    animation: ripple-animation 0.6s ease-out;
+}
+
+@keyframes ripple-animation {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ===================================
+   LIGHT MODE ADJUSTMENTS
+   =================================== */
+
+:root[data-theme="light"] .btn:hover::before {
+    opacity: 0.7;
+}
+
+:root[data-theme="light"] .project-card:hover,
+:root[data-theme="light"] .service-card:hover,
+:root[data-theme="light"] .blog-card:hover {
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.15),
+        0 0 30px rgba(2, 132, 199, 0.15);
+}
+
+/* ===================================
+   PREFERS-REDUCED-MOTION
+   =================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .scroll-indicator {
+        animation: none;
+    }
+}
+
+/* ===================================
+   MOBILE - OPTIMISATIONS TOUCH
+   =================================== */
+
+@media (max-width: 768px) {
+    /* Réduire les transformations sur mobile */
+    .btn:hover {
+        transform: translateY(-1px);
+    }
+
+    .project-card:hover,
+    .service-card:hover,
+    .blog-card:hover {
+        transform: translateY(-5px) scale(1.01);
+    }
+
+    /* Désactiver certains effets lourds */
+    .btn::after,
+    .project-card::after,
+    .service-card::after {
+        display: none;
+    }
+}

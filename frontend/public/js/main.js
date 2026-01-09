@@ -595,3 +595,29 @@ function initBlogFilters() {
         });
     });
 }
+
+// ===================================
+// BACK TO TOP BUTTON
+// ===================================
+
+// Initialiser le bouton back-to-top
+const backToTopBtn = document.getElementById('backToTop');
+
+if (backToTopBtn) {
+    // Afficher/masquer le bouton selon le scroll
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    });
+
+    // Scroll vers le haut au clic
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}

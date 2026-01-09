@@ -1,0 +1,474 @@
+/* ===================================
+   THEME SYSTEM - LIGHT/DARK MODE
+   Design Tech Futuriste Professionnel 2025
+   =================================== */
+
+/* Transitions fluides pour tous les éléments lors du changement de thème */
+:root {
+    --theme-transition-duration: 0.3s;
+    --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    transition:
+        background-color var(--theme-transition-duration) var(--theme-transition-timing),
+        color var(--theme-transition-duration) var(--theme-transition-timing),
+        border-color var(--theme-transition-duration) var(--theme-transition-timing),
+        box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
+}
+
+/* Préserver les transitions GSAP et animations existantes */
+.gsap-animated,
+[data-aos],
+.animated {
+    transition: none !important;
+}
+
+/* ===================================
+   DARK MODE (Défaut) - TECH FUTURISTE
+   =================================== */
+
+:root,
+:root[data-theme="dark"] {
+    /* Couleurs principales - Palette Tech Futuriste */
+    --primary: #00E5FF;              /* Cyan électrique principal */
+    --primary-dark: #00B8D4;         /* Cyan foncé */
+    --primary-light: #7DF9FF;        /* Cyan clair lumineux */
+    --primary-glow: #7DF9FF;         /* Cyan glow */
+
+    /* Accents futuristes (nouveaux) */
+    --secondary: #FF1744;            /* Rouge néon */
+    --secondary-dark: #D50000;       /* Rouge profond */
+    --accent-green: #00FFA3;         /* Vert néon */
+    --accent-purple: #B388FF;        /* Violet électrique */
+    --accent-blue: #60A5FA;          /* Bleu ciel */
+    --accent-blue-dark: #3B82F6;     /* Bleu vif */
+
+    /* Status colors */
+    --success: #10B981;
+    --warning: #F59E0B;
+    --error: #EF4444;
+    --info: #3B82F6;
+
+    /* Backgrounds - Tons ultra-sombres */
+    --bg-darker: #0A0E27;            /* Ultra-sombre (nouveau) */
+    --bg-dark: #151934;              /* Fond principal (remplace #0A2647) */
+    --bg-card: #1E2541;              /* Cartes (remplace #1E293B) */
+    --bg-light: #2A3351;             /* Fond clair */
+    --bg-hover: #252B48;             /* Hover state */
+
+    /* Textes - Clarté optimale */
+    --text-primary: #F8FAFC;         /* Blanc cassé */
+    --text-secondary: #CBD5E1;       /* Gris clair */
+    --text-tertiary: #94A3B8;        /* Gris moyen */
+    --text-muted: #64748B;           /* Gris atténué */
+
+    /* Borders */
+    --border-color: rgba(203, 213, 225, 0.1);
+    --border-color-hover: rgba(0, 229, 255, 0.3);
+
+    /* Transparences */
+    --primary-transparent-10: rgba(0, 229, 255, 0.1);
+    --primary-transparent-20: rgba(0, 229, 255, 0.2);
+    --primary-transparent-30: rgba(0, 229, 255, 0.3);
+    --primary-transparent-50: rgba(0, 229, 255, 0.5);
+    --primary-transparent-80: rgba(0, 229, 255, 0.8);
+
+    /* Effets Néon - Luminosité subtile professionnelle */
+    --neon-cyan: 0 0 20px rgba(0, 229, 255, 0.4), 0 0 40px rgba(0, 229, 255, 0.2);
+    --neon-cyan-strong: 0 0 20px rgba(0, 229, 255, 0.6), 0 0 40px rgba(0, 229, 255, 0.3);
+    --neon-red: 0 0 20px rgba(255, 23, 68, 0.4), 0 0 40px rgba(255, 23, 68, 0.2);
+    --neon-green: 0 0 20px rgba(0, 255, 163, 0.4), 0 0 40px rgba(0, 255, 163, 0.2);
+    --neon-purple: 0 0 20px rgba(179, 136, 255, 0.4), 0 0 40px rgba(179, 136, 255, 0.2);
+
+    /* Gradients Tech */
+    --gradient-primary: linear-gradient(135deg, #00E5FF 0%, #00B8D4 100%);
+    --gradient-secondary: linear-gradient(135deg, #FF1744 0%, #D50000 100%);
+    --gradient-hero: linear-gradient(135deg, #0A0E27 0%, #151934 50%, #1E2541 100%);
+    --gradient-overlay: linear-gradient(180deg, rgba(10, 14, 39, 0) 0%, rgba(10, 14, 39, 0.95) 100%);
+    --gradient-accent: linear-gradient(135deg, #00E5FF 0%, #60A5FA 100%);
+    --gradient-card: linear-gradient(145deg, rgba(30, 37, 65, 0.5) 0%, rgba(21, 25, 52, 0.3) 100%);
+    --gradient-glow: radial-gradient(circle at center, rgba(0, 229, 255, 0.2) 0%, transparent 70%);
+    --gradient-neon: linear-gradient(135deg, #00E5FF 0%, #FF1744 50%, #B388FF 100%);
+
+    /* Ombres avec glow cyan */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 30px rgba(0, 229, 255, 0.3);
+    --shadow-glow-strong: 0 0 50px rgba(0, 229, 255, 0.5);
+    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 229, 255, 0.05);
+
+    /* Glassmorphism */
+    --glass-bg: rgba(30, 37, 65, 0.6);
+    --glass-border: rgba(0, 229, 255, 0.1);
+    --glass-blur: 20px;
+
+    /* Grilles 3D */
+    --grid-color: rgba(0, 229, 255, 0.15);
+    --grid-glow: rgba(0, 229, 255, 0.3);
+}
+
+/* ===================================
+   LIGHT MODE - PROFESSIONNEL BUSINESS
+   =================================== */
+
+:root[data-theme="light"] {
+    /* Couleurs principales - Palette Professionnelle */
+    --primary: #0284C7;              /* Bleu professionnel */
+    --primary-dark: #0369A1;         /* Bleu foncé */
+    --primary-light: #38BDF8;        /* Bleu clair */
+    --primary-glow: #38BDF8;         /* Bleu glow */
+
+    /* Accents business */
+    --secondary: #DC2626;            /* Rouge sobre */
+    --secondary-dark: #B91C1C;       /* Rouge profond */
+    --accent-green: #059669;         /* Vert business */
+    --accent-purple: #7C3AED;        /* Violet business */
+    --accent-blue: #3B82F6;          /* Bleu accent */
+    --accent-blue-dark: #2563EB;     /* Bleu accent foncé */
+
+    /* Status colors */
+    --success: #059669;
+    --warning: #D97706;
+    --error: #DC2626;
+    --info: #0284C7;
+
+    /* Backgrounds - Tons clairs */
+    --bg-darker: #F8FAFC;            /* Fond très clair */
+    --bg-dark: #FFFFFF;              /* Fond blanc */
+    --bg-card: #F1F5F9;              /* Cartes */
+    --bg-light: #E2E8F0;             /* Fond clair */
+    --bg-hover: #E5EAEF;             /* Hover state */
+
+    /* Textes - Contraste optimal */
+    --text-primary: #0F172A;         /* Noir profond */
+    --text-secondary: #475569;       /* Gris foncé */
+    --text-tertiary: #64748B;        /* Gris moyen */
+    --text-muted: #94A3B8;           /* Gris clair */
+
+    /* Borders */
+    --border-color: rgba(15, 23, 42, 0.1);
+    --border-color-hover: rgba(2, 132, 199, 0.3);
+
+    /* Transparences */
+    --primary-transparent-10: rgba(2, 132, 199, 0.1);
+    --primary-transparent-20: rgba(2, 132, 199, 0.2);
+    --primary-transparent-30: rgba(2, 132, 199, 0.3);
+    --primary-transparent-50: rgba(2, 132, 199, 0.5);
+    --primary-transparent-80: rgba(2, 132, 199, 0.8);
+
+    /* Effets - Ombres douces au lieu de néons */
+    --neon-cyan: 0 4px 20px rgba(2, 132, 199, 0.15);
+    --neon-cyan-strong: 0 6px 30px rgba(2, 132, 199, 0.25);
+    --neon-red: 0 4px 20px rgba(220, 38, 38, 0.15);
+    --neon-green: 0 4px 20px rgba(5, 150, 105, 0.15);
+    --neon-purple: 0 4px 20px rgba(124, 58, 237, 0.15);
+
+    /* Gradients Business */
+    --gradient-primary: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+    --gradient-secondary: linear-gradient(135deg, #DC2626 0%, #B91C1C 100%);
+    --gradient-hero: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 50%, #F1F5F9 100%);
+    --gradient-overlay: linear-gradient(180deg, rgba(248, 250, 252, 0) 0%, rgba(248, 250, 252, 0.95) 100%);
+    --gradient-accent: linear-gradient(135deg, #0284C7 0%, #3B82F6 100%);
+    --gradient-card: linear-gradient(145deg, rgba(241, 245, 249, 0.8) 0%, rgba(248, 250, 252, 0.5) 100%);
+    --gradient-glow: radial-gradient(circle at center, rgba(2, 132, 199, 0.1) 0%, transparent 70%);
+    --gradient-neon: linear-gradient(135deg, #0284C7 0%, #DC2626 50%, #7C3AED 100%);
+
+    /* Ombres douces */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.15);
+    --shadow-glow-strong: 0 0 30px rgba(2, 132, 199, 0.25);
+    --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.08), 0 0 10px rgba(2, 132, 199, 0.05);
+
+    /* Glassmorphism light */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(2, 132, 199, 0.15);
+    --glass-blur: 15px;
+
+    /* Grilles 3D light */
+    --grid-color: rgba(2, 132, 199, 0.1);
+    --grid-glow: rgba(2, 132, 199, 0.2);
+}
+
+/* ===================================
+   SUPPORT PREFERS-COLOR-SCHEME
+   =================================== */
+
+/* Si l'utilisateur préfère le mode clair mais aucun thème n'est défini */
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme]) {
+        /* Appliquer automatiquement les variables light mode */
+        color-scheme: light;
+    }
+}
+
+/* Si l'utilisateur préfère le mode sombre */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        /* Garder le dark mode par défaut */
+        color-scheme: dark;
+    }
+}
+
+/* ===================================
+   AJUSTEMENTS GLOBAUX PAR THÈME
+   =================================== */
+
+/* Inversions d'images en mode light pour meilleure visibilité */
+:root[data-theme="light"] img.invert-on-light {
+    filter: invert(1) hue-rotate(180deg);
+}
+
+/* Ajuster l'opacité des particules selon le thème */
+:root[data-theme="light"] .particles-container {
+    opacity: 0.5; /* Moins visible en light mode */
+}
+
+:root[data-theme="dark"] .particles-container {
+    opacity: 1;
+}
+
+/* Grille 3D ajustée selon thème */
+:root[data-theme="light"] .grid-3d {
+    opacity: 0.4;
+}
+
+:root[data-theme="dark"] .grid-3d {
+    opacity: 0.6;
+}
+
+/* ===================================
+   SMOOTH TRANSITIONS
+   =================================== */
+
+/* Désactiver transitions pendant le chargement */
+:root.loading * {
+    transition: none !important;
+}
+
+/* Améliorer les transitions sur les éléments critiques */
+body,
+.hero,
+.header,
+section {
+    transition-property: background-color, color, border-color;
+    transition-duration: var(--theme-transition-duration);
+    transition-timing-function: var(--theme-transition-timing);
+}
+
+/* Préserver les animations GSAP lors du switch */
+.gsap-animated {
+    transition: none !important;
+}
+
+/* ===================================
+   VARIABLES COMMUNES (non affectées par thème)
+   =================================== */
+
+:root {
+    /* Espacements - Système cohérent */
+    --spacing-xs: 0.5rem;      /* 8px */
+    --spacing-sm: 1rem;        /* 16px */
+    --spacing-md: 1.5rem;      /* 24px */
+    --spacing-lg: 2.5rem;      /* 40px */
+    --spacing-xl: 4rem;        /* 64px */
+    --spacing-2xl: 6rem;       /* 96px */
+
+    /* Typographie */
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+    --font-mono: 'Fira Code', 'Courier New', monospace;
+
+    /* Border radius */
+    --radius: 0.5rem;          /* 8px */
+    --radius-lg: 1rem;         /* 16px */
+    --radius-xl: 1.5rem;       /* 24px */
+    --radius-full: 9999px;     /* Cercle */
+
+    /* Z-index layers */
+    --z-background: -1;
+    --z-normal: 1;
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+
+    /* Header */
+    --header-height: 60px;
+
+    /* Transitions standards */
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.15s ease;
+    --transition-slow: all 0.5s ease;
+}
+
+/* ===================================
+   UTILITY CLASSES
+   =================================== */
+
+/* Force dark mode sur un élément spécifique */
+.force-dark {
+    color-scheme: dark;
+}
+
+/* Force light mode sur un élément spécifique */
+.force-light {
+    color-scheme: light;
+}
+
+/* Désactiver transition sur un élément */
+.no-transition,
+.no-transition * {
+    transition: none !important;
+}
+
+/* Classes d'opacité par thème */
+.opacity-dark {
+    opacity: 1;
+}
+
+:root[data-theme="light"] .opacity-dark {
+    opacity: 0.8;
+}
+
+.opacity-light {
+    opacity: 1;
+}
+
+:root[data-theme="dark"] .opacity-light {
+    opacity: 0.8;
+}
+
+/* Visibilité par thème */
+.show-dark {
+    display: block;
+}
+
+:root[data-theme="light"] .show-dark {
+    display: none;
+}
+
+.show-light {
+    display: none;
+}
+
+:root[data-theme="light"] .show-light {
+    display: block;
+}
+
+/* ===================================
+   THEME TOGGLE BUTTON STYLES
+   =================================== */
+
+.theme-toggle {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 2px solid var(--primary);
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 100;
+    margin-left: var(--spacing-sm);
+    overflow: hidden;
+}
+
+/* Hover effect avec glow */
+.theme-toggle:hover {
+    transform: scale(1.1);
+    background: var(--primary-transparent-10);
+    box-shadow: var(--neon-cyan);
+    border-color: var(--primary-light);
+}
+
+/* Active state */
+.theme-toggle:active {
+    transform: scale(0.95);
+}
+
+/* Focus visible pour accessibilité */
+.theme-toggle:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 4px;
+}
+
+/* Icônes du toggle */
+.theme-icon {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    color: var(--primary);
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* Animation rotation et scale des icônes */
+.theme-icon-dark {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+}
+
+.theme-icon-light {
+    opacity: 0;
+    transform: rotate(180deg) scale(0);
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .theme-toggle {
+        width: 45px;
+        height: 45px;
+        margin-left: var(--spacing-xs);
+    }
+
+    .theme-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Animation pulse subtile */
+@keyframes theme-pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 var(--primary-transparent-50);
+    }
+    50% {
+        box-shadow: 0 0 0 10px var(--primary-transparent-10);
+    }
+}
+
+/* Pulse sur hover uniquement en dark mode */
+:root[data-theme="dark"] .theme-toggle:hover {
+    animation: theme-pulse 2s infinite;
+}
+
+/* Light mode - styles ajustés */
+:root[data-theme="light"] .theme-toggle {
+    background: var(--bg-card);
+    border-color: var(--primary);
+}
+
+:root[data-theme="light"] .theme-toggle:hover {
+    background: var(--primary-transparent-10);
+    box-shadow: var(--shadow-md);
+}
+
+/* Désactiver animations si prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .theme-toggle,
+    .theme-icon {
+        transition: none !important;
+        animation: none !important;
+    }
+}

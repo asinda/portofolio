@@ -44,16 +44,22 @@ function initHeroAnimations() {
     // 1. Système de particules animées
     createParticlesBackground();
 
-    // 2. Titre avec reveal séquentiel (SplitType)
+    // 2. Typewriter effect sur le nom
+    initTypewriterEffect();
+
+    // 3. Rotation des phrases de description
+    initRotatingText();
+
+    // 4. Titre avec reveal séquentiel (SplitType)
     animateHeroTitle();
 
-    // 3. Sous-titre fade in
+    // 5. Sous-titre fade in
     animateHeroSubtitle();
 
-    // 4. CTA buttons avec stagger
+    // 6. CTA buttons avec stagger
     animateHeroButtons();
 
-    // 5. Hero cards 3D hover (Vanilla-tilt)
+    // 7. Hero cards 3D hover (Vanilla-tilt)
     init3DHeroCards();
 }
 
@@ -80,13 +86,13 @@ function createParticlesBackground() {
         heroSection.insertBefore(particlesContainer, heroSection.firstChild);
     }
 
-    // Générer 50 particules
-    const particleCount = 50;
+    // Générer 80 particules pour plus d'impact visuel
+    const particleCount = 80;
     for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
 
-        const size = Math.random() * 4 + 2;
+        const size = Math.random() * 4 + 2; // Tailles entre 2px et 6px
         const opacity = Math.random() * 0.5 + 0.2;
         const left = Math.random() * 100;
         const top = Math.random() * 100;
@@ -95,7 +101,7 @@ function createParticlesBackground() {
             position: absolute;
             width: ${size}px;
             height: ${size}px;
-            background: rgba(0, 163, 255, ${opacity});
+            background: rgba(0, 229, 255, ${opacity});
             border-radius: 50%;
             left: ${left}%;
             top: ${top}%;
@@ -116,7 +122,73 @@ function createParticlesBackground() {
     }
 }
 
-// 2. Titre Hero avec Reveal Séquentiel
+// 2. Typewriter Effect sur le nom
+function initTypewriterEffect() {
+    const element = document.querySelector('[data-typewriter]');
+    if (!element) return;
+
+    const text = element.textContent;
+    element.textContent = '';
+    let index = 0;
+
+    function type() {
+        if (index < text.length) {
+            element.textContent += text.charAt(index);
+            index++;
+            setTimeout(type, 100); // 80ms → 100ms pour un effet plus naturel
+        } else {
+            // Ajouter le curseur clignotant à la fin
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            cursor.textContent = '|';
+            element.appendChild(cursor);
+        }
+    }
+
+    // Démarrer l'animation après un court délai
+    setTimeout(type, 800);
+}
+
+// 3. Rotation des phrases de description
+function initRotatingText() {
+    const element = document.querySelector('[data-phrases]');
+    if (!element) return;
+
+    try {
+        const phrases = JSON.parse(element.dataset.phrases);
+        let currentIndex = 0;
+
+        function rotate() {
+            // Animer la sortie du texte actuel
+            gsap.to(element, {
+                opacity: 0,
+                y: -20,
+                scale: 0.95,
+                duration: 0.5,
+                onComplete: () => {
+                    // Changer le texte
+                    currentIndex = (currentIndex + 1) % phrases.length;
+                    element.textContent = phrases[currentIndex];
+
+                    // Animer l'entrée du nouveau texte avec effet scale
+                    gsap.to(element, {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1,
+                        duration: 0.8
+                    });
+                }
+            });
+        }
+
+        // Rotation automatique toutes les 5 secondes pour meilleure lecture
+        setInterval(rotate, 5000);
+    } catch (error) {
+        console.error('Erreur lors de la rotation des phrases:', error);
+    }
+}
+
+// 4. Titre Hero avec Reveal Séquentiel
 function animateHeroTitle() {
     const heroTitle = document.querySelector('.hero-title, .hero h1');
     if (!heroTitle || typeof SplitType === 'undefined') return;
@@ -295,7 +367,7 @@ function initProjectsAnimations() {
         // Hover animation 3D
         card.addEventListener('mouseenter', () => {
             gsap.to(card, {
-                boxShadow: '0 20px 60px rgba(0, 163, 255, 0.4)',
+                boxShadow: '0 20px 60px rgba(0, 229, 255, 0.4)',
                 y: -10,
                 duration: 0.3,
                 ease: 'power2.out'
@@ -417,6 +489,9 @@ function initCustomCursor() {
 // ===================================
 
 function initMagneticButtons() {
+    // Désactiver l'effet magnétique sur mobile pour de meilleures performances
+    if (window.innerWidth < 768) return;
+
     const buttons = document.querySelectorAll('.btn-primary, .cta-btn, .btn-magnetic');
     if (buttons.length === 0) return;
 
