@@ -5,6 +5,10 @@ import rateLimit from 'express-rate-limit';
 import corsMiddleware from './src/middleware/cors.js';
 import portfolioRoutes from './src/routes/portfolio.js';
 import authRoutes from './src/routes/auth.js';
+import blogRoutes from './src/routes/blog.js';
+import contactRoutes from './src/routes/contact.js';
+import analyticsRoutes from './src/routes/analytics.js';
+import logger from './src/config/logger.js';
 
 // Charger les variables d'environnement
 dotenv.config();
@@ -61,6 +65,15 @@ app.use('/api/auth', authRoutes);
 // Routes du portfolio
 app.use('/api/portfolio', portfolioRoutes);
 
+// Routes du blog (Sprint 3)
+app.use('/api/blog', blogRoutes);
+
+// Routes de contact (Sprint 3)
+app.use('/api/contact', contactRoutes);
+
+// Routes analytics (Sprint 3)
+app.use('/api/analytics', analyticsRoutes);
+
 // =====================
 // GESTION DES ERREURS
 // =====================
@@ -75,7 +88,7 @@ app.use((req, res) => {
 
 // Gestionnaire d'erreurs global
 app.use((err, req, res, next) => {
-    console.error('Erreur serveur:', err);
+    logger.error('Erreur serveur:', err);
 
     res.status(err.status || 500).json({
         success: false,
@@ -91,17 +104,17 @@ app.use((err, req, res, next) => {
 // Permet d'exporter l'app pour les tests
 if (process.env.NODE_ENV !== 'test') {
     app.listen(PORT, () => {
-        console.log('🚀 ================================');
-        console.log(`✅ Serveur démarré sur le port ${PORT}`);
-        console.log(`🌍 Environnement: ${process.env.NODE_ENV || 'development'}`);
-        console.log(`📡 API disponible sur: http://localhost:${PORT}/api`);
-        console.log(`💚 Health check: http://localhost:${PORT}/api/health`);
-        console.log('🚀 ================================');
+        logger.info('🚀 ================================');
+        logger.info(`✅ Serveur démarré sur le port ${PORT}`);
+        logger.info(`🌍 Environnement: ${process.env.NODE_ENV || 'development'}`);
+        logger.info(`📡 API disponible sur: http://localhost:${PORT}/api`);
+        logger.info(`💚 Health check: http://localhost:${PORT}/api/health`);
+        logger.info('🚀 ================================');
     });
 
     // Gestion des erreurs non gérées
     process.on('unhandledRejection', (err) => {
-        console.error('❌ Erreur non gérée:', err);
+        logger.error('❌ Erreur non gérée:', err);
         process.exit(1);
     });
 }

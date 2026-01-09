@@ -27,7 +27,7 @@
     --black: #000000;
     --text-primary: #f8f9fa;
     --text-secondary: #adb5bd;
-    --text-tertiary: #6c757d;
+    --text-tertiary: #8a94a0;  /* Amélioré de #6c757d pour contraste WCAG AA (4.6:1) */
     --gray-50: #f8f9fa;
     --gray-100: #e9ecef;
     --gray-200: #dee2e6;
@@ -92,6 +92,50 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+/* ===================================
+   ACCESSIBILITÉ - FOCUS VISIBLE
+   =================================== */
+
+/* Focus visible pour navigation clavier (WCAG AA) */
+*:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Focus amélioré pour les boutons et liens interactifs */
+.btn:focus-visible,
+.nav-link:focus-visible,
+.filter-btn:focus-visible,
+.category-btn:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+}
+
+/* Skip link pour accessibilité */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--primary);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    z-index: 10000;
+    font-weight: 600;
+    border-radius: 0 0 0.5rem 0;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* ===================================
+   FIN ACCESSIBILITÉ
+   =================================== */
 
 html {
     scroll-behavior: smooth;
@@ -2390,3 +2434,220 @@ section:nth-child(even) {
         font-size: 0.875rem;
     }
 }
+
+/* ===================================
+   ANIMATIONS GSAP - SPRINT 2
+   ===================================
+   Styles pour animations avancées:
+   - Particules animées hero
+   - Scroll progress indicator
+   - Curseur personnalisé
+   - Effets 3D et parallax
+   ================================= */
+
+/* Conteneur de Particules Hero */
+.particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    will-change: transform;
+}
+
+/* Scroll Progress Indicator */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    z-index: 9999;
+    pointer-events: none;
+}
+
+/* Curseur Personnalisé */
+.cursor-follower {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    pointer-events: none;
+    z-index: 10000;
+    opacity: 0;
+    mix-blend-mode: difference;
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    will-change: transform;
+}
+
+/* Magnetic Buttons */
+.magnetic-active {
+    transition: transform 0.2s;
+    will-change: transform;
+}
+
+/* Amélioration Performance Animations */
+.hero,
+.about-image img,
+.project-card,
+.skill-bar,
+.stat-card {
+    will-change: transform;
+}
+
+/* Désactiver will-change après animations (optimisation) */
+.animated {
+    will-change: auto;
+}
+
+/* Cards 3D Hover (Vanilla-tilt) */
+.hero-card,
+.stat-card,
+.service-card,
+.project-card {
+    transform-style: preserve-3d;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* Glare effect pour Vanilla-tilt */
+.js-tilt-glare {
+    border-radius: inherit;
+}
+
+/* Stats Counters */
+.stat-number,
+.counter,
+[data-count] {
+    font-variant-numeric: tabular-nums;
+    transition: color 0.3s;
+}
+
+/* Skills Progress Bars Animation Ready */
+.skill-bar,
+.progress-bar {
+    transform-origin: left;
+    transition: transform 0.3s;
+}
+
+/* Support prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Désactiver particules */
+    .particles-container {
+        display: none;
+    }
+
+    /* Désactiver curseur personnalisé */
+    .cursor-follower {
+        display: none;
+    }
+
+    /* Désactiver will-change (économie ressources) */
+    * {
+        will-change: auto !important;
+    }
+}
+
+/* Responsive - Désactiver certaines animations sur mobile */
+@media (max-width: 768px) {
+    /* Pas de curseur personnalisé sur mobile */
+    .cursor-follower {
+        display: none;
+    }
+
+    /* Réduire nombre de particules sur mobile (géré via JS) */
+    .particles-container {
+        opacity: 0.5;
+    }
+
+    /* Désactiver magnetic buttons sur mobile (pas de hover) */
+    .magnetic-active {
+        transform: none !important;
+    }
+
+    /* Simplifier effets 3D sur mobile */
+    .hero-card,
+    .stat-card,
+    .service-card {
+        transform: none !important;
+    }
+}
+
+/* Animations de chargement (fade in général) */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation de pulsation pour éléments interactifs */
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+.pulse-on-hover:hover {
+    animation: pulse 1s ease-in-out infinite;
+}
+
+/* Effet de brillance (glare) pour cards */
+.card-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.hero-card:hover .card-glare,
+.project-card:hover .card-glare {
+    opacity: 1;
+}
+
+/* Optimisation GPU */
+.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+/* ================================= */

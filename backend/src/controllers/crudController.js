@@ -2,6 +2,7 @@ import supabase, { USE_LOCAL_DATA } from '../config/supabase.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import logger from '../config/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -65,7 +66,7 @@ export const createCRUDController = (tableName) => {
                     data: data || []
                 });
             } catch (error) {
-                console.error(`Erreur getAll ${tableName}:`, error);
+                logger.error(`Erreur getAll ${tableName}:`, error);
                 res.status(500).json({
                     success: false,
                     error: `Erreur lors de la récupération des ${tableName}`
@@ -100,7 +101,7 @@ export const createCRUDController = (tableName) => {
                     data
                 });
             } catch (error) {
-                console.error(`Erreur getById ${tableName}:`, error);
+                logger.error(`Erreur getById ${tableName}:`, error);
                 res.status(500).json({
                     success: false,
                     error: 'Erreur lors de la récupération'
@@ -129,7 +130,7 @@ export const createCRUDController = (tableName) => {
                     message: 'Créé avec succès'
                 });
             } catch (error) {
-                console.error(`Erreur create ${tableName}:`, error);
+                logger.error(`Erreur create ${tableName}:`, error);
                 res.status(500).json({
                     success: false,
                     error: 'Erreur lors de la création'
@@ -160,7 +161,7 @@ export const createCRUDController = (tableName) => {
                     message: 'Mis à jour avec succès'
                 });
             } catch (error) {
-                console.error(`Erreur update ${tableName}:`, error);
+                logger.error(`Erreur update ${tableName}:`, error);
                 res.status(500).json({
                     success: false,
                     error: 'Erreur lors de la mise à jour'
@@ -187,7 +188,7 @@ export const createCRUDController = (tableName) => {
                     message: 'Supprimé avec succès'
                 });
             } catch (error) {
-                console.error(`Erreur delete ${tableName}:`, error);
+                logger.error(`Erreur delete ${tableName}:`, error);
                 res.status(500).json({
                     success: false,
                     error: 'Erreur lors de la suppression'

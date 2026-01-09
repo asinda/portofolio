@@ -1,5 +1,6 @@
 import express from 'express';
 import supabase from '../config/supabase.js';
+import logger from '../config/logger.js';
 
 const router = express.Router();
 
@@ -34,7 +35,7 @@ router.post('/login', async (req, res) => {
             message: 'Connexion réussie'
         });
     } catch (error) {
-        console.error('Erreur login:', error);
+        logger.error('Erreur login:', error);
         res.status(401).json({
             success: false,
             error: 'Email ou mot de passe incorrect'
@@ -77,7 +78,7 @@ router.post('/register', async (req, res) => {
             message: 'Utilisateur créé avec succès'
         });
     } catch (error) {
-        console.error('Erreur register:', error);
+        logger.error('Erreur register:', error);
         res.status(500).json({
             success: false,
             error: 'Erreur lors de la création du compte'
@@ -100,7 +101,7 @@ router.post('/logout', async (req, res) => {
             message: 'Déconnexion réussie'
         });
     } catch (error) {
-        console.error('Erreur logout:', error);
+        logger.error('Erreur logout:', error);
         res.status(500).json({
             success: false,
             error: 'Erreur lors de la déconnexion'
@@ -138,7 +139,7 @@ router.get('/user', async (req, res) => {
             data: { user }
         });
     } catch (error) {
-        console.error('Erreur get user:', error);
+        logger.error('Erreur get user:', error);
         res.status(500).json({
             success: false,
             error: 'Erreur lors de la récupération de l\'utilisateur'
