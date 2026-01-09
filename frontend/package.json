@@ -1,0 +1,21 @@
+{
+  "name": "portfolio-frontend",
+  "version": "1.0.0",
+  "description": "Portfolio Alice Sindayigaya - Frontend avec optimisations Sprint 1",
+  "type": "module",
+  "scripts": {
+    "convert-webp": "node convert-to-webp.js",
+    "build": "bash build.sh",
+    "serve": "python -m http.server 8000 --directory public"
+  },
+  "keywords": [
+    "portfolio",
+    "devops",
+    "cloud"
+  ],
+  "author": "Alice Sindayigaya",
+  "license": "MIT",
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

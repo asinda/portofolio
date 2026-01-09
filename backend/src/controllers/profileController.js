@@ -2,6 +2,7 @@ import supabase, { TABLES, USE_LOCAL_DATA } from '../config/supabase.js';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import logger from '../config/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -39,7 +40,7 @@ export const getProfile = async (req, res) => {
             data
         });
     } catch (error) {
-        console.error('Erreur getProfile:', error);
+        logger.error('Erreur getProfile:', error);
         res.status(500).json({
             success: false,
             error: 'Erreur lors de la récupération du profil'
@@ -79,7 +80,7 @@ export const updateProfile = async (req, res) => {
             message: 'Profil mis à jour avec succès'
         });
     } catch (error) {
-        console.error('Erreur updateProfile:', error);
+        logger.error('Erreur updateProfile:', error);
         res.status(500).json({
             success: false,
             error: 'Erreur lors de la mise à jour du profil'

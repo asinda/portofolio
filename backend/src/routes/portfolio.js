@@ -3,6 +3,17 @@ import { getProfile, updateProfile } from '../controllers/profileController.js';
 import { createCRUDController } from '../controllers/crudController.js';
 import { TABLES } from '../config/supabase.js';
 import { authenticate, optionalAuth } from '../middleware/auth.js';
+import { validate, idParamSchema } from '../middleware/validation.js';
+import {
+    experienceSchema,
+    educationSchema,
+    projectSchema,
+    skillTechnicalSchema,
+    skillLanguageSchema,
+    skillSoftSchema,
+    certificationSchema,
+    profileSchema
+} from '../schemas/portfolio.schemas.js';
 
 const router = express.Router();
 
@@ -52,41 +63,41 @@ router.get('/certifications/:id', certificationsController.getById);
 // =====================
 
 // Profil
-router.put('/profile', authenticate, updateProfile);
+router.put('/profile', authenticate, validate(profileSchema), updateProfile);
 
 // Expérience
-router.post('/experience', authenticate, experienceController.create);
-router.put('/experience/:id', authenticate, experienceController.update);
-router.delete('/experience/:id', authenticate, experienceController.delete);
+router.post('/experience', authenticate, validate(experienceSchema), experienceController.create);
+router.put('/experience/:id', authenticate, validate(idParamSchema, 'params'), validate(experienceSchema), experienceController.update);
+router.delete('/experience/:id', authenticate, validate(idParamSchema, 'params'), experienceController.delete);
 
 // Formation
-router.post('/education', authenticate, educationController.create);
-router.put('/education/:id', authenticate, educationController.update);
-router.delete('/education/:id', authenticate, educationController.delete);
+router.post('/education', authenticate, validate(educationSchema), educationController.create);
+router.put('/education/:id', authenticate, validate(idParamSchema, 'params'), validate(educationSchema), educationController.update);
+router.delete('/education/:id', authenticate, validate(idParamSchema, 'params'), educationController.delete);
 
 // Projets
-router.post('/projects', authenticate, projectsController.create);
-router.put('/projects/:id', authenticate, projectsController.update);
-router.delete('/projects/:id', authenticate, projectsController.delete);
+router.post('/projects', authenticate, validate(projectSchema), projectsController.create);
+router.put('/projects/:id', authenticate, validate(idParamSchema, 'params'), validate(projectSchema), projectsController.update);
+router.delete('/projects/:id', authenticate, validate(idParamSchema, 'params'), projectsController.delete);
 
 // Compétences techniques
-router.post('/skills/technical', authenticate, skillsTechnicalController.create);
-router.put('/skills/technical/:id', authenticate, skillsTechnicalController.update);
-router.delete('/skills/technical/:id', authenticate, skillsTechnicalController.delete);
+router.post('/skills/technical', authenticate, validate(skillTechnicalSchema), skillsTechnicalController.create);
+router.put('/skills/technical/:id', authenticate, validate(idParamSchema, 'params'), validate(skillTechnicalSchema), skillsTechnicalController.update);
+router.delete('/skills/technical/:id', authenticate, validate(idParamSchema, 'params'), skillsTechnicalController.delete);
 
 // Langues
-router.post('/skills/languages', authenticate, skillsLanguagesController.create);
-router.put('/skills/languages/:id', authenticate, skillsLanguagesController.update);
-router.delete('/skills/languages/:id', authenticate, skillsLanguagesController.delete);
+router.post('/skills/languages', authenticate, validate(skillLanguageSchema), skillsLanguagesController.create);
+router.put('/skills/languages/:id', authenticate, validate(idParamSchema, 'params'), validate(skillLanguageSchema), skillsLanguagesController.update);
+router.delete('/skills/languages/:id', authenticate, validate(idParamSchema, 'params'), skillsLanguagesController.delete);
 
 // Soft skills
-router.post('/skills/soft', authenticate, skillsSoftController.create);
-router.put('/skills/soft/:id', authenticate, skillsSoftController.update);
-router.delete('/skills/soft/:id', authenticate, skillsSoftController.delete);
+router.post('/skills/soft', authenticate, validate(skillSoftSchema), skillsSoftController.create);
+router.put('/skills/soft/:id', authenticate, validate(idParamSchema, 'params'), validate(skillSoftSchema), skillsSoftController.update);
+router.delete('/skills/soft/:id', authenticate, validate(idParamSchema, 'params'), skillsSoftController.delete);
 
 // Certifications
-router.post('/certifications', authenticate, certificationsController.create);
-router.put('/certifications/:id', authenticate, certificationsController.update);
-router.delete('/certifications/:id', authenticate, certificationsController.delete);
+router.post('/certifications', authenticate, validate(certificationSchema), certificationsController.create);
+router.put('/certifications/:id', authenticate, validate(idParamSchema, 'params'), validate(certificationSchema), certificationsController.update);
+router.delete('/certifications/:id', authenticate, validate(idParamSchema, 'params'), certificationsController.delete);
 
 export default router;

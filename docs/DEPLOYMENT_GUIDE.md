@@ -225,11 +225,7 @@ git commit -m "feat: Portfolio prêt pour déploiement en production
 - Frontend optimisé pour GitHub Pages
 - Supabase intégré
 - Tests passants
-- Documentation complète
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+- Documentation complète"
 git push origin dev
 ```
 

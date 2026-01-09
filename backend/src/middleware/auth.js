@@ -1,4 +1,5 @@
 import supabase from '../config/supabase.js';
+import logger from '../config/logger.js';
 
 /**
  * Middleware pour vérifier l'authentification via Supabase
@@ -31,7 +32,7 @@ export const authenticate = async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-        console.error('Erreur d\'authentification:', error);
+        logger.error('Erreur d\'authentification:', error);
         return res.status(500).json({
             success: false,
             error: 'Erreur lors de la vérification de l\'authentification'
@@ -54,7 +55,7 @@ export const optionalAuth = async (req, res, next) => {
 
         next();
     } catch (error) {
-        console.error('Erreur d\'authentification optionnelle:', error);
+        logger.error('Erreur d\'authentification optionnelle:', error);
         next();
     }
 };

@@ -20,11 +20,7 @@ git commit -m "feat: Ajout du portfolio complet avec administration Supabase
 - Integration Supabase (PostgreSQL, Auth, Storage)
 - Gestion CRUD pour toutes les sections
 - Upload de medias (images)
-- Documentation complete (5 guides)
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>"
+- Documentation complete (5 guides)"
 
 echo.
 echo 4. Push vers GitHub (branche dev)...

@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 import dotenv from 'dotenv';
+import logger from './logger.js';
 
 dotenv.config();
 
@@ -9,8 +10,8 @@ const USE_LOCAL_DATA = process.env.NODE_ENV === 'development' &&
 
 // Vérifier que les variables d'environnement sont définies (sauf en mode dev avec données locales)
 if (!USE_LOCAL_DATA && (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_KEY)) {
-    console.error('❌ Erreur : Variables d\'environnement Supabase manquantes');
-    console.log('📝 Créez un fichier .env à partir de .env.example');
+    logger.error('❌ Erreur : Variables d\'environnement Supabase manquantes');
+    logger.info('📝 Créez un fichier .env à partir de .env.example');
     process.exit(1);
 }
 
@@ -28,10 +29,10 @@ if (!USE_LOCAL_DATA) {
             }
         }
     );
-    console.log('✅ Mode Supabase activé');
+    logger.info('✅ Mode Supabase activé');
 } else {
-    console.log('⚠️  Mode développement : Utilisation des données locales (data.json)');
-    console.log('💡 Pour utiliser Supabase, configurez les vraies clés dans .env');
+    logger.info('⚠️  Mode développement : Utilisation des données locales (data.json)');
+    logger.info('💡 Pour utiliser Supabase, configurez les vraies clés dans .env');
 }
 
 // Noms des tables

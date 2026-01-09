@@ -1,0 +1,15 @@
+# robots.txt - Portfolio Alice Sindayigaya
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://asinda.github.io/portofolio/sitemap.xml
+
+# Bloquer l'admin
+Disallow: /admin/
+Disallow: /admin.html
+Disallow: /admin-dashboard.html
+
+# Bloquer les assets inutiles au crawl
+Disallow: /js/
+Disallow: /css/

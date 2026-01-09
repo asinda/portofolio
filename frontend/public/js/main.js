@@ -1,4 +1,42 @@
 // ===================================
+// SERVICE WORKER (PWA)
+// ===================================
+
+// Enregistrer le Service Worker si supporté
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/portofolio/sw.js')
+            .then((registration) => {
+                console.log('✅ Service Worker enregistré:', registration.scope);
+
+                // Vérifier les mises à jour toutes les heures
+                setInterval(() => {
+                    registration.update();
+                }, 60 * 60 * 1000);
+
+                // Écouter les mises à jour
+                registration.addEventListener('updatefound', () => {
+                    const newWorker = registration.installing;
+                    console.log('🔄 Nouvelle version du Service Worker détectée');
+
+                    newWorker.addEventListener('statechange', () => {
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            console.log('✅ Nouvelle version installée');
+                            // Optionnel: Notifier l'utilisateur qu'une mise à jour est disponible
+                            if (confirm('Une nouvelle version est disponible. Recharger la page?')) {
+                                window.location.reload();
+                            }
+                        }
+                    });
+                });
+            })
+            .catch((error) => {
+                console.error('❌ Erreur enregistrement Service Worker:', error);
+            });
+    });
+}
+
+// ===================================
 // INITIALISATION
 // ===================================
 
@@ -35,8 +73,9 @@ function initNavigation() {
     // Menu mobile toggle
     if (navToggle) {
         navToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
+            const isExpanded = nav.classList.toggle('active');
             navToggle.classList.toggle('active');
+            navToggle.setAttribute('aria-expanded', isExpanded);
         });
     }
 
@@ -45,6 +84,7 @@ function initNavigation() {
         link.addEventListener('click', () => {
             nav.classList.remove('active');
             navToggle.classList.remove('active');
+            navToggle.setAttribute('aria-expanded', 'false');
         });
     });
 
