@@ -3,9 +3,6 @@ name: Déploiement Frontend (GitHub Pages)
 on:
   push:
     branches: [main]
-    paths:
-      - 'frontend/public/**'
-      - '.github/workflows/deploy-frontend.yml'
   workflow_dispatch:
 
 # Permissions nécessaires pour déployer sur GitHub Pages
