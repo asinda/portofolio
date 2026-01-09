@@ -9,19 +9,22 @@
     --theme-transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+/* Transitions de thème uniquement sur éléments qui en ont besoin */
+body,
+.header,
+.hero,
+section,
+.btn,
+.project-card,
+.service-card,
+.blog-card,
+.hero-card,
+a {
     transition:
         background-color var(--theme-transition-duration) var(--theme-transition-timing),
         color var(--theme-transition-duration) var(--theme-transition-timing),
         border-color var(--theme-transition-duration) var(--theme-transition-timing),
         box-shadow var(--theme-transition-duration) var(--theme-transition-timing);
-}
-
-/* Préserver les transitions GSAP et animations existantes */
-.gsap-animated,
-[data-aos],
-.animated {
-    transition: none !important;
 }
 
 /* ===================================
