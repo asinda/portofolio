@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Déploiement i18n</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+        }
+        .test { padding: 10px; margin: 5px 0; border-left: 3px solid #00ff00; }
+        .success { color: #00ff00; }
+        .error { color: #ff0000; border-left-color: #ff0000; }
+        pre { background: #000; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test de Déploiement i18n</h1>
+    <div id="results"></div>
+
+    <script type="module">
+        const results = document.getElementById('results');
+
+        function addResult(test, success, message) {
+            const div = document.createElement('div');
+            div.className = `test ${success ? 'success' : 'error'}`;
+            div.innerHTML = `${success ? '✅' : '❌'} <strong>${test}</strong>: ${message}`;
+            results.appendChild(div);
+        }
+
+        async function runTests() {
+            // Test 1: Vérifier index.html
+            try {
+                const response = await fetch('/portofolio/index.html');
+                const text = await response.text();
+                const hasI18n = text.includes('init-i18n.js');
+                addResult('index.html contient init-i18n.js', hasI18n, hasI18n ? 'Trouvé' : 'Non trouvé');
+            } catch (e) {
+                addResult('index.html', false, e.message);
+            }
+
+            // Test 2: Vérifier i18n.js
+            try {
+                const response = await fetch('/portofolio/js/i18n/i18n.js');
+                const ok = response.ok;
+                addResult('js/i18n/i18n.js accessible', ok, `HTTP ${response.status}`);
+            } catch (e) {
+                addResult('js/i18n/i18n.js', false, e.message);
+            }
+
+            // Test 3: Vérifier fr.js
+            try {
+                const response = await fetch('/portofolio/js/i18n/locales/fr.js');
+                const ok = response.ok;
+                addResult('js/i18n/locales/fr.js accessible', ok, `HTTP ${response.status}`);
+            } catch (e) {
+                addResult('js/i18n/locales/fr.js', false, e.message);
+            }
+
+            // Test 4: Vérifier en.js
+            try {
+                const response = await fetch('/portofolio/js/i18n/locales/en.js');
+                const ok = response.ok;
+                addResult('js/i18n/locales/en.js accessible', ok, `HTTP ${response.status}`);
+            } catch (e) {
+                addResult('js/i18n/locales/en.js', false, e.message);
+            }
+
+            // Test 5: Vérifier lang-switcher.js
+            try {
+                const response = await fetch('/portofolio/js/lang-switcher.js');
+                const ok = response.ok;
+                addResult('js/lang-switcher.js accessible', ok, `HTTP ${response.status}`);
+            } catch (e) {
+                addResult('js/lang-switcher.js', false, e.message);
+            }
+
+            // Test 6: Vérifier lang-toggle.css
+            try {
+                const response = await fetch('/portofolio/css/lang-toggle.css');
+                const ok = response.ok;
+                addResult('css/lang-toggle.css accessible', ok, `HTTP ${response.status}`);
+            } catch (e) {
+                addResult('css/lang-toggle.css', false, e.message);
+            }
+
+            // Test 7: Tester l'import dynamique
+            try {
+                const module = await import('/portofolio/js/i18n/i18n.js?v=1.0.0');
+                addResult('Import ES6 module', true, 'Module chargé avec succès');
+            } catch (e) {
+                addResult('Import ES6 module', false, e.message);
+            }
+        }
+
+        runTests();
+    </script>
+</body>
+</html>

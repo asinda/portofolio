@@ -40,8 +40,31 @@ jobs:
             exit 1
           fi
 
+          # Vérifier que les fichiers i18n sont présents
+          if [ ! -d "_site/js/i18n" ]; then
+            echo "❌ Erreur: dossier js/i18n manquant"
+            exit 1
+          fi
+
+          if [ ! -f "_site/js/i18n/i18n.js" ]; then
+            echo "❌ Erreur: js/i18n/i18n.js manquant"
+            exit 1
+          fi
+
+          if [ ! -d "_site/js/i18n/locales" ]; then
+            echo "❌ Erreur: dossier js/i18n/locales manquant"
+            exit 1
+          fi
+
           echo "✅ Fichiers préparés avec succès"
+          echo "📂 Structure du site:"
           ls -la _site/
+          echo "📂 Fichiers JS:"
+          ls -la _site/js/
+          echo "📂 Fichiers i18n:"
+          ls -la _site/js/i18n/
+          echo "📂 Fichiers locales:"
+          ls -la _site/js/i18n/locales/
 
       - name: ✅ Validation HTML (optionnel)
         continue-on-error: true
