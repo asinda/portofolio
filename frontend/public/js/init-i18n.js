@@ -7,8 +7,8 @@
  */
 
 // Import des modules i18n
-import I18n from './i18n/i18n.js';
-import LangSwitcher from './lang-switcher.js';
+import I18n from './i18n/i18n.js?v=1.0.0';
+import LangSwitcher from './lang-switcher.js?v=1.0.0';
 
 /**
  * Fonction d'initialisation principale

@@ -61,8 +61,8 @@ class I18n {
         try {
             // Import dynamique des modules de traduction
             const [frModule, enModule] = await Promise.all([
-                import('./locales/fr.js'),
-                import('./locales/en.js')
+                import('./locales/fr.js?v=1.0.0'),
+                import('./locales/en.js?v=1.0.0')
             ]);
 
             // Stocker les traductions (accès via .default pour export default)
