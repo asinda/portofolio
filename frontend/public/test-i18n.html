@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test i18n System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 3rem;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 2rem;
+        }
+
+        .status {
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #f5c6cb;
+        }
+
+        .status.info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 2px solid #bee5eb;
+        }
+
+        .test-section {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .test-section h3 {
+            color: #495057;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .test-item {
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .test-item .icon {
+            font-size: 1.5rem;
+        }
+
+        .test-item .icon.success {
+            color: #28a745;
+        }
+
+        .test-item .icon.error {
+            color: #dc3545;
+        }
+
+        .lang-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .lang-btn {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .lang-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .translation-test {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .translation-test p {
+            margin-bottom: 0.5rem;
+            padding: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 5px;
+        }
+
+        .translation-test strong {
+            color: #667eea;
+        }
+
+        .console-output {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+
+        .console-output .log {
+            margin-bottom: 0.25rem;
+        }
+
+        .console-output .log.success {
+            color: #4ec9b0;
+        }
+
+        .console-output .log.error {
+            color: #f48771;
+        }
+
+        .console-output .log.info {
+            color: #569cd6;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 Test Système i18n</h1>
+
+        <div id="statusBox" class="status info">
+            ⏳ Initialisation du système i18n...
+        </div>
+
+        <div class="lang-buttons">
+            <button class="lang-btn" id="btnFR">🇫🇷 Français</button>
+            <button class="lang-btn" id="btnEN">🇬🇧 English</button>
+        </div>
+
+        <div class="test-section">
+            <h3>Tests de traduction</h3>
+            <div class="translation-test">
+                <p><strong>Navigation :</strong> <span data-i18n="nav.home">Accueil</span></p>
+                <p><strong>Hero :</strong> <span data-i18n="hero.greeting">Bonjour, je suis</span></p>
+                <p><strong>CV :</strong> <span data-i18n="cv.title">Mon CV</span></p>
+                <p><strong>Services :</strong> <span data-i18n="services.label">Expertises</span></p>
+                <p><strong>Footer :</strong> <span data-i18n="footer.brand.name">Alice Sindayigaya</span></p>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h3>Résultats des tests</h3>
+            <div id="testResults"></div>
+        </div>
+
+        <div class="test-section">
+            <h3>Console</h3>
+            <div id="consoleOutput" class="console-output"></div>
+        </div>
+
+        <a href="index.html" class="back-link">← Retour au portfolio complet</a>
+    </div>
+
+    <script type="module">
+        // Import du système i18n
+        import I18n from './js/i18n/i18n.js';
+
+        const statusBox = document.getElementById('statusBox');
+        const testResults = document.getElementById('testResults');
+        const consoleOutput = document.getElementById('consoleOutput');
+        const btnFR = document.getElementById('btnFR');
+        const btnEN = document.getElementById('btnEN');
+
+        let i18n = null;
+        const logs = [];
+
+        // Override console.log pour capturer les logs
+        const originalLog = console.log;
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const message = args.join(' ');
+            logs.push({ type: 'info', message });
+            updateConsole();
+        };
+
+        const originalError = console.error;
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            const message = args.join(' ');
+            logs.push({ type: 'error', message });
+            updateConsole();
+        };
+
+        function updateConsole() {
+            consoleOutput.innerHTML = logs.map(log => {
+                const className = log.type === 'error' ? 'error' :
+                                 log.message.includes('✅') ? 'success' : 'info';
+                return `<div class="log ${className}">${escapeHtml(log.message)}</div>`;
+            }).join('');
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function addTestResult(name, success, details = '') {
+            const icon = success ? '✅' : '❌';
+            const iconClass = success ? 'success' : 'error';
+            const testItem = document.createElement('div');
+            testItem.className = 'test-item';
+            testItem.innerHTML = `
+                <span class="icon ${iconClass}">${icon}</span>
+                <span><strong>${name}</strong> ${details}</span>
+            `;
+            testResults.appendChild(testItem);
+        }
+
+        async function runTests() {
+            try {
+                // Test 1: Initialisation
+                statusBox.textContent = '⏳ Test 1/6 : Initialisation du système...';
+                i18n = new I18n();
+                await new Promise(resolve => setTimeout(resolve, 500));
+
+                if (i18n && i18n.currentLang) {
+                    addTestResult('Initialisation', true, `Langue: ${i18n.currentLang}`);
+                    statusBox.className = 'status success';
+                    statusBox.textContent = '✅ Système initialisé avec succès !';
+                } else {
+                    throw new Error('Échec de l\'initialisation');
+                }
+
+                // Test 2: Traductions chargées
+                await new Promise(resolve => setTimeout(resolve, 200));
+                statusBox.textContent = '⏳ Test 2/6 : Vérification des traductions...';
+
+                if (i18n.translations.fr && i18n.translations.en) {
+                    addTestResult('Traductions chargées', true, 'FR et EN disponibles');
+                } else {
+                    throw new Error('Traductions manquantes');
+                }
+
+                // Test 3: Fonction t()
+                await new Promise(resolve => setTimeout(resolve, 200));
+                statusBox.textContent = '⏳ Test 3/6 : Test de la fonction t()...';
+
+                const testFR = i18n.t('nav.home');
+                if (testFR && testFR !== 'nav.home') {
+                    addTestResult('Fonction t()', true, `Résultat: "${testFR}"`);
+                } else {
+                    throw new Error('Fonction t() ne fonctionne pas');
+                }
+
+                // Test 4: Changement de langue
+                await new Promise(resolve => setTimeout(resolve, 200));
+                statusBox.textContent = '⏳ Test 4/6 : Test du changement de langue...';
+
+                await i18n.switchLanguage('en');
+                const testEN = i18n.t('nav.home');
+
+                if (testEN === 'Home') {
+                    addTestResult('Changement de langue', true, `FR→EN : "${testEN}"`);
+                    updateLangButtons();
+                } else {
+                    throw new Error('Changement de langue échoué');
+                }
+
+                // Test 5: Meta tags
+                await new Promise(resolve => setTimeout(resolve, 200));
+                statusBox.textContent = '⏳ Test 5/6 : Vérification des meta tags...';
+
+                const titleEN = document.title;
+                if (titleEN.includes('DevOps')) {
+                    addTestResult('Meta tags SEO', true, `Title: "${titleEN.substring(0, 50)}..."`);
+                } else {
+                    addTestResult('Meta tags SEO', false, 'Title non mis à jour');
+                }
+
+                // Test 6: Retour en FR
+                await new Promise(resolve => setTimeout(resolve, 200));
+                statusBox.textContent = '⏳ Test 6/6 : Retour au français...';
+
+                await i18n.switchLanguage('fr');
+                const testFR2 = i18n.t('nav.home');
+
+                if (testFR2 === 'Accueil') {
+                    addTestResult('Retour FR', true, `EN→FR : "${testFR2}"`);
+                    updateLangButtons();
+                } else {
+                    throw new Error('Retour au français échoué');
+                }
+
+                // Tous les tests réussis
+                statusBox.className = 'status success';
+                statusBox.textContent = '🎉 Tous les tests sont réussis ! Le système i18n fonctionne parfaitement.';
+
+            } catch (error) {
+                statusBox.className = 'status error';
+                statusBox.textContent = `❌ Erreur: ${error.message}`;
+                console.error('Erreur lors des tests:', error);
+            }
+        }
+
+        function updateLangButtons() {
+            const currentLang = i18n.getCurrentLanguage();
+            btnFR.classList.toggle('active', currentLang === 'fr');
+            btnEN.classList.toggle('active', currentLang === 'en');
+        }
+
+        // Event listeners pour les boutons
+        btnFR.addEventListener('click', async () => {
+            if (i18n) {
+                await i18n.switchLanguage('fr');
+                updateLangButtons();
+                console.log('✅ Langue changée: FR');
+            }
+        });
+
+        btnEN.addEventListener('click', async () => {
+            if (i18n) {
+                await i18n.switchLanguage('en');
+                updateLangButtons();
+                console.log('✅ Langue changée: EN');
+            }
+        });
+
+        // Lancer les tests au chargement
+        runTests();
+    </script>
+</body>
+</html>
