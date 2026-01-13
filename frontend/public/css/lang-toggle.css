@@ -1,0 +1,290 @@
+/**
+ * ===================================
+ * LANG TOGGLE STYLES
+ * Styles du composant de changement de langue
+ * Portfolio Alice Sindayigaya - 2025
+ * ===================================
+ */
+
+/* ============================================
+   CONTENEUR DU SWITCHER
+   ============================================ */
+
+.lang-switcher {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem;
+    background: var(--bg-secondary, rgba(255, 255, 255, 0.05));
+    border-radius: 50px;
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    margin-left: 1rem;
+}
+
+.lang-switcher:hover {
+    border-color: var(--primary-color, #00a3ff);
+    box-shadow: 0 0 15px var(--primary-color-alpha, rgba(0, 163, 255, 0.2));
+}
+
+/* ============================================
+   BOUTONS DE LANGUE
+   ============================================ */
+
+.lang-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 32px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.7));
+    background: transparent;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* État hover */
+.lang-btn:hover {
+    color: var(--text-primary, #ffffff);
+    transform: translateY(-1px);
+}
+
+/* État actif */
+.lang-btn.active {
+    color: #ffffff;
+    background: linear-gradient(135deg,
+        var(--primary-color, #00a3ff) 0%,
+        var(--secondary-color, #0066ff) 100%);
+    box-shadow:
+        0 2px 10px var(--primary-color-alpha, rgba(0, 163, 255, 0.3)),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+/* Effet de brillance sur bouton actif */
+.lang-btn.active::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        45deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    animation: shine 3s infinite;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+/* État focus (accessibilité) */
+.lang-btn:focus {
+    outline: none;
+}
+
+.lang-btn:focus-visible {
+    outline: 2px solid var(--primary-color, #00a3ff);
+    outline-offset: 2px;
+}
+
+/* État disabled */
+.lang-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* ============================================
+   ANIMATION DE TRANSITION DE LANGUE
+   ============================================ */
+
+/* Classe ajoutée pendant le changement de langue */
+body.lang-switching {
+    overflow-x: hidden;
+}
+
+/* Fade des textes pendant transition */
+body.lang-switching [data-i18n],
+body.lang-switching [data-i18n-aria],
+body.lang-switching [data-i18n-placeholder],
+body.lang-switching [data-i18n-title] {
+    animation: textFadeTransition 0.3s ease-in-out;
+}
+
+@keyframes textFadeTransition {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.3;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Désactiver transitions pendant chargement initial i18n */
+.i18n-loading * {
+    transition: none !important;
+    animation: none !important;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+/* Tablette et mobile */
+@media (max-width: 768px) {
+    .lang-switcher {
+        margin-left: 0;
+        margin-right: 1rem;
+        order: -1; /* Placer avant le menu toggle */
+    }
+
+    .lang-btn {
+        min-width: 36px;
+        height: 30px;
+        padding: 0.3rem 0.7rem;
+        font-size: 0.8rem;
+    }
+}
+
+/* Très petit mobile */
+@media (max-width: 480px) {
+    .lang-switcher {
+        gap: 0.15rem;
+        padding: 0.2rem;
+    }
+
+    .lang-btn {
+        min-width: 32px;
+        height: 28px;
+        padding: 0.25rem 0.6rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* ============================================
+   DARK MODE / LIGHT MODE
+   ============================================ */
+
+/* Mode clair */
+[data-theme="light"] .lang-switcher {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .lang-btn {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="light"] .lang-btn:hover {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+[data-theme="light"] .lang-btn.active {
+    color: #ffffff;
+}
+
+[data-theme="light"] .lang-switcher:hover {
+    border-color: var(--primary-color, #00a3ff);
+    box-shadow: 0 0 15px rgba(0, 163, 255, 0.15);
+}
+
+/* ============================================
+   ANIMATIONS AVANCÉES (optionnel)
+   ============================================ */
+
+/* Animation d'entrée du switcher */
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.lang-switcher {
+    animation: fadeInSlide 0.5s ease-out;
+}
+
+/* Pulse subtil sur changement de langue */
+.lang-btn.active {
+    animation: activePulse 0.6s ease-out;
+}
+
+@keyframes activePulse {
+    0% {
+        box-shadow:
+            0 2px 10px var(--primary-color-alpha, rgba(0, 163, 255, 0.3)),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    50% {
+        box-shadow:
+            0 2px 20px var(--primary-color-alpha, rgba(0, 163, 255, 0.5)),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    100% {
+        box-shadow:
+            0 2px 10px var(--primary-color-alpha, rgba(0, 163, 255, 0.3)),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    .lang-switcher {
+        display: none !important;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITÉ
+   ============================================ */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .lang-switcher {
+        border-width: 2px;
+    }
+
+    .lang-btn.active {
+        border: 2px solid var(--primary-color, #00a3ff);
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .lang-switcher,
+    .lang-btn,
+    .lang-btn.active,
+    body.lang-switching [data-i18n] {
+        animation: none !important;
+        transition: none !important;
+    }
+}
