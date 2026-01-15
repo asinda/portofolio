@@ -7,8 +7,15 @@
 import { Resend } from 'resend';
 import logger from '../config/logger.js';
 
-// Initialiser Resend avec clé API
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Initialiser Resend avec clé API (lazy init)
+let resend = null;
+
+function getResendClient() {
+    if (!resend && process.env.RESEND_API_KEY) {
+        resend = new Resend(process.env.RESEND_API_KEY);
+    }
+    return resend;
+}
 
 // Configuration email
 const FROM_EMAIL = process.env.EMAIL_FROM || 'Portfolio <noreply@yourdomain.com>';
@@ -224,8 +231,14 @@ export async function sendContactNotification(data) {
             return { success: false, error: 'API key manquante' };
         }
 
+        const resendClient = getResendClient();
+        if (!resendClient) {
+            logger.warn('Client Resend non disponible');
+            return { success: false, error: 'Client email non disponible' };
+        }
+
         // Envoyer l'email
-        const result = await resend.emails.send({
+        const result = await resendClient.emails.send({
             from: FROM_EMAIL,
             to: TO_EMAIL,
             subject: `📬 Nouveau contact: ${data.subject}`,
@@ -257,6 +270,11 @@ export async function sendContactConfirmation(data) {
     try {
         if (!process.env.RESEND_API_KEY) {
             return { success: false, error: 'API key manquante' };
+        }
+
+        const resendClient = getResendClient();
+        if (!resendClient) {
+            return { success: false, error: 'Client email non disponible' };
         }
 
         const confirmationHTML = `
@@ -295,7 +313,7 @@ export async function sendContactConfirmation(data) {
 </html>
         `.trim();
 
-        const result = await resend.emails.send({
+        const result = await resendClient.emails.send({
             from: FROM_EMAIL,
             to: data.email,
             subject: '✅ Message bien reçu - Alice Sindayigaya',
