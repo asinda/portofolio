@@ -16,6 +16,7 @@ desktop.ini
 *.log
 *.tmp
 *.temp
+tmpclaude-*
 
 # Dossier de build (si vous utilisez un build tool plus tard)
 dist/
