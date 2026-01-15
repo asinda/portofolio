@@ -1,0 +1,184 @@
+{
+  "tutorials": [
+    {
+      "id": "01-github-actions-pipeline",
+      "title": "Pipeline CI/CD Complet avec GitHub Actions",
+      "slug": "github-actions-pipeline-cicd",
+      "description": "Construisez un pipeline CI/CD professionnel de A à Z pour une application Node.js + React avec tests, sécurité et déploiement automatisé.",
+      "category": "CI/CD",
+      "tags": ["GitHub Actions", "CI/CD", "DevOps", "Docker", "AWS", "Automation"],
+      "author": "Alice Sindayigaya",
+      "date": "2026-01-15",
+      "readTime": "25 min",
+      "level": "Intermédiaire",
+      "image": "/images/tutorials/github-actions.jpg",
+      "file": "/blog/tutorials/01-github-actions-pipeline.md",
+      "featured": true,
+      "topics": [
+        "Tests automatisés (unitaires, intégration, E2E)",
+        "Analyse de sécurité (CodeQL, Trivy, npm audit)",
+        "Build et push Docker multi-arch",
+        "Déploiement AWS ECS avec health checks",
+        "Rollback automatique en cas d'échec",
+        "Notifications Slack"
+      ],
+      "prerequisites": [
+        "Repository GitHub",
+        "Application Node.js/React",
+        "Compte AWS ou Vercel/Netlify",
+        "Connaissance de base de Docker"
+      ],
+      "outcomes": [
+        "Pipeline complet en 5-8 minutes",
+        "Tests parallélisés (-60% de temps)",
+        "Sécurité automatisée (CodeQL, Trivy)",
+        "Déploiements 50x plus fréquents",
+        "Détection bugs 10x plus rapide"
+      ]
+    },
+    {
+      "id": "02-gitlab-cicd-docker-kubernetes",
+      "title": "GitLab CI/CD : De Docker à Kubernetes en Production",
+      "slug": "gitlab-cicd-docker-kubernetes",
+      "description": "Créez un pipeline GitLab qui construit des images Docker optimisées et les déploie sur Kubernetes avec stratégies avancées de déploiement.",
+      "category": "CI/CD",
+      "tags": ["GitLab", "Docker", "Kubernetes", "CI/CD", "DevOps", "K8s"],
+      "author": "Alice Sindayigaya",
+      "date": "2026-01-15",
+      "readTime": "30 min",
+      "level": "Avancé",
+      "image": "/images/tutorials/gitlab-k8s.jpg",
+      "file": "/blog/tutorials/02-gitlab-cicd-docker-kubernetes.md",
+      "featured": true,
+      "topics": [
+        "Pipeline GitLab CI/CD avec 6 stages",
+        "Multi-stage Docker builds optimisés",
+        "Déploiement Kubernetes (EKS/GKE/AKS)",
+        "Rolling updates et health checks",
+        "Intégration SonarQube",
+        "Tests de performance avec k6"
+      ],
+      "prerequisites": [
+        "Compte GitLab (ou self-hosted)",
+        "GitLab Runner configuré",
+        "Cluster Kubernetes accessible",
+        "Connaissance Docker et K8s"
+      ],
+      "outcomes": [
+        "Build Docker en 2-4 minutes",
+        "Images optimisées (-87% de taille)",
+        "Déploiement zero-downtime",
+        "Rollback en 15 secondes",
+        "Sécurité scannée automatiquement"
+      ]
+    },
+    {
+      "id": "03-tests-automatises-qualite-code",
+      "title": "Tests Automatisés et Qualité du Code : Guide Complet",
+      "slug": "tests-automatises-qualite-code",
+      "description": "Mettez en place une stratégie de tests complète avec Jest, Playwright, SonarQube et k6 pour garantir la fiabilité de votre application.",
+      "category": "DevOps",
+      "tags": ["Tests", "Jest", "Playwright", "SonarQube", "Qualité", "DevOps"],
+      "author": "Alice Sindayigaya",
+      "date": "2026-01-15",
+      "readTime": "35 min",
+      "level": "Intermédiaire",
+      "image": "/images/tutorials/tests-quality.jpg",
+      "file": "/blog/tutorials/03-tests-automatises-qualite-code.md",
+      "featured": true,
+      "topics": [
+        "Tests unitaires avec Jest",
+        "Tests E2E avec Playwright",
+        "Tests d'API avec Supertest",
+        "Analyse qualité avec SonarQube",
+        "Tests de performance avec k6",
+        "Couverture de code >80%"
+      ],
+      "prerequisites": [
+        "Application JavaScript/TypeScript",
+        "Node.js installé",
+        "Connaissance de base des tests",
+        "Accès SonarQube (optionnel)"
+      ],
+      "outcomes": [
+        "Couverture de code >80%",
+        "Tests automatisés en CI/CD",
+        "Détection précoce des bugs",
+        "Code maintenable et documenté",
+        "10x moins de bugs en production"
+      ]
+    },
+    {
+      "id": "04-deploiement-multi-environnements",
+      "title": "Déploiement Multi-Environnements avec Terraform et Ansible",
+      "slug": "deploiement-multi-environnements",
+      "description": "Gérez plusieurs environnements (dev, staging, production) avec Infrastructure as Code, déploiements automatisés et stratégies Blue-Green.",
+      "category": "DevOps",
+      "tags": ["Terraform", "Ansible", "IaC", "Multi-Env", "AWS", "DevOps"],
+      "author": "Alice Sindayigaya",
+      "date": "2026-01-15",
+      "readTime": "40 min",
+      "level": "Avancé",
+      "image": "/images/tutorials/terraform-ansible.jpg",
+      "file": "/blog/tutorials/04-deploiement-multi-environnements.md",
+      "featured": true,
+      "topics": [
+        "Infrastructure as Code avec Terraform",
+        "Configuration avec Ansible",
+        "Gestion des secrets avec Vault",
+        "Déploiements Blue-Green et Canary",
+        "Modules Terraform réutilisables",
+        "Pipeline multi-environnements"
+      ],
+      "prerequisites": [
+        "Compte AWS (ou autre cloud)",
+        "Terraform installé",
+        "Ansible installé",
+        "Connaissance infrastructure cloud"
+      ],
+      "outcomes": [
+        "Infrastructure 100% as Code",
+        "Déploiements sûrs et prévisibles",
+        "Coûts optimisés par environnement",
+        "Zero downtime en production",
+        "Rollback rapide en cas de problème"
+      ]
+    }
+  ],
+  "categories": [
+    {
+      "id": "cicd",
+      "name": "CI/CD",
+      "description": "Pipelines d'intégration et déploiement continus",
+      "icon": "fa-infinity",
+      "color": "#00a3ff"
+    },
+    {
+      "id": "devops",
+      "name": "DevOps",
+      "description": "Pratiques et outils DevOps modernes",
+      "icon": "fa-code-branch",
+      "color": "#ff6b6b"
+    },
+    {
+      "id": "cloud",
+      "name": "Cloud",
+      "description": "Infrastructure et services cloud",
+      "icon": "fa-cloud",
+      "color": "#51cf66"
+    },
+    {
+      "id": "automation",
+      "name": "Automatisation",
+      "description": "Scripts et outils d'automatisation",
+      "icon": "fa-robot",
+      "color": "#ffd93d"
+    }
+  ],
+  "stats": {
+    "totalTutorials": 4,
+    "totalReadTime": "130 min",
+    "averageLevel": "Intermédiaire-Avancé",
+    "lastUpdated": "2026-01-15"
+  }
+}
