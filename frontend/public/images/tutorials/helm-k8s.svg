@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300">
+  <defs>
+    <linearGradient id="helmGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F1689;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#277A9F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="#1a1a2e"/>
+  <text x="200" y="150" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="url(#helmGrad)" text-anchor="middle">
+    Helm
+  </text>
+  <text x="200" y="190" font-family="Arial, sans-serif" font-size="20" fill="#ffffff" text-anchor="middle" opacity="0.8">
+    Package Manager for K8s
+  </text>
+</svg>

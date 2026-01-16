@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Complet</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            padding: 20px;
+            background: #1e1e1e;
+            color: #00ff00;
+        }
+        .section {
+            background: #2d2d2d;
+            padding: 15px;
+            margin: 15px 0;
+            border-left: 4px solid #00ff00;
+            border-radius: 4px;
+        }
+        .test-result {
+            margin: 10px 0;
+            padding: 10px;
+            background: #1a1a1a;
+        }
+        .success { color: #00ff00; }
+        .error { color: #ff4444; }
+        .warning { color: #ffaa00; }
+        h1, h2 { color: #00ff00; }
+        img {
+            max-width: 400px;
+            border: 2px solid #00ff00;
+            margin: 10px 0;
+        }
+        pre {
+            background: #1a1a1a;
+            padding: 10px;
+            overflow-x: auto;
+            border: 1px solid #00ff00;
+        }
+        button {
+            background: #00ff00;
+            color: #1e1e1e;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 5px;
+        }
+        button:hover {
+            background: #00cc00;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔬 DIAGNOSTIC COMPLET DES IMAGES</h1>
+
+    <div class="section">
+        <h2>📊 Test 1 : Chargement Direct des Images</h2>
+        <button onclick="testDirectLoad()">▶️ Lancer Test 1</button>
+        <div id="test1-result"></div>
+    </div>
+
+    <div class="section">
+        <h2>🌐 Test 2 : Vérification API</h2>
+        <button onclick="testAPI()">▶️ Lancer Test 2</button>
+        <div id="test2-result"></div>
+    </div>
+
+    <div class="section">
+        <h2>🖼️ Test 3 : Rendu SVG Brut</h2>
+        <button onclick="testSVGRaw()">▶️ Lancer Test 3</button>
+        <div id="test3-result"></div>
+    </div>
+
+    <div class="section">
+        <h2>🔍 Test 4 : Inspection DOM</h2>
+        <button onclick="inspectDOM()">▶️ Lancer Test 4</button>
+        <div id="test4-result"></div>
+    </div>
+
+    <script>
+        function log(message, type = 'info') {
+            const colors = {
+                success: '#00ff00',
+                error: '#ff4444',
+                warning: '#ffaa00',
+                info: '#00aaff'
+            };
+            console.log(`%c${message}`, `color: ${colors[type]}`);
+        }
+
+        // Test 1 : Chargement direct
+        function testDirectLoad() {
+            const result = document.getElementById('test1-result');
+            result.innerHTML = '<p class="warning">⏳ Test en cours...</p>';
+
+            const images = [
+                '/images/tutorials/docker-security.svg',
+                '/images/tutorials/cloud-azure.svg'
+            ];
+
+            let html = '<div class="test-result">';
+
+            images.forEach((src, index) => {
+                html += \`
+                    <h3>Image \${index + 1}: \${src}</h3>
+                    <img
+                        src="\${src}"
+                        onload="document.getElementById('img-\${index}-status').innerHTML = '<span class=success>✅ Chargée</span>'"
+                        onerror="document.getElementById('img-\${index}-status').innerHTML = '<span class=error>❌ Erreur</span>'"
+                        alt="Test"
+                    >
+                    <p id="img-\${index}-status">⏳ Chargement...</p>
+                \`;
+            });
+
+            html += '</div>';
+            result.innerHTML = html;
+            log('Test 1 lancé', 'success');
+        }
+
+        // Test 2 : API
+        async function testAPI() {
+            const result = document.getElementById('test2-result');
+            result.innerHTML = '<p class="warning">⏳ Appel API en cours...</p>';
+
+            try {
+                const response = await fetch('http://localhost:5000/api/blog/posts?limit=100');
+                const data = await response.json();
+
+                const docker = data.data.find(p => p.slug === 'docker-security-hardening-best-practices');
+                const azure = data.data.find(p => p.slug === 'azure-devops-aks-pipeline');
+
+                let html = '<div class="test-result">';
+                html += '<h3>Résultats API:</h3>';
+                html += \`<p>Total articles: <span class="success">\${data.data.length}</span></p>\`;
+
+                if (docker) {
+                    html += \`
+                        <h4 class="success">✅ Docker Security trouvé</h4>
+                        <pre>\${JSON.stringify(docker, null, 2).substring(0, 500)}...</pre>
+                    \`;
+                } else {
+                    html += '<h4 class="error">❌ Docker Security NON trouvé</h4>';
+                }
+
+                if (azure) {
+                    html += \`
+                        <h4 class="success">✅ Azure DevOps trouvé</h4>
+                        <pre>\${JSON.stringify(azure, null, 2).substring(0, 500)}...</pre>
+                    \`;
+                } else {
+                    html += '<h4 class="error">❌ Azure DevOps NON trouvé</h4>';
+                }
+
+                html += '</div>';
+                result.innerHTML = html;
+                log('Test 2 réussi', 'success');
+            } catch (error) {
+                result.innerHTML = \`<p class="error">❌ Erreur: \${error.message}</p>\`;
+                log('Test 2 échoué: ' + error.message, 'error');
+            }
+        }
+
+        // Test 3 : SVG brut
+        async function testSVGRaw() {
+            const result = document.getElementById('test3-result');
+            result.innerHTML = '<p class="warning">⏳ Chargement SVG brut...</p>';
+
+            try {
+                const response = await fetch('/images/tutorials/docker-security.svg');
+                const svgText = await response.text();
+
+                let html = '<div class="test-result">';
+                html += '<h3>Contenu SVG Docker Security:</h3>';
+                html += \`<pre>\${svgText}</pre>\`;
+                html += '<h3>Rendu:</h3>';
+                html += '<div>' + svgText + '</div>';
+                html += '</div>';
+
+                result.innerHTML = html;
+                log('Test 3 réussi', 'success');
+            } catch (error) {
+                result.innerHTML = \`<p class="error">❌ Erreur: \${error.message}</p>\`;
+                log('Test 3 échoué: ' + error.message, 'error');
+            }
+        }
+
+        // Test 4 : Inspection DOM
+        function inspectDOM() {
+            const result = document.getElementById('test4-result');
+
+            // Ouvrir la page principale dans un iframe
+            let html = '<div class="test-result">';
+            html += '<h3>Instructions:</h3>';
+            html += '<ol>';
+            html += '<li>Ouvrez la Console (F12)</li>';
+            html += '<li>Allez sur http://localhost:8000</li>';
+            html += '<li>Copiez/collez ce code dans la Console:</li>';
+            html += '</ol>';
+            html += '<pre>// Chercher toutes les images de tutoriels\\n';
+            html += 'const imgs = document.querySelectorAll("img[src*=\\"/tutorials/\\"]");\\n';
+            html += 'console.log("Images trouvées:", imgs.length);\\n';
+            html += 'imgs.forEach((img, i) => {\\n';
+            html += '  console.log(\`\${i+1}. \${img.src} - Loaded: \${img.complete}\`);\\n';
+            html += '});\\n';
+            html += '\\n// Chercher Docker Security\\n';
+            html += 'const docker = Array.from(imgs).find(img => img.src.includes("docker-security"));\\n';
+            html += 'if (docker) {\\n';
+            html += '  console.log("✅ Docker Security trouvée:", docker);\\n';
+            html += '  console.log("   src:", docker.src);\\n';
+            html += '  console.log("   complete:", docker.complete);\\n';
+            html += '  console.log("   naturalWidth:", docker.naturalWidth);\\n';
+            html += '} else {\\n';
+            html += '  console.log("❌ Docker Security PAS TROUVÉE dans le DOM");\\n';
+            html += '}</pre>';
+            html += '</div>';
+
+            result.innerHTML = html;
+            log('Test 4 prêt - Suivez les instructions', 'warning');
+        }
+
+        // Lancer les tests automatiquement
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                testDirectLoad();
+            }, 500);
+        });
+    </script>
+</body>
+</html>

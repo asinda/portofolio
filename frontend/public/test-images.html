@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-card {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .test-card h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        .test-card img {
+            max-width: 400px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        .info {
+            background: #e3f2fd;
+            padding: 10px;
+            border-left: 4px solid #2196f3;
+            margin: 10px 0;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test des Images - Articles Problématiques</h1>
+
+    <div class="info">
+        <strong>Instructions :</strong> Cette page teste si les images SVG s'affichent correctement.
+        Si vous voyez les images ci-dessous, c'est que les fichiers existent bien.
+    </div>
+
+    <!-- Test Image Docker Security -->
+    <div class="test-card">
+        <h2>1. Docker Security - Hardening et Scan</h2>
+        <p><strong>Chemin :</strong> <code>/images/tutorials/docker-security.svg</code></p>
+        <img
+            src="/images/tutorials/docker-security.svg"
+            alt="Docker Security"
+            onload="document.getElementById('docker-status').innerHTML = '✅ <span class=success>Image chargée avec succès !</span>'"
+            onerror="document.getElementById('docker-status').innerHTML = '❌ <span class=error>Erreur de chargement</span>'"
+        >
+        <p id="docker-status">⏳ Chargement...</p>
+    </div>
+
+    <!-- Test Image Azure -->
+    <div class="test-card">
+        <h2>2. Azure DevOps + AKS</h2>
+        <p><strong>Chemin :</strong> <code>/images/tutorials/cloud-azure.svg</code></p>
+        <img
+            src="/images/tutorials/cloud-azure.svg"
+            alt="Azure DevOps"
+            onload="document.getElementById('azure-status').innerHTML = '✅ <span class=success>Image chargée avec succès !</span>'"
+            onerror="document.getElementById('azure-status').innerHTML = '❌ <span class=error>Erreur de chargement</span>'"
+        >
+        <p id="azure-status">⏳ Chargement...</p>
+    </div>
+
+    <!-- Test API -->
+    <div class="test-card">
+        <h2>3. Test de l'API</h2>
+        <button onclick="testAPI()">🔄 Tester l'API</button>
+        <div id="api-result"></div>
+    </div>
+
+    <script>
+        async function testAPI() {
+            const resultDiv = document.getElementById('api-result');
+            resultDiv.innerHTML = '<p>⏳ Chargement des données de l\'API...</p>';
+
+            try {
+                const response = await fetch('http://localhost:5000/api/blog/posts?limit=100');
+                const data = await response.json();
+
+                const docker = data.data.find(p => p.slug === 'docker-security-hardening-best-practices');
+                const azure = data.data.find(p => p.slug === 'azure-devops-aks-pipeline');
+
+                let html = '<div style="background: #f0f0f0; padding: 15px; margin-top: 10px; border-radius: 4px;">';
+
+                if (docker) {
+                    html += `
+                        <h4>✅ Docker Security trouvé</h4>
+                        <p><strong>Titre :</strong> ${docker.title}</p>
+                        <p><strong>Image :</strong> <code>${docker.cover_image}</code></p>
+                        <p><strong>Catégorie :</strong> ${docker.category}</p>
+                    `;
+                } else {
+                    html += '<h4>❌ Docker Security NON trouvé dans l\'API</h4>';
+                }
+
+                html += '<hr>';
+
+                if (azure) {
+                    html += `
+                        <h4>✅ Azure DevOps trouvé</h4>
+                        <p><strong>Titre :</strong> ${azure.title}</p>
+                        <p><strong>Image :</strong> <code>${azure.cover_image}</code></p>
+                        <p><strong>Catégorie :</strong> ${azure.category}</p>
+                    `;
+                } else {
+                    html += '<h4>❌ Azure DevOps NON trouvé dans l\'API</h4>';
+                }
+
+                html += `<p style="margin-top: 15px;"><strong>Total articles :</strong> ${data.data.length}</p>`;
+                html += '</div>';
+
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="error">❌ Erreur : ${error.message}</p>`;
+            }
+        }
+
+        // Test automatique au chargement
+        window.addEventListener('load', () => {
+            setTimeout(testAPI, 1000);
+        });
+    </script>
+</body>
+</html>

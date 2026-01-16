@@ -327,11 +327,22 @@ const translationsFR = {
         title: "Blog & Tutoriels",
         description: "Articles techniques, guides pratiques et retours d'expérience sur DevOps et Cloud",
 
+        searchPlaceholder: "Rechercher un article...",
+        previous: "Article précédent",
+        next: "Article suivant",
+        noResults: "Aucun article trouvé",
+        error: "Impossible de charger les articles. Veuillez réessayer plus tard.",
+
         categories: {
-            all: "Tous les articles",
+            all: "Tous",
             tutorial: "Tutoriels",
             devops: "DevOps",
             cloud: "Cloud",
+            kubernetes: "Kubernetes",
+            "ci/cd": "CI/CD",
+            terraform: "Terraform",
+            ansible: "Ansible",
+            monitoring: "Monitoring",
             automation: "Automatisation"
         },
 
@@ -803,11 +814,22 @@ const translationsEN = {
         title: "Blog & Tutorials",
         description: "Technical articles, practical guides and experience feedback on DevOps and Cloud",
 
+        searchPlaceholder: "Search for an article...",
+        previous: "Previous article",
+        next: "Next article",
+        noResults: "No articles found",
+        error: "Unable to load articles. Please try again later.",
+
         categories: {
-            all: "All articles",
+            all: "All",
             tutorial: "Tutorials",
             devops: "DevOps",
             cloud: "Cloud",
+            kubernetes: "Kubernetes",
+            "ci/cd": "CI/CD",
+            terraform: "Terraform",
+            ansible: "Ansible",
+            monitoring: "Monitoring",
             automation: "Automation"
         },
 

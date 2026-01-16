@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Simple Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #2196f3;
+            padding-bottom: 10px;
+        }
+        .test-box {
+            background: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-box h2 {
+            margin-top: 0;
+            color: #2196f3;
+        }
+        img {
+            max-width: 500px;
+            border: 3px solid #ddd;
+            border-radius: 8px;
+            display: block;
+            margin: 15px 0;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-weight: bold;
+        }
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #f44336;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test Simple des Images Docker Security & Azure DevOps</h1>
+
+    <!-- Test 1 -->
+    <div class="test-box">
+        <h2>Test 1 : Docker Security</h2>
+        <p><strong>Chemin :</strong> <code>/images/tutorials/docker-security.svg</code></p>
+        <img
+            id="img1"
+            src="/images/tutorials/docker-security.svg"
+            alt="Docker Security"
+        >
+        <div id="status1" class="status">⏳ Chargement...</div>
+    </div>
+
+    <!-- Test 2 -->
+    <div class="test-box">
+        <h2>Test 2 : Azure DevOps</h2>
+        <p><strong>Chemin :</strong> <code>/images/tutorials/cloud-azure.svg</code></p>
+        <img
+            id="img2"
+            src="/images/tutorials/cloud-azure.svg"
+            alt="Azure DevOps"
+        >
+        <div id="status2" class="status">⏳ Chargement...</div>
+    </div>
+
+    <!-- Test 3 : Informations -->
+    <div class="test-box">
+        <h2>Test 3 : Vérification API</h2>
+        <p>Cliquez sur le bouton pour vérifier que l'API retourne les bons articles.</p>
+        <button onclick="verifierAPI()" style="padding: 10px 20px; background: #2196f3; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px;">
+            🔄 Vérifier l'API
+        </button>
+        <div id="api-result" style="margin-top: 15px;"></div>
+    </div>
+
+    <script>
+        // Test images
+        const img1 = document.getElementById('img1');
+        const img2 = document.getElementById('img2');
+        const status1 = document.getElementById('status1');
+        const status2 = document.getElementById('status2');
+
+        img1.onload = function() {
+            status1.className = 'status success';
+            status1.textContent = '✅ Image Docker Security chargée avec succès !';
+            console.log('✅ Docker Security OK - Dimensions:', img1.naturalWidth, 'x', img1.naturalHeight);
+        };
+
+        img1.onerror = function() {
+            status1.className = 'status error';
+            status1.textContent = '❌ ERREUR : Impossible de charger l\'image Docker Security';
+            console.error('❌ Erreur chargement Docker Security');
+        };
+
+        img2.onload = function() {
+            status2.className = 'status success';
+            status2.textContent = '✅ Image Azure DevOps chargée avec succès !';
+            console.log('✅ Azure DevOps OK - Dimensions:', img2.naturalWidth, 'x', img2.naturalHeight);
+        };
+
+        img2.onerror = function() {
+            status2.className = 'status error';
+            status2.textContent = '❌ ERREUR : Impossible de charger l\'image Azure DevOps';
+            console.error('❌ Erreur chargement Azure DevOps');
+        };
+
+        // Vérification API
+        async function verifierAPI() {
+            const resultDiv = document.getElementById('api-result');
+            resultDiv.innerHTML = '<p style="color: #ff9800;">⏳ Chargement des données de l\'API...</p>';
+
+            try {
+                const response = await fetch('http://localhost:5000/api/blog/posts?limit=100');
+                const data = await response.json();
+
+                const docker = data.data.find(function(p) {
+                    return p.slug === 'docker-security-hardening-best-practices';
+                });
+                const azure = data.data.find(function(p) {
+                    return p.slug === 'azure-devops-aks-pipeline';
+                });
+
+                let html = '<div style="background: #f5f5f5; padding: 15px; border-radius: 4px;">';
+                html += '<h3>Résultats de l\'API :</h3>';
+
+                if (docker) {
+                    html += '<div class="status success">';
+                    html += '<strong>✅ Docker Security trouvé</strong><br>';
+                    html += 'Titre : ' + docker.title + '<br>';
+                    html += 'Image : <code>' + docker.cover_image + '</code><br>';
+                    html += 'Catégorie : ' + docker.category;
+                    html += '</div>';
+                } else {
+                    html += '<div class="status error">❌ Docker Security NON trouvé dans l\'API</div>';
+                }
+
+                if (azure) {
+                    html += '<div class="status success">';
+                    html += '<strong>✅ Azure DevOps trouvé</strong><br>';
+                    html += 'Titre : ' + azure.title + '<br>';
+                    html += 'Image : <code>' + azure.cover_image + '</code><br>';
+                    html += 'Catégorie : ' + azure.category;
+                    html += '</div>';
+                } else {
+                    html += '<div class="status error">❌ Azure DevOps NON trouvé dans l\'API</div>';
+                }
+
+                html += '<p style="margin-top: 10px;"><strong>Total articles :</strong> ' + data.data.length + '</p>';
+                html += '</div>';
+
+                resultDiv.innerHTML = html;
+            } catch (error) {
+                resultDiv.innerHTML = '<div class="status error">❌ Erreur : ' + error.message + '</div>';
+            }
+        }
+    </script>
+</body>
+</html>

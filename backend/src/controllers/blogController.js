@@ -357,6 +357,54 @@ export async function getTags(req, res) {
     }
 }
 
+/**
+ * POST /api/blog/posts/:id/view
+ * Incrémenter le compteur de vues d'un post
+ */
+export async function incrementViews(req, res) {
+    try {
+        const { id } = req.params;
+
+        // Incrémenter les vues
+        const { data, error } = await supabase
+            .rpc('increment_post_views', { post_id: id });
+
+        if (error) {
+            // Si la fonction RPC n'existe pas, récupérer puis mettre à jour
+            const { data: post, error: fetchError } = await supabase
+                .from('blog_posts')
+                .select('views')
+                .eq('id', id)
+                .single();
+
+            if (!fetchError && post) {
+                const { error: updateError } = await supabase
+                    .from('blog_posts')
+                    .update({ views: (post.views || 0) + 1 })
+                    .eq('id', id);
+
+                if (updateError) {
+                    logger.warn(`Erreur incrementViews pour ${id}:`, updateError);
+                }
+            }
+        }
+
+        // Toujours retourner success (même si erreur, pas critique)
+        return res.json({
+            success: true,
+            message: 'Vue incrémentée'
+        });
+
+    } catch (error) {
+        logger.error('Erreur incrementViews:', error);
+        // Retourner success quand même (pas critique)
+        return res.json({
+            success: true,
+            message: 'Vue incrémentée'
+        });
+    }
+}
+
 // ===================================
 // EXPORTS
 // ===================================
@@ -373,7 +421,8 @@ export const blogController = {
     // Méthodes spécialisées blog
     getBySlug: getPostBySlug,
     getCategories,
-    getTags
+    getTags,
+    incrementViews
 };
 
 export default blogController;

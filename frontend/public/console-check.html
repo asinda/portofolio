@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Console Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #fff3cd;
+        }
+        .alert {
+            background: #fff;
+            padding: 20px;
+            border-left: 5px solid #ff6b6b;
+            margin: 20px 0;
+        }
+        h1 { color: #d32f2f; }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <h1>⚠️ Instructions de Diagnostic</h1>
+
+    <div class="alert">
+        <h2>Étape 1 : Ouvrir la Console</h2>
+        <p>Appuyez sur <strong>F12</strong> pour ouvrir les Outils de Développement</p>
+        <p>Ou clic droit → "Inspecter" → Onglet "Console"</p>
+    </div>
+
+    <div class="alert">
+        <h2>Étape 2 : Regarder les Erreurs</h2>
+        <p>Dans la Console, cherchez des messages en <span style="color: red;">ROUGE</span></p>
+        <p>Les erreurs peuvent ressembler à :</p>
+        <ul>
+            <li><code>Failed to load resource</code></li>
+            <li><code>CORS policy</code></li>
+            <li><code>Content Security Policy</code></li>
+            <li><code>Mixed Content</code></li>
+            <li><code>net::ERR_</code></li>
+        </ul>
+    </div>
+
+    <div class="alert">
+        <h2>Étape 3 : Test Image</h2>
+        <p>Voici une image de test :</p>
+        <img src="/images/tutorials/docker-security.svg" alt="Test" style="max-width: 400px; border: 2px solid red;">
+        <p id="result">⏳ Chargement...</p>
+    </div>
+
+    <div class="alert">
+        <h2>Étape 4 : Onglet Réseau</h2>
+        <p>Allez dans l'onglet <strong>"Réseau"</strong> (Network) des DevTools</p>
+        <p>Actualisez la page (F5)</p>
+        <p>Cherchez <code>docker-security.svg</code> dans la liste</p>
+        <p>Cliquez dessus et regardez :</p>
+        <ul>
+            <li><strong>Status</strong> : Doit être <span style="color: green;">200</span></li>
+            <li><strong>Type</strong> : Doit être <code>image/svg+xml</code></li>
+            <li><strong>Preview</strong> : Doit montrer l'image</li>
+        </ul>
+    </div>
+
+    <script>
+        const img = document.querySelector('img');
+        const result = document.getElementById('result');
+
+        img.onload = function() {
+            result.innerHTML = '<span style="color: green; font-weight: bold;">✅ IMAGE CHARGÉE ! Dimensions: ' + img.naturalWidth + 'x' + img.naturalHeight + '</span>';
+            console.log('✅ Image chargée avec succès');
+            console.log('Dimensions:', img.naturalWidth, 'x', img.naturalHeight);
+        };
+
+        img.onerror = function(e) {
+            result.innerHTML = '<span style="color: red; font-weight: bold;">❌ ERREUR DE CHARGEMENT</span>';
+            console.error('❌ Erreur de chargement de l\'image');
+            console.error('Event:', e);
+            console.error('Image src:', img.src);
+            console.error('Image complete:', img.complete);
+        };
+
+        // Logs supplémentaires
+        console.log('='.repeat(50));
+        console.log('🔍 DIAGNOSTIC IMAGE');
+        console.log('='.repeat(50));
+        console.log('URL de la page:', window.location.href);
+        console.log('Protocole:', window.location.protocol);
+        console.log('User Agent:', navigator.userAgent);
+        console.log('Cookies enabled:', navigator.cookieEnabled);
+
+        // Tester fetch direct
+        fetch('/images/tutorials/docker-security.svg')
+            .then(response => {
+                console.log('✅ Fetch réussi');
+                console.log('Status:', response.status);
+                console.log('Content-Type:', response.headers.get('Content-Type'));
+                return response.text();
+            })
+            .then(text => {
+                console.log('✅ SVG récupéré, longueur:', text.length);
+                console.log('Début du SVG:', text.substring(0, 100));
+            })
+            .catch(error => {
+                console.error('❌ Fetch échoué:', error);
+            });
+    </script>
+</body>
+</html>

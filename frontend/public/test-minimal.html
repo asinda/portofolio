@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Test Minimal SVG</title>
+</head>
+<body style="padding: 40px; font-family: Arial;">
+    <h1>Test Minimal SVG</h1>
+
+    <h2>1. SVG Inline (doit fonctionner)</h2>
+    <svg width="200" height="100" style="border: 2px solid green;">
+        <rect width="200" height="100" fill="red"/>
+        <text x="100" y="50" fill="white" text-anchor="middle" dominant-baseline="middle">SVG OK</text>
+    </svg>
+
+    <h2>2. Image SVG Externe</h2>
+    <img id="test" src="/images/tutorials/docker-security.svg" style="border: 2px solid blue; max-width: 400px;">
+    <p id="result">Chargement...</p>
+
+    <h2>3. Console</h2>
+    <div id="console" style="background: #f0f0f0; padding: 10px; font-family: monospace; white-space: pre-wrap;"></div>
+
+    <script>
+        const consoleDiv = document.getElementById('console');
+        function log(msg) {
+            console.log(msg);
+            consoleDiv.textContent += msg + '\n';
+        }
+
+        log('=== TEST MINIMAL ===');
+        log('URL: ' + window.location.href);
+
+        const img = document.getElementById('test');
+        const result = document.getElementById('result');
+
+        img.onload = function() {
+            const msg = 'SUCCESS: Image chargée - ' + this.naturalWidth + 'x' + this.naturalHeight;
+            result.innerHTML = '<span style="color: green; font-weight: bold;">' + msg + '</span>';
+            log(msg);
+        };
+
+        img.onerror = function(e) {
+            const msg = 'ERREUR: Impossible de charger l\'image';
+            result.innerHTML = '<span style="color: red; font-weight: bold;">' + msg + '</span>';
+            log(msg);
+            log('src: ' + this.src);
+            log('complete: ' + this.complete);
+            log('naturalWidth: ' + this.naturalWidth);
+            log('naturalHeight: ' + this.naturalHeight);
+        };
+
+        // Test avec Fetch
+        log('\n=== TEST FETCH ===');
+        fetch('/images/tutorials/docker-security.svg')
+            .then(r => {
+                log('Fetch Status: ' + r.status);
+                log('Fetch OK: ' + r.ok);
+                log('Content-Type: ' + r.headers.get('Content-Type'));
+                return r.text();
+            })
+            .then(text => {
+                log('Fetch réussi - Taille: ' + text.length + ' bytes');
+                log('Début: ' + text.substring(0, 100));
+
+                // Créer un Blob et tester l'affichage via Blob URL
+                log('\n=== TEST BLOB URL ===');
+                const blob = new Blob([text], { type: 'image/svg+xml' });
+                const blobUrl = URL.createObjectURL(blob);
+                log('Blob URL créée: ' + blobUrl);
+
+                const imgBlob = document.createElement('img');
+                imgBlob.style.border = '2px solid orange';
+                imgBlob.style.maxWidth = '400px';
+                imgBlob.onload = function() {
+                    log('BLOB URL SUCCESS: ' + this.naturalWidth + 'x' + this.naturalHeight);
+                };
+                imgBlob.onerror = function() {
+                    log('BLOB URL ERREUR');
+                };
+                imgBlob.src = blobUrl;
+
+                document.body.appendChild(document.createElement('h2')).textContent = '4. Test Blob URL';
+                document.body.appendChild(imgBlob);
+
+                // Injecter le SVG directement
+                log('\n=== TEST INJECTION DIRECTE ===');
+                const div = document.createElement('div');
+                div.innerHTML = text;
+                div.style.border = '2px solid purple';
+                document.body.appendChild(document.createElement('h2')).textContent = '5. SVG Injecté Directement';
+                document.body.appendChild(div);
+                log('SVG injecté dans le DOM');
+            })
+            .catch(e => {
+                log('FETCH ERREUR: ' + e.message);
+            });
+    </script>
+</body>
+</html>

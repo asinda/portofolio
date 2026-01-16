@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Workaround SVG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2d3748;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+        }
+        .test-box {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        .test-box h2 {
+            color: #667eea;
+            margin-top: 0;
+        }
+        .status {
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 600;
+        }
+        .success { background: #c6f6d5; color: #22543d; border-left: 4px solid #38a169; }
+        .error { background: #fed7d7; color: #742a2a; border-left: 4px solid #e53e3e; }
+        .info { background: #bee3f8; color: #2c5282; border-left: 4px solid #3182ce; }
+        img {
+            max-width: 100%;
+            border: 3px solid #e2e8f0;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        .console-log {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 13px;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+        .console-log div { margin: 3px 0; }
+        .log-success { color: #68d391; }
+        .log-error { color: #fc8181; }
+        .log-info { color: #63b3ed; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test SVG Workaround - Data URI Conversion</h1>
+
+        <div class="test-box">
+            <h2>ℹ️ À Propos du Workaround</h2>
+            <p>Ce test vérifie que le script <code>svg-loader-workaround.js</code> convertit automatiquement les images SVG externes en Data URI (base64) pour contourner les blocages d'extensions navigateur.</p>
+            <div class="status info">
+                <strong>Principe :</strong> Au lieu de charger <code>/images/tutorials/docker-security.svg</code> directement, le script le récupère via Fetch et le convertit en <code>data:image/svg+xml;base64,...</code>
+            </div>
+        </div>
+
+        <div class="test-box">
+            <h2>📊 Test 1 : Image Docker Security (AVANT workaround)</h2>
+            <p>Cette image sera convertie automatiquement par le workaround.</p>
+            <img id="img1" src="/images/tutorials/docker-security.svg" alt="Docker Security" width="400">
+            <div id="status1" class="status info">⏳ Attente de la conversion...</div>
+        </div>
+
+        <div class="test-box">
+            <h2>🌐 Test 2 : Image Azure DevOps (AVANT workaround)</h2>
+            <img id="img2" src="/images/tutorials/cloud-azure.svg" alt="Azure DevOps" width="400">
+            <div id="status2" class="status info">⏳ Attente de la conversion...</div>
+        </div>
+
+        <div class="test-box">
+            <h2>🔄 Test 3 : Image ajoutée dynamiquement</h2>
+            <p>Cette image sera ajoutée après le chargement de la page pour tester l'observer DOM.</p>
+            <button onclick="addDynamicImage()" style="padding: 10px 20px; background: #667eea; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">
+                ➕ Ajouter Image Dynamique
+            </button>
+            <div id="dynamic-container"></div>
+        </div>
+
+        <div class="test-box">
+            <h2>📝 Console Log</h2>
+            <div id="console" class="console-log"></div>
+        </div>
+
+        <div class="test-box">
+            <h2>✅ Résultats Attendus</h2>
+            <ul>
+                <li>Les 2 images devraient s'afficher correctement</li>
+                <li>Le <code>src</code> devrait commencer par <code>data:image/svg+xml;base64,</code></li>
+                <li>Les logs devraient montrer "✅ SVG converti"</li>
+                <li>L'image dynamique devrait aussi être convertie automatiquement</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Charger le workaround -->
+    <script src="js/svg-loader-workaround.js"></script>
+
+    <script>
+        const consoleDiv = document.getElementById('console');
+        const originalLog = console.log;
+        const originalError = console.error;
+
+        // Intercepter les console.log
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            const msg = args.join(' ');
+            const className = msg.includes('✅') ? 'log-success' :
+                            msg.includes('❌') ? 'log-error' : 'log-info';
+            consoleDiv.innerHTML += `<div class="${className}">${escapeHtml(msg)}</div>`;
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        };
+
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            const msg = args.join(' ');
+            consoleDiv.innerHTML += `<div class="log-error">❌ ${escapeHtml(msg)}</div>`;
+            consoleDiv.scrollTop = consoleDiv.scrollHeight;
+        };
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Vérifier la conversion après un délai
+        setTimeout(() => {
+            const img1 = document.getElementById('img1');
+            const img2 = document.getElementById('img2');
+            const status1 = document.getElementById('status1');
+            const status2 = document.getElementById('status2');
+
+            // Test Image 1
+            if (img1.src.startsWith('data:image/svg+xml;base64,')) {
+                status1.className = 'status success';
+                status1.innerHTML = `<strong>✅ CONVERTI EN DATA URI</strong><br>Dimensions: ${img1.naturalWidth}x${img1.naturalHeight}`;
+            } else if (img1.complete && img1.naturalWidth > 0) {
+                status1.className = 'status success';
+                status1.innerHTML = `<strong>✅ IMAGE CHARGÉE</strong> (peut-être en navigation privée?)<br>Dimensions: ${img1.naturalWidth}x${img1.naturalHeight}`;
+            } else {
+                status1.className = 'status error';
+                status1.innerHTML = '<strong>❌ ÉCHEC</strong><br>L\'image n\'est pas chargée ni convertie.';
+            }
+
+            // Test Image 2
+            if (img2.src.startsWith('data:image/svg+xml;base64,')) {
+                status2.className = 'status success';
+                status2.innerHTML = `<strong>✅ CONVERTI EN DATA URI</strong><br>Dimensions: ${img2.naturalWidth}x${img2.naturalHeight}`;
+            } else if (img2.complete && img2.naturalWidth > 0) {
+                status2.className = 'status success';
+                status2.innerHTML = `<strong>✅ IMAGE CHARGÉE</strong> (peut-être en navigation privée?)<br>Dimensions: ${img2.naturalWidth}x${img2.naturalHeight}`;
+            } else {
+                status2.className = 'status error';
+                status2.innerHTML = '<strong>❌ ÉCHEC</strong><br>L\'image n\'est pas chargée ni convertie.';
+            }
+
+            console.log(`🔍 Vérification img1.src: ${img1.src.substring(0, 50)}...`);
+            console.log(`🔍 Vérification img2.src: ${img2.src.substring(0, 50)}...`);
+        }, 3000);
+
+        // Fonction pour ajouter une image dynamiquement
+        function addDynamicImage() {
+            const container = document.getElementById('dynamic-container');
+            container.innerHTML = `
+                <h3>Image Ajoutée Dynamiquement</h3>
+                <img src="/images/tutorials/docker-security.svg" alt="Dynamique" width="400" style="border: 3px solid orange;">
+                <p id="dynamic-status" class="status info">⏳ Conversion en cours...</p>
+            `;
+
+            setTimeout(() => {
+                const dynImg = container.querySelector('img');
+                const dynStatus = document.getElementById('dynamic-status');
+
+                if (dynImg.src.startsWith('data:image/svg+xml;base64,')) {
+                    dynStatus.className = 'status success';
+                    dynStatus.innerHTML = '✅ Image dynamique convertie automatiquement!';
+                } else if (dynImg.complete && dynImg.naturalWidth > 0) {
+                    dynStatus.className = 'status success';
+                    dynStatus.innerHTML = '✅ Image dynamique chargée!';
+                } else {
+                    dynStatus.className = 'status error';
+                    dynStatus.innerHTML = '❌ Échec du chargement de l\'image dynamique';
+                }
+            }, 2000);
+        }
+
+        console.log('🚀 Page de test chargée');
+        console.log('⏳ Attente de la conversion des images par le workaround...');
+    </script>
+</body>
+</html>

@@ -72,6 +72,21 @@
 
     <!-- Language Toggle Styles -->
     <link rel="stylesheet" href="css/lang-toggle.css?v=1.0.0">
+
+    <!-- Blog CSS -->
+    <link rel="stylesheet" href="css/blog.css">
+
+    <!-- Marked.js - Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+
+    <!-- Prism.js - Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-docker.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
 </head>
 <body>
     <!-- Header / Navigation -->
@@ -606,97 +621,51 @@
                 </p>
             </div>
 
+            <!-- Barre de recherche -->
+            <div class="blog-search">
+                <input
+                    type="text"
+                    id="blogSearch"
+                    class="search-input"
+                    placeholder="Rechercher un article..."
+                    data-i18n-placeholder="blog.searchPlaceholder"
+                    aria-label="Rechercher un article">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+
             <!-- Catégories de blog -->
             <div class="blog-categories">
                 <button class="category-btn active" data-category="all">
-                    <i class="fas fa-grip-horizontal"></i> <span data-i18n="blog.categories.all">Tous les articles</span>
+                    <i class="fas fa-grip-horizontal"></i> <span data-i18n="blog.categories.all">Tous</span>
                 </button>
-                <button class="category-btn" data-category="tutorial">
-                    <i class="fas fa-book-open"></i> <span data-i18n="blog.categories.tutorial">Tutoriels</span>
+                <button class="category-btn" data-category="DevOps">
+                    <i class="fas fa-infinity"></i> <span>DevOps</span>
                 </button>
-                <button class="category-btn" data-category="devops">
-                    <i class="fas fa-infinity"></i> <span data-i18n="blog.categories.devops">DevOps</span>
+                <button class="category-btn" data-category="Cloud">
+                    <i class="fas fa-cloud"></i> <span>Cloud</span>
                 </button>
-                <button class="category-btn" data-category="cloud">
-                    <i class="fas fa-cloud"></i> <span data-i18n="blog.categories.cloud">Cloud</span>
+                <button class="category-btn" data-category="Kubernetes">
+                    <i class="fas fa-dharmachakra"></i> <span>Kubernetes</span>
                 </button>
-                <button class="category-btn" data-category="automation">
-                    <i class="fas fa-magic"></i> <span data-i18n="blog.categories.automation">Automatisation</span>
+                <button class="category-btn" data-category="CI/CD">
+                    <i class="fas fa-sync-alt"></i> <span>CI/CD</span>
+                </button>
+                <button class="category-btn" data-category="Terraform">
+                    <i class="fas fa-code-branch"></i> <span>Terraform</span>
+                </button>
+                <button class="category-btn" data-category="Ansible">
+                    <i class="fas fa-server"></i> <span>Ansible</span>
+                </button>
+                <button class="category-btn" data-category="Monitoring">
+                    <i class="fas fa-chart-line"></i> <span>Monitoring</span>
+                </button>
+                <button class="category-btn" data-category="Automation">
+                    <i class="fas fa-robot"></i> <span>Automation</span>
                 </button>
             </div>
 
             <div class="blog-grid" id="blogGrid">
-                <!-- Les articles seront chargés dynamiquement -->
-
-                <!-- Exemple d'article statique pour la démo -->
-                <article class="blog-card" data-category="tutorial devops">
-                    <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&q=80" alt="Kubernetes">
-                        <span class="blog-badge tutorial">Tutoriel</span>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> À venir</span>
-                            <span><i class="fas fa-clock"></i> 10 min</span>
-                        </div>
-                        <h3>Déployer une application sur Kubernetes avec Helm</h3>
-                        <p>Guide complet pour déployer vos applications sur Kubernetes en utilisant Helm Charts et les bonnes pratiques DevOps.</p>
-                        <div class="blog-tags">
-                            <span class="tag">Kubernetes</span>
-                            <span class="tag">Helm</span>
-                            <span class="tag">DevOps</span>
-                        </div>
-                        <a href="#" class="blog-link">
-                            Lire l'article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="cloud automation">
-                    <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&q=80" alt="Terraform">
-                        <span class="blog-badge tutorial">Tutoriel</span>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> À venir</span>
-                            <span><i class="fas fa-clock"></i> 15 min</span>
-                        </div>
-                        <h3>Infrastructure as Code avec Terraform</h3>
-                        <p>Automatisez le provisionnement de votre infrastructure cloud avec Terraform et apprenez les patterns avancés.</p>
-                        <div class="blog-tags">
-                            <span class="tag">Terraform</span>
-                            <span class="tag">IaC</span>
-                            <span class="tag">AWS</span>
-                        </div>
-                        <a href="#" class="blog-link">
-                            Lire l'article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="devops monitoring">
-                    <div class="blog-image">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80" alt="OpenSearch">
-                        <span class="blog-badge article">Article</span>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span><i class="fas fa-calendar"></i> À venir</span>
-                            <span><i class="fas fa-clock"></i> 8 min</span>
-                        </div>
-                        <h3>Optimiser OpenSearch pour la production</h3>
-                        <p>Retour d'expérience sur l'optimisation et la gestion d'un cluster OpenSearch en production avec des milliers de requêtes par seconde.</p>
-                        <div class="blog-tags">
-                            <span class="tag">OpenSearch</span>
-                            <span class="tag">Performance</span>
-                            <span class="tag">PaaS</span>
-                        </div>
-                        <a href="#" class="blog-link">
-                            Lire l'article <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </article>
+                <!-- Les articles seront chargés dynamiquement depuis l'API -->
             </div>
 
             <div class="blog-cta">
@@ -761,9 +730,56 @@
         <i class="fas fa-chevron-up"></i>
     </button>
 
+    <!-- Modal Blog Detail -->
+    <div id="blogModal" class="modal blog-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-overlay"></div>
+        <div class="modal-content blog-detail">
+            <button class="modal-close" aria-label="Fermer le modal">
+                <i class="fas fa-times"></i>
+            </button>
+
+            <article class="tutorial-content">
+                <header class="tutorial-header">
+                    <div class="tutorial-meta">
+                        <span class="category-badge"></span>
+                        <span class="read-time">
+                            <i class="fas fa-clock"></i> <span class="read-time-value"></span> min
+                        </span>
+                        <span class="views">
+                            <i class="fas fa-eye"></i> <span class="views-value"></span> vues
+                        </span>
+                        <span class="published-date">
+                            <i class="fas fa-calendar"></i> <span class="date-value"></span>
+                        </span>
+                    </div>
+                    <h1 class="tutorial-title"></h1>
+                    <p class="tutorial-excerpt"></p>
+                    <div class="tutorial-tags"></div>
+                </header>
+
+                <div class="tutorial-body markdown-content">
+                    <!-- Markdown rendu ici -->
+                </div>
+
+                <footer class="tutorial-footer">
+                    <div class="tutorial-navigation">
+                        <button class="btn-nav btn-prev" disabled>
+                            <i class="fas fa-chevron-left"></i>
+                            <span data-i18n="blog.previous">Article précédent</span>
+                        </button>
+                        <button class="btn-nav btn-next">
+                            <span data-i18n="blog.next">Article suivant</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <!-- I18n System (Bundle) - Doit être chargé en premier -->
-    <script src="js/i18n-bundle.js?v=3.0.1"></script>
+    <script src="js/i18n-bundle.js?v=4.0.0"></script>
 
     <!-- GSAP Core + Plugins (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -786,6 +802,12 @@
     <script src="js/data.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
+
+    <!-- SVG Workaround pour extensions bloquant fichiers locaux (AdBlock, uBlock, etc.) -->
+    <script src="js/svg-loader-workaround.js"></script>
+
+    <!-- Blog Script -->
+    <script src="js/blog.js?v=2.0.0" type="module"></script>
 </body>
 </html>
 <!-- Trigger deploy sam.  8 nov. 2025 15:36:54 -->

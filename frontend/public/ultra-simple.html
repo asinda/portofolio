@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Ultra Simple Test</title>
+</head>
+<body style="padding: 50px; font-family: Arial;">
+    <h1>Test Ultra Simple</h1>
+
+    <h2>Test 1 : Inline SVG</h2>
+    <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="test-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#d73a49;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#cb2431;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect width="400" height="200" fill="url(#test-grad)"/>
+      <text x="200" y="100" font-size="24" fill="white" text-anchor="middle">TEST INLINE SVG</text>
+    </svg>
+    <p>✅ Si vous voyez un rectangle rouge ci-dessus, le SVG inline fonctionne</p>
+
+    <h2>Test 2 : Image Externe (Chemin Absolu)</h2>
+    <img src="http://localhost:8000/images/tutorials/docker-security.svg" alt="Test absolu" style="max-width: 400px; border: 2px solid red;">
+    <p id="test2">⏳ Chargement...</p>
+
+    <h2>Test 3 : Image Externe (Chemin Relatif)</h2>
+    <img src="/images/tutorials/docker-security.svg" alt="Test relatif" style="max-width: 400px; border: 2px solid blue;">
+    <p id="test3">⏳ Chargement...</p>
+
+    <h2>Test 4 : Object SVG</h2>
+    <object data="/images/tutorials/docker-security.svg" type="image/svg+xml" width="400" height="200" style="border: 2px solid green;">
+        SVG non supporté
+    </object>
+    <p>Si vous voyez un rectangle rouge ci-dessus, Object SVG fonctionne</p>
+
+    <script>
+        // Test 2
+        document.querySelectorAll('img')[0].onload = function() {
+            document.getElementById('test2').innerHTML = '<span style="color: green;">✅ Chemin absolu OK</span>';
+        };
+        document.querySelectorAll('img')[0].onerror = function() {
+            document.getElementById('test2').innerHTML = '<span style="color: red;">❌ Chemin absolu ERREUR</span>';
+        };
+
+        // Test 3
+        document.querySelectorAll('img')[1].onload = function() {
+            document.getElementById('test3').innerHTML = '<span style="color: green;">✅ Chemin relatif OK</span>';
+        };
+        document.querySelectorAll('img')[1].onerror = function() {
+            document.getElementById('test3').innerHTML = '<span style="color: red;">❌ Chemin relatif ERREUR</span>';
+        };
+
+        // Log dans console
+        console.log('=== TEST ULTRA SIMPLE ===');
+        console.log('Page URL:', window.location.href);
+        console.log('Base URL:', window.location.origin);
+
+        // Test Fetch
+        fetch('/images/tutorials/docker-security.svg')
+            .then(r => {
+                console.log('✅ Fetch OK - Status:', r.status, 'Type:', r.headers.get('Content-Type'));
+                return r.text();
+            })
+            .then(text => console.log('✅ SVG récupéré:', text.length, 'bytes'))
+            .catch(e => console.error('❌ Fetch erreur:', e));
+    </script>
+</body>
+</html>

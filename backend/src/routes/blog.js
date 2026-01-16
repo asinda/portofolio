@@ -83,6 +83,16 @@ router.delete(
 );
 
 /**
+ * POST /api/blog/posts/:id/view
+ * Incrémenter le compteur de vues (public)
+ */
+router.post(
+    '/posts/:id/view',
+    validate(uuidParamSchema, 'params'),
+    blogController.incrementViews
+);
+
+/**
  * GET /api/blog/categories
  * Lister toutes les catégories avec comptage
  */

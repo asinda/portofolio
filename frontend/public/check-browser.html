@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Check Browser Settings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 40px;
+            background: #f5f5f5;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border-left: 5px solid #2196f3;
+        }
+        .success { border-left-color: #4caf50; background: #e8f5e9; }
+        .error { border-left-color: #f44336; background: #ffebee; }
+        .warning { border-left-color: #ff9800; background: #fff3e0; }
+        code {
+            background: #263238;
+            color: #aed581;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        h1 { color: #1976d2; }
+        h2 { color: #424242; margin-top: 0; }
+        img { border: 3px solid #ccc; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Diagnostic Navigateur</h1>
+
+    <div class="box warning">
+        <h2>⚠️ Instructions</h2>
+        <p><strong>Si AUCUNE image ne s'affiche ci-dessous, le problème vient probablement de :</strong></p>
+        <ol>
+            <li><strong>Extension de navigateur</strong> (AdBlock, uBlock Origin, Privacy Badger, etc.)</li>
+            <li><strong>Paramètres de sécurité</strong> du navigateur</li>
+            <li><strong>Antivirus</strong> qui bloque les contenus locaux</li>
+        </ol>
+    </div>
+
+    <div class="box">
+        <h2>Test 1 : SVG Inline (Baseline)</h2>
+        <p>Ce test DOIT toujours fonctionner :</p>
+        <svg width="400" height="100" style="border: 3px solid green;">
+            <rect width="400" height="100" fill="#4caf50"/>
+            <text x="200" y="50" fill="white" text-anchor="middle" dominant-baseline="middle" font-size="24" font-weight="bold">
+                ✓ SVG INLINE FONCTIONNE
+            </text>
+        </svg>
+        <p id="inline-result"></p>
+    </div>
+
+    <div class="box">
+        <h2>Test 2 : Data URI (Base64)</h2>
+        <p>Image encodée directement dans l'URL :</p>
+        <img id="data-uri" width="400" style="border: 3px solid blue;">
+        <p id="datauri-result">⏳ Chargement...</p>
+    </div>
+
+    <div class="box">
+        <h2>Test 3 : Image PNG (Contrôle)</h2>
+        <p>Tester si les PNG fonctionnent :</p>
+        <canvas id="png-canvas" width="400" height="100" style="border: 3px solid purple;"></canvas>
+        <br>
+        <img id="png-test" width="400" style="border: 3px solid orange;">
+        <p id="png-result">⏳ Chargement...</p>
+    </div>
+
+    <div class="box">
+        <h2>Test 4 : SVG Externe</h2>
+        <p>Fichier SVG du serveur :</p>
+        <img id="svg-external" src="/images/tutorials/docker-security.svg" width="400" style="border: 3px solid red;">
+        <p id="external-result">⏳ Chargement...</p>
+    </div>
+
+    <div class="box">
+        <h2>Test 5 : Blob URL</h2>
+        <p>SVG récupéré via Fetch et converti en Blob :</p>
+        <img id="blob-test" width="400" style="border: 3px solid teal;">
+        <p id="blob-result">⏳ Chargement...</p>
+    </div>
+
+    <div class="box">
+        <h2>📊 Résumé des Tests</h2>
+        <table id="summary" style="width: 100%; border-collapse: collapse;">
+            <tr style="background: #e3f2fd;">
+                <th style="padding: 10px; text-align: left; border: 1px solid #90caf9;">Test</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #90caf9;">Résultat</th>
+                <th style="padding: 10px; text-align: left; border: 1px solid #90caf9;">Diagnostic</th>
+            </tr>
+        </table>
+    </div>
+
+    <div class="box error">
+        <h2>🔧 Solutions Possibles</h2>
+        <div id="solutions"></div>
+    </div>
+
+    <script>
+        const results = {};
+
+        // Test 1: SVG Inline (toujours OK)
+        results.inline = true;
+        document.getElementById('inline-result').innerHTML = '<strong style="color: green;">✅ OK - Baseline fonctionnel</strong>';
+
+        // Test 2: Data URI
+        const svgDataUri = 'data:image/svg+xml;base64,' + btoa(`
+            <svg width="400" height="100" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="100" fill="#2196f3"/>
+                <text x="200" y="50" fill="white" text-anchor="middle" dominant-baseline="middle" font-size="20" font-weight="bold">
+                    DATA URI SVG
+                </text>
+            </svg>
+        `);
+
+        const imgDataUri = document.getElementById('data-uri');
+        imgDataUri.onload = function() {
+            results.dataUri = true;
+            document.getElementById('datauri-result').innerHTML = '<strong style="color: green;">✅ Data URI fonctionne</strong>';
+            updateSummary();
+        };
+        imgDataUri.onerror = function() {
+            results.dataUri = false;
+            document.getElementById('datauri-result').innerHTML = '<strong style="color: red;">❌ Data URI bloqué</strong>';
+            updateSummary();
+        };
+        imgDataUri.src = svgDataUri;
+
+        // Test 3: PNG (canvas to blob)
+        const canvas = document.getElementById('png-canvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#9c27b0';
+        ctx.fillRect(0, 0, 400, 100);
+        ctx.fillStyle = 'white';
+        ctx.font = 'bold 20px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('PNG CANVAS', 200, 50);
+
+        canvas.toBlob(function(blob) {
+            const pngUrl = URL.createObjectURL(blob);
+            const imgPng = document.getElementById('png-test');
+
+            imgPng.onload = function() {
+                results.png = true;
+                document.getElementById('png-result').innerHTML = '<strong style="color: green;">✅ PNG Blob fonctionne</strong>';
+                updateSummary();
+            };
+            imgPng.onerror = function() {
+                results.png = false;
+                document.getElementById('png-result').innerHTML = '<strong style="color: red;">❌ PNG Blob bloqué</strong>';
+                updateSummary();
+            };
+            imgPng.src = pngUrl;
+        });
+
+        // Test 4: SVG External
+        const imgExternal = document.getElementById('svg-external');
+        imgExternal.onload = function() {
+            results.external = true;
+            document.getElementById('external-result').innerHTML = '<strong style="color: green;">✅ SVG Externe fonctionne!</strong>';
+            updateSummary();
+        };
+        imgExternal.onerror = function() {
+            results.external = false;
+            document.getElementById('external-result').innerHTML = '<strong style="color: red;">❌ SVG Externe bloqué</strong>';
+            updateSummary();
+        };
+
+        // Test 5: Blob URL
+        fetch('/images/tutorials/docker-security.svg')
+            .then(r => r.text())
+            .then(svgText => {
+                const blob = new Blob([svgText], { type: 'image/svg+xml' });
+                const blobUrl = URL.createObjectURL(blob);
+
+                const imgBlob = document.getElementById('blob-test');
+                imgBlob.onload = function() {
+                    results.blob = true;
+                    document.getElementById('blob-result').innerHTML = '<strong style="color: green;">✅ Blob URL fonctionne</strong>';
+                    updateSummary();
+                };
+                imgBlob.onerror = function() {
+                    results.blob = false;
+                    document.getElementById('blob-result').innerHTML = '<strong style="color: red;">❌ Blob URL bloqué</strong>';
+                    updateSummary();
+                };
+                imgBlob.src = blobUrl;
+            })
+            .catch(e => {
+                results.blob = false;
+                document.getElementById('blob-result').innerHTML = '<strong style="color: red;">❌ Fetch échoué: ' + e.message + '</strong>';
+                updateSummary();
+            });
+
+        function updateSummary() {
+            const summary = document.getElementById('summary');
+            const tests = [
+                { name: 'SVG Inline', key: 'inline', info: 'Baseline (toujours OK)' },
+                { name: 'Data URI', key: 'dataUri', info: 'Base64 dans URL' },
+                { name: 'PNG Blob', key: 'png', info: 'Images bitmap' },
+                { name: 'SVG Externe', key: 'external', info: 'Fichier serveur' },
+                { name: 'Blob URL', key: 'blob', info: 'Fetch + Blob' }
+            ];
+
+            summary.innerHTML = `
+                <tr style="background: #e3f2fd;">
+                    <th style="padding: 10px; text-align: left; border: 1px solid #90caf9;">Test</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #90caf9;">Résultat</th>
+                    <th style="padding: 10px; text-align: left; border: 1px solid #90caf9;">Info</th>
+                </tr>
+            `;
+
+            tests.forEach(test => {
+                const result = results[test.key];
+                const status = result === undefined ? '⏳ En cours...' :
+                              result ? '✅ OK' : '❌ BLOQUÉ';
+                const color = result === undefined ? '#ff9800' :
+                             result ? '#4caf50' : '#f44336';
+
+                summary.innerHTML += `
+                    <tr>
+                        <td style="padding: 10px; border: 1px solid #ddd;"><strong>${test.name}</strong></td>
+                        <td style="padding: 10px; border: 1px solid #ddd; color: ${color}; font-weight: bold;">${status}</td>
+                        <td style="padding: 10px; border: 1px solid #ddd;">${test.info}</td>
+                    </tr>
+                `;
+            });
+
+            // Diagnostic
+            setTimeout(diagnose, 2000);
+        }
+
+        function diagnose() {
+            const solutions = document.getElementById('solutions');
+
+            if (results.external === false && results.dataUri === true) {
+                solutions.innerHTML = `
+                    <p><strong>🎯 DIAGNOSTIC :</strong> Les Data URI fonctionnent mais pas les fichiers externes.</p>
+                    <p><strong>CAUSE PROBABLE :</strong> Extension de navigateur ou paramètre de sécurité bloquant les fichiers locaux.</p>
+                    <h3>Solutions :</h3>
+                    <ol>
+                        <li><strong>Désactiver les extensions</strong> (AdBlock, uBlock, etc.) temporairement</li>
+                        <li><strong>Tester en navigation privée</strong> (Ctrl+Shift+N)</li>
+                        <li><strong>Utiliser un autre navigateur</strong> (Chrome, Firefox, Edge)</li>
+                        <li><strong>Vérifier l'antivirus</strong> s'il bloque localhost</li>
+                    </ol>
+                `;
+            } else if (results.external === false && results.blob === true) {
+                solutions.innerHTML = `
+                    <p><strong>🎯 DIAGNOSTIC :</strong> Les Blob URL fonctionnent mais pas les fichiers directs.</p>
+                    <p><strong>CAUSE PROBABLE :</strong> Problème de serveur ou MIME type.</p>
+                    <p><strong>SOLUTION :</strong> Utilisez la méthode Blob URL comme workaround.</p>
+                `;
+            } else if (results.external === false && results.dataUri === false && results.blob === false) {
+                solutions.innerHTML = `
+                    <p><strong>🎯 DIAGNOSTIC :</strong> RIEN ne fonctionne sauf inline.</p>
+                    <p><strong>CAUSE PROBABLE :</strong> Sécurité navigateur très stricte ou extension agressive.</p>
+                    <h3>Solutions URGENTES :</h3>
+                    <ol>
+                        <li><strong style="color: red;">DÉSACTIVER TOUTES LES EXTENSIONS</strong></li>
+                        <li><strong style="color: red;">NAVIGATION PRIVÉE</strong></li>
+                        <li><strong style="color: red;">AUTRE NAVIGATEUR</strong></li>
+                    </ol>
+                `;
+            } else if (results.external === true) {
+                solutions.innerHTML = `
+                    <p style="color: green; font-size: 18px;"><strong>🎉 TOUT FONCTIONNE !</strong></p>
+                    <p>Les images SVG s'affichent correctement. Le problème initial était temporaire.</p>
+                `;
+            }
+        }
+
+        // Initial update
+        updateSummary();
+    </script>
+</body>
+</html>

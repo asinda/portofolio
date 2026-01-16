@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic Final - Images SVG</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #2d3748;
+            margin-bottom: 30px;
+            font-size: 32px;
+            border-bottom: 4px solid #667eea;
+            padding-bottom: 15px;
+        }
+        .test-section {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        .test-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .test-section h3 {
+            color: #4a5568;
+            margin: 15px 0 10px 0;
+            font-size: 18px;
+        }
+        .status {
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        .success { background: #c6f6d5; color: #22543d; border-left: 4px solid #38a169; }
+        .error { background: #fed7d7; color: #742a2a; border-left: 4px solid #e53e3e; }
+        .info { background: #bee3f8; color: #2c5282; border-left: 4px solid #3182ce; }
+        .warning { background: #feebc8; color: #7c2d12; border-left: 4px solid #dd6b20; }
+
+        img, object, iframe {
+            max-width: 100%;
+            height: auto;
+            border: 3px solid #e2e8f0;
+            border-radius: 8px;
+            margin: 10px 0;
+            background: white;
+        }
+
+        code {
+            background: #2d3748;
+            color: #68d391;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+
+        .console-output {
+            background: #1a202c;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .console-output .log-error { color: #fc8181; }
+        .console-output .log-success { color: #68d391; }
+        .console-output .log-warning { color: #f6ad55; }
+        .console-output .log-info { color: #63b3ed; }
+
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 5px;
+        }
+        button:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 Diagnostic Complet - Images SVG Docker Security & Azure DevOps</h1>
+
+        <div class="test-section">
+            <h2>📊 Informations Système</h2>
+            <div id="system-info" class="console-output"></div>
+        </div>
+
+        <div class="grid">
+            <div class="test-section">
+                <h2>✅ Test 1 : SVG Inline (Contrôle)</h2>
+                <p>Ce test vérifie que le navigateur peut afficher des SVG en général.</p>
+                <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="inline-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#d73a49;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#cb2431;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <rect width="400" height="200" fill="url(#inline-grad)"/>
+                    <text x="200" y="100" font-size="20" fill="white" text-anchor="middle" dominant-baseline="middle">
+                        ✓ SVG INLINE FONCTIONNE
+                    </text>
+                </svg>
+                <div id="status-inline" class="status info">✅ SVG inline toujours fonctionnel</div>
+            </div>
+
+            <div class="test-section">
+                <h2>🔗 Test 2 : URL Absolue Complète</h2>
+                <p>Chemin : <code>http://localhost:8000/images/tutorials/docker-security.svg</code></p>
+                <img id="img-absolute" src="http://localhost:8000/images/tutorials/docker-security.svg"
+                     alt="Test Absolu" width="400">
+                <div id="status-absolute" class="status warning">⏳ Chargement...</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="test-section">
+                <h2>📂 Test 3 : Chemin Relatif</h2>
+                <p>Chemin : <code>/images/tutorials/docker-security.svg</code></p>
+                <img id="img-relative" src="/images/tutorials/docker-security.svg"
+                     alt="Test Relatif" width="400">
+                <div id="status-relative" class="status warning">⏳ Chargement...</div>
+            </div>
+
+            <div class="test-section">
+                <h2>🎯 Test 4 : Object Element</h2>
+                <p>Utilise l'élément <code>&lt;object&gt;</code> au lieu de <code>&lt;img&gt;</code></p>
+                <object id="obj-svg" data="/images/tutorials/docker-security.svg"
+                        type="image/svg+xml" width="400" height="200">
+                    Fallback : SVG non supporté
+                </object>
+                <div id="status-object" class="status info">ℹ️ Object chargé (vérifier visuellement)</div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="test-section">
+                <h2>🌐 Test 5 : Azure DevOps</h2>
+                <p>Chemin : <code>/images/tutorials/cloud-azure.svg</code></p>
+                <img id="img-azure" src="/images/tutorials/cloud-azure.svg"
+                     alt="Azure DevOps" width="400">
+                <div id="status-azure" class="status warning">⏳ Chargement...</div>
+            </div>
+
+            <div class="test-section">
+                <h2>🔄 Test 6 : Image avec Cache Buster</h2>
+                <p>Ajoute un timestamp pour forcer le rechargement</p>
+                <img id="img-cachebust" alt="Cache Bust" width="400">
+                <div id="status-cachebust" class="status warning">⏳ Chargement...</div>
+            </div>
+        </div>
+
+        <div class="test-section">
+            <h2>🧪 Test 7 : Fetch Direct</h2>
+            <p>Récupération du SVG via Fetch API pour vérifier l'accès réseau</p>
+            <button onclick="testFetch()">🔄 Lancer Test Fetch</button>
+            <div id="fetch-result" class="console-output" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>💉 Test 8 : Injection SVG Dynamique</h2>
+            <p>Récupère le SVG et l'injecte directement dans le DOM</p>
+            <button onclick="injectSVG()">💉 Injecter SVG</button>
+            <div id="inject-container"></div>
+            <div id="status-inject" class="status info" style="display:none;"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 Console Log Complet</h2>
+            <div id="console-log" class="console-output"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>🛠️ Actions de Diagnostic</h2>
+            <button onclick="clearCache()">🗑️ Vider Cache Images</button>
+            <button onclick="reloadImages()">🔄 Recharger Toutes Images</button>
+            <button onclick="checkFiles()">📁 Vérifier Fichiers Serveur</button>
+            <button onclick="window.location.reload()">↻ Recharger Page</button>
+        </div>
+    </div>
+
+    <script>
+        const log = [];
+        const originalConsoleLog = console.log;
+        const originalConsoleError = console.error;
+        const originalConsoleWarn = console.warn;
+
+        function addLog(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString('fr-FR');
+            log.push({ timestamp, message, type });
+            updateConsoleLog();
+        }
+
+        function updateConsoleLog() {
+            const consoleLogDiv = document.getElementById('console-log');
+            consoleLogDiv.innerHTML = log.map(l =>
+                `<div class="log-${l.type}">[${l.timestamp}] ${l.message}</div>`
+            ).join('');
+            consoleLogDiv.scrollTop = consoleLogDiv.scrollHeight;
+        }
+
+        // Override console methods
+        console.log = function(...args) {
+            originalConsoleLog.apply(console, args);
+            addLog(args.join(' '), 'info');
+        };
+        console.error = function(...args) {
+            originalConsoleError.apply(console, args);
+            addLog('❌ ' + args.join(' '), 'error');
+        };
+        console.warn = function(...args) {
+            originalConsoleWarn.apply(console, args);
+            addLog('⚠️ ' + args.join(' '), 'warning');
+        };
+
+        // System info
+        const systemInfo = {
+            'URL': window.location.href,
+            'Protocole': window.location.protocol,
+            'Host': window.location.host,
+            'Origin': window.location.origin,
+            'User Agent': navigator.userAgent,
+            'Cookies': navigator.cookieEnabled ? 'Activés' : 'Désactivés',
+            'Online': navigator.onLine ? 'En ligne' : 'Hors ligne',
+            'Langue': navigator.language,
+            'Platform': navigator.platform
+        };
+
+        document.getElementById('system-info').innerHTML = Object.entries(systemInfo)
+            .map(([key, value]) => `<div class="log-info"><strong>${key}:</strong> ${value}</div>`)
+            .join('');
+
+        console.log('='.repeat(60));
+        console.log('🚀 DIAGNOSTIC FINAL - IMAGES SVG');
+        console.log('='.repeat(60));
+
+        // Test 2: Absolute URL
+        const imgAbsolute = document.getElementById('img-absolute');
+        const statusAbsolute = document.getElementById('status-absolute');
+
+        imgAbsolute.onload = function() {
+            statusAbsolute.className = 'status success';
+            statusAbsolute.textContent = `✅ URL ABSOLUE OK - Dimensions: ${this.naturalWidth}x${this.naturalHeight}`;
+            console.log('✅ Test 2 (URL absolue) : SUCCÈS');
+        };
+
+        imgAbsolute.onerror = function(e) {
+            statusAbsolute.className = 'status error';
+            statusAbsolute.textContent = '❌ URL ABSOLUE ÉCHEC';
+            console.error('❌ Test 2 (URL absolue) : ÉCHEC');
+            console.error('Event:', e);
+            console.error('Image src:', this.src);
+            console.error('Complete:', this.complete);
+        };
+
+        // Test 3: Relative path
+        const imgRelative = document.getElementById('img-relative');
+        const statusRelative = document.getElementById('status-relative');
+
+        imgRelative.onload = function() {
+            statusRelative.className = 'status success';
+            statusRelative.textContent = `✅ CHEMIN RELATIF OK - Dimensions: ${this.naturalWidth}x${this.naturalHeight}`;
+            console.log('✅ Test 3 (chemin relatif) : SUCCÈS');
+        };
+
+        imgRelative.onerror = function(e) {
+            statusRelative.className = 'status error';
+            statusRelative.textContent = '❌ CHEMIN RELATIF ÉCHEC';
+            console.error('❌ Test 3 (chemin relatif) : ÉCHEC');
+            console.error('Resolved URL:', this.src);
+        };
+
+        // Test 5: Azure
+        const imgAzure = document.getElementById('img-azure');
+        const statusAzure = document.getElementById('status-azure');
+
+        imgAzure.onload = function() {
+            statusAzure.className = 'status success';
+            statusAzure.textContent = `✅ AZURE DEVOPS OK - Dimensions: ${this.naturalWidth}x${this.naturalHeight}`;
+            console.log('✅ Test 5 (Azure) : SUCCÈS');
+        };
+
+        imgAzure.onerror = function(e) {
+            statusAzure.className = 'status error';
+            statusAzure.textContent = '❌ AZURE DEVOPS ÉCHEC';
+            console.error('❌ Test 5 (Azure) : ÉCHEC');
+        };
+
+        // Test 6: Cache buster
+        const imgCachebust = document.getElementById('img-cachebust');
+        const statusCachebust = document.getElementById('status-cachebust');
+        const cachebustUrl = `/images/tutorials/docker-security.svg?t=${Date.now()}`;
+        imgCachebust.src = cachebustUrl;
+
+        imgCachebust.onload = function() {
+            statusCachebust.className = 'status success';
+            statusCachebust.textContent = `✅ CACHE BUSTER OK - Dimensions: ${this.naturalWidth}x${this.naturalHeight}`;
+            console.log('✅ Test 6 (cache buster) : SUCCÈS');
+        };
+
+        imgCachebust.onerror = function(e) {
+            statusCachebust.className = 'status error';
+            statusCachebust.textContent = '❌ CACHE BUSTER ÉCHEC';
+            console.error('❌ Test 6 (cache buster) : ÉCHEC');
+            console.error('URL with cache bust:', cachebustUrl);
+        };
+
+        // Test 7: Fetch
+        async function testFetch() {
+            const fetchResult = document.getElementById('fetch-result');
+            fetchResult.style.display = 'block';
+            fetchResult.innerHTML = '<div class="log-info">⏳ Test en cours...</div>';
+
+            try {
+                console.log('🔄 Test Fetch: Début...');
+                const response = await fetch('/images/tutorials/docker-security.svg');
+
+                console.log('📊 Fetch Response Status:', response.status);
+                console.log('📊 Fetch Response OK:', response.ok);
+                console.log('📊 Content-Type:', response.headers.get('Content-Type'));
+
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+
+                const text = await response.text();
+                console.log('✅ Fetch réussi - Taille:', text.length, 'octets');
+                console.log('📄 Début du SVG:', text.substring(0, 150));
+
+                fetchResult.innerHTML = `
+                    <div class="log-success">✅ FETCH RÉUSSI</div>
+                    <div class="log-info">Status: ${response.status}</div>
+                    <div class="log-info">Content-Type: ${response.headers.get('Content-Type')}</div>
+                    <div class="log-info">Taille: ${text.length} octets</div>
+                    <div class="log-info">Début: ${text.substring(0, 100).replace(/</g, '&lt;')}...</div>
+                `;
+            } catch (error) {
+                console.error('❌ Fetch échoué:', error);
+                fetchResult.innerHTML = `
+                    <div class="log-error">❌ FETCH ÉCHOUÉ</div>
+                    <div class="log-error">Erreur: ${error.message}</div>
+                `;
+            }
+        }
+
+        // Test 8: Inject SVG
+        async function injectSVG() {
+            const container = document.getElementById('inject-container');
+            const status = document.getElementById('status-inject');
+            status.style.display = 'block';
+
+            try {
+                console.log('💉 Injection SVG: Début...');
+                const response = await fetch('/images/tutorials/docker-security.svg');
+                const svgText = await response.text();
+
+                container.innerHTML = svgText;
+                status.className = 'status success';
+                status.textContent = '✅ SVG INJECTÉ AVEC SUCCÈS';
+                console.log('✅ SVG injecté dans le DOM');
+            } catch (error) {
+                status.className = 'status error';
+                status.textContent = '❌ ÉCHEC INJECTION SVG';
+                console.error('❌ Injection échouée:', error);
+            }
+        }
+
+        // Utility functions
+        function clearCache() {
+            console.log('🗑️ Tentative de vidage du cache...');
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const src = img.src;
+                img.src = '';
+                setTimeout(() => {
+                    img.src = src.split('?')[0] + '?t=' + Date.now();
+                }, 100);
+            });
+            console.log('✅ Cache vidé pour toutes les images');
+        }
+
+        function reloadImages() {
+            console.log('🔄 Rechargement de toutes les images...');
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                const src = img.src;
+                img.src = src;
+            });
+            console.log('✅ Images rechargées');
+        }
+
+        async function checkFiles() {
+            console.log('📁 Vérification des fichiers sur le serveur...');
+
+            const files = [
+                '/images/tutorials/docker-security.svg',
+                '/images/tutorials/cloud-azure.svg'
+            ];
+
+            for (const file of files) {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    console.log(`${response.ok ? '✅' : '❌'} ${file} - Status: ${response.status}`);
+                } catch (error) {
+                    console.error(`❌ ${file} - Erreur: ${error.message}`);
+                }
+            }
+        }
+
+        // Auto-run some tests
+        setTimeout(testFetch, 1000);
+        setTimeout(checkFiles, 2000);
+
+        console.log('✅ Tous les tests sont configurés et en cours d\'exécution');
+    </script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+========================================
+ORDRE D'EXÉCUTION DES FICHIERS SQL
+========================================
+
+IMPORTANT : Exécutez ces fichiers dans Supabase SQL Editor DANS CET ORDRE
+
+Étape 0 : Récupérer votre User ID
+----------------------------------
+Exécutez : SELECT id, email FROM auth.users LIMIT 1;
+Copiez votre id (UUID)
+
+
+Étape 1 : Nettoyage
+--------------------
+Fichier : 01-cleanup.sql
+Copiez tout le contenu et exécutez dans Supabase
+
+
+Étape 2 : Fix Images CI/CD
+---------------------------
+Fichier : 02-fix-cicd-images.sql
+Copiez tout le contenu et exécutez dans Supabase
+
+
+Étape 3 : Insérer DevOps (4 tutoriels)
+---------------------------------------
+Fichier : insert-tutorials-clean.sql
+1. Ouvrir le fichier
+2. Remplacer '3cd1dbe8-35c8-4eb3-8e91-6d1e899028c3' par VOTRE_USER_ID
+3. Copier tout le contenu
+4. Exécuter dans Supabase
+Résultat attendu : INSERT 0 4
+
+
+Étape 4 : Insérer Cloud (4 tutoriels)
+--------------------------------------
+Fichier : insert-tutorials-cloud.sql
+1. Remplacer le user_id
+2. Copier tout le contenu
+3. Exécuter dans Supabase
+Résultat attendu : INSERT 0 4
+
+
+Étape 5 : Insérer Kubernetes (4 tutoriels)
+-------------------------------------------
+Fichier : insert-tutorials-kubernetes.sql
+1. Remplacer le user_id
+2. Copier tout le contenu
+3. Exécuter dans Supabase
+Résultat attendu : INSERT 0 4
+
+
+Étape 6 : Insérer DevOps+AI (4 tutoriels)
+------------------------------------------
+Fichier : insert-tutorials-devops-ai.sql
+1. Remplacer le user_id
+2. Copier tout le contenu
+3. Exécuter dans Supabase
+Résultat attendu : INSERT 0 4
+
+
+Étape 7 : Vérification Finale
+------------------------------
+Fichier : 99-verification.sql
+Copiez tout le contenu et exécutez dans Supabase
+Résultat attendu : 20 tutoriels au total
+
+
+Étape 8 : Tester le Frontend
+-----------------------------
+Ouvrir : http://localhost:8000/#blog
+Vérifier :
+- 20 tutoriels affichés
+- Images SVG visibles
+- Filtres fonctionnels
+- Recherche fonctionnelle
+- Modals s'ouvrent
+
+
+========================================
+EN CAS D'ERREUR
+========================================
+
+Erreur "duplicate key value violates unique constraint"
+→ Les tutoriels existent déjà
+→ Solution : Exécuter l'étape 1 (cleanup) en premier
+
+Erreur "violates foreign key constraint user_id"
+→ Le user_id n'existe pas
+→ Solution : Vérifier l'étape 0 et utiliser le bon user_id
+
+Erreur "syntax error"
+→ Vous avez copié du texte markdown au lieu du SQL
+→ Solution : Copier uniquement le contenu entre les blocs de code SQL
+
+========================================
