@@ -24,7 +24,6 @@ build/
 
 # Dépendances (si vous ajoutez npm plus tard)
 node_modules/
-package-lock.json
 yarn.lock
 
 # Fichiers de configuration locaux
