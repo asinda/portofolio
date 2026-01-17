@@ -50,3 +50,6 @@ docs/CLAUDE.md
 .cursor/
 .cursorrules
 .github/copilot-instructions.md
+
+# Serveur de développement local
+server-dev.cjs
