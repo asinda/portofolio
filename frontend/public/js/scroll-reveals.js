@@ -348,10 +348,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Rafraîchir après resize (debounced)
-let resizeTimeout;
+let scrollRevealsResizeTimeout;
 window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
+    clearTimeout(scrollRevealsResizeTimeout);
+    scrollRevealsResizeTimeout = setTimeout(() => {
         if (scrollReveals) {
             scrollReveals.refresh();
         }

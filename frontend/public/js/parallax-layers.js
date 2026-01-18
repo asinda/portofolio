@@ -204,10 +204,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Rafraîchir après resize (debounced)
-let resizeTimeout;
+let parallaxLayersResizeTimeout;
 window.addEventListener('resize', () => {
-    clearTimeout(resizeTimeout);
-    resizeTimeout = setTimeout(() => {
+    clearTimeout(parallaxLayersResizeTimeout);
+    parallaxLayersResizeTimeout = setTimeout(() => {
         if (parallaxLayers) {
             parallaxLayers.refresh();
         }
