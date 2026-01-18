@@ -66,6 +66,16 @@ jobs:
           echo "📂 Fichiers locales:"
           ls -la _site/js/i18n/locales/
 
+          # Vérifier que les images sont présentes
+          if [ -d "_site/images/tutorials" ]; then
+            echo "✅ Dossier images/tutorials présent"
+            echo "📂 Nombre de fichiers SVG:"
+            ls -1 _site/images/tutorials/*.svg | wc -l
+          else
+            echo "❌ Erreur: dossier images/tutorials manquant"
+            exit 1
+          fi
+
       - name: ✅ Validation HTML (optionnel)
         continue-on-error: true
         run: |

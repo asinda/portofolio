@@ -10,6 +10,11 @@ const API_BASE_URL = window.location.hostname === 'localhost'
     ? 'http://localhost:5000/api'
     : 'https://portfolio-backend-uj9f.onrender.com/api';
 
+// Base path pour GitHub Pages (site dans un sous-dossier)
+const BASE_PATH = window.location.hostname === 'localhost'
+    ? ''
+    : '/portofolio';
+
 const BLOG_CONFIG = {
     apiUrl: `${API_BASE_URL}/blog/posts?limit=100`,
     categories: ['all', 'DevOps', 'Cloud', 'Kubernetes', 'CI/CD', 'Terraform', 'Ansible', 'Monitoring', 'Automation'],
@@ -160,10 +165,13 @@ function createPostCard(post) {
     const categoryClass = post.category.toLowerCase().replace(/\s+/g, '-');
     const hasImage = post.cover_image && post.cover_image.trim() !== '';
 
+    // Ajouter BASE_PATH aux images relatives
+    const imageUrl = hasImage ? getFullImagePath(post.cover_image) : '';
+
     card.innerHTML = `
         ${hasImage ? `
             <div class="blog-card-image">
-                <img src="${post.cover_image}" alt="${escapeHtml(post.title)}" loading="lazy">
+                <img src="${imageUrl}" alt="${escapeHtml(post.title)}" loading="lazy">
             </div>
         ` : ''}
 
@@ -438,6 +446,26 @@ function formatDate(dateString) {
     } catch (error) {
         return dateString;
     }
+}
+
+/**
+ * Convertir un chemin d'image relatif en chemin complet avec BASE_PATH
+ */
+function getFullImagePath(imagePath) {
+    if (!imagePath) return '';
+
+    // Si l'URL est absolue (http:// ou https://), la retourner telle quelle
+    if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
+        return imagePath;
+    }
+
+    // Si l'image commence par '/', ajouter BASE_PATH
+    if (imagePath.startsWith('/')) {
+        return `${BASE_PATH}${imagePath}`;
+    }
+
+    // Sinon ajouter BASE_PATH et '/'
+    return `${BASE_PATH}/${imagePath}`;
 }
 
 /**
