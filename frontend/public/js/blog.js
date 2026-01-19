@@ -484,11 +484,45 @@ function showError() {
     const grid = document.querySelector('#blogGrid');
     if (grid) {
         grid.innerHTML = `
-            <div class="error-message">
-                <p data-i18n="blog.error">
-                    Impossible de charger les articles.
-                    Veuillez réessayer plus tard.
+            <div class="error-message" style="
+                max-width: 600px;
+                margin: 40px auto;
+                padding: 30px;
+                background: rgba(239, 68, 68, 0.1);
+                border: 2px solid rgba(239, 68, 68, 0.3);
+                border-radius: 12px;
+                text-align: center;
+            ">
+                <div style="font-size: 48px; margin-bottom: 20px;">🔧</div>
+                <h3 style="color: #ef4444; margin-bottom: 15px; font-size: 24px;">
+                    Service Temporairement Indisponible
+                </h3>
+                <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 15px; line-height: 1.6;">
+                    Le serveur API est en cours de configuration.
+                    <br>
+                    Les articles seront de nouveau disponibles dans quelques minutes.
                 </p>
+                <p style="color: rgba(255, 255, 255, 0.6); font-size: 14px; margin-top: 20px;">
+                    💡 Le blog contient 28 tutoriels DevOps sur Ansible, Terraform, Kubernetes, CI/CD, Docker, Cloud et plus encore.
+                </p>
+                <button
+                    onclick="window.location.reload()"
+                    style="
+                        margin-top: 20px;
+                        padding: 12px 24px;
+                        background: #ef4444;
+                        color: white;
+                        border: none;
+                        border-radius: 8px;
+                        cursor: pointer;
+                        font-size: 16px;
+                        font-weight: bold;
+                    "
+                    onmouseover="this.style.background='#dc2626'"
+                    onmouseout="this.style.background='#ef4444'"
+                >
+                    🔄 Réessayer
+                </button>
             </div>
         `;
     }

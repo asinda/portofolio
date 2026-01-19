@@ -21,6 +21,9 @@ tmpclaude-*
 # Fichiers de test
 test-*.html
 
+# Fichiers de configuration sensibles
+CONFIGURER_RENDER.md
+
 # Dossier de build (si vous utilisez un build tool plus tard)
 dist/
 build/
