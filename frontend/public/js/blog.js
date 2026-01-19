@@ -15,8 +15,27 @@ const BASE_PATH = window.location.hostname === 'localhost'
     ? ''
     : '/portofolio';
 
+/**
+ * Récupérer la langue courante de l'utilisateur
+ * Utilise localStorage ou détection navigateur
+ */
+function getCurrentLocale() {
+    // 1. Vérifier localStorage (sauvegardé par le lang switcher)
+    const savedLang = localStorage.getItem('portfolio_language');
+    if (savedLang === 'fr' || savedLang === 'en') {
+        return savedLang;
+    }
+
+    // 2. Détecter langue navigateur
+    const browserLang = navigator.language || navigator.userLanguage;
+    return browserLang.startsWith('en') ? 'en' : 'fr';
+}
+
 const BLOG_CONFIG = {
-    apiUrl: `${API_BASE_URL}/blog/posts?limit=100`,
+    get apiUrl() {
+        const locale = getCurrentLocale();
+        return `${API_BASE_URL}/blog/posts?limit=100&locale=${locale}`;
+    },
     categories: ['all', 'DevOps', 'Cloud', 'Kubernetes', 'CI/CD', 'Terraform', 'Ansible', 'Monitoring', 'Automation'],
     defaultCategory: 'all',
     defaultSort: 'date-desc'
@@ -125,6 +144,18 @@ function setupEventListeners() {
 
     prevBtn?.addEventListener('click', showPreviousPost);
     nextBtn?.addEventListener('click', showNextPost);
+
+    // Écouter les changements de langue
+    window.addEventListener('languageChanged', async (e) => {
+        console.log(`[Blog] Changement de langue détecté: ${e.detail.oldLang} → ${e.detail.newLang}`);
+        try {
+            await loadPosts(); // Recharger les articles dans la nouvelle langue
+            renderPosts(); // Re-rendre l'affichage
+            console.log('[Blog] Articles rechargés dans la nouvelle langue');
+        } catch (error) {
+            console.error('[Blog] Erreur lors du rechargement des articles:', error);
+        }
+    });
 
     console.log('[Blog] Event listeners configurés');
 }

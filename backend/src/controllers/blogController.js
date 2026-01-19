@@ -13,16 +13,50 @@ import { generateSlug, calculateReadTime, extractExcerpt } from '../schemas/blog
 const baseBlogController = createCRUDController('blog_posts');
 
 // ===================================
+// HELPERS - MULTI-LANGUE
+// ===================================
+
+/**
+ * Adapter un post selon la locale demandée
+ * Si la traduction existe, utilise les colonnes *_en, sinon fallback sur les colonnes FR
+ */
+function adaptPostLocale(post, locale = 'fr') {
+    if (locale === 'en') {
+        return {
+            ...post,
+            title: post.title_en || post.title,
+            content: post.content_en || post.content,
+            excerpt: post.excerpt_en || post.excerpt,
+            seo_title: post.seo_title_en || post.seo_title,
+            seo_description: post.seo_description_en || post.seo_description,
+            // Indiquer si c'est une traduction ou un fallback
+            is_translated: !!(post.title_en),
+            current_locale: locale,
+            available_locales: ['fr', post.title_en ? 'en' : null].filter(Boolean)
+        };
+    }
+
+    // Locale FR (par défaut)
+    return {
+        ...post,
+        is_translated: true,
+        current_locale: 'fr',
+        available_locales: ['fr', post.title_en ? 'en' : null].filter(Boolean)
+    };
+}
+
+// ===================================
 // MÉTHODES SPÉCIALISÉES BLOG
 // ===================================
 
 /**
- * GET /api/blog/posts/:slug
- * Récupérer un post par son slug (avec incrémentation vues)
+ * GET /api/blog/posts/:slug?locale=en
+ * Récupérer un post par son slug (avec incrémentation vues) + support multi-langue
  */
 export async function getPostBySlug(req, res) {
     try {
         const { slug } = req.params;
+        const { locale = 'fr' } = req.query;
 
         // Récupérer le post
         const { data, error } = await supabase
@@ -62,12 +96,15 @@ export async function getPostBySlug(req, res) {
             .eq('post_id', data.id)
             .eq('status', 'approved');
 
+        // Adapter selon la locale
+        const localizedPost = adaptPostLocale({
+            ...data,
+            comments_count: commentsCount || 0
+        }, locale);
+
         return res.json({
             success: true,
-            data: {
-                ...data,
-                comments_count: commentsCount || 0
-            }
+            data: localizedPost
         });
 
     } catch (error) {
@@ -81,7 +118,7 @@ export async function getPostBySlug(req, res) {
 
 /**
  * GET /api/blog/posts (override du CRUD de base pour enrichir)
- * Lister les posts avec filtres avancés
+ * Lister les posts avec filtres avancés + support multi-langue
  */
 export async function getAllPosts(req, res) {
     try {
@@ -93,7 +130,8 @@ export async function getAllPosts(req, res) {
             tag,
             search,
             sort = 'published_at',
-            order = 'desc'
+            order = 'desc',
+            locale = 'fr' // Paramètre de langue (fr ou en)
         } = req.query;
 
         const offset = (page - 1) * limit;
@@ -134,9 +172,12 @@ export async function getAllPosts(req, res) {
 
         if (error) throw error;
 
+        // Adapter les données selon la locale
+        const localizedData = data.map(post => adaptPostLocale(post, locale));
+
         return res.json({
             success: true,
-            data,
+            data: localizedData,
             pagination: {
                 page: parseInt(page),
                 limit: parseInt(limit),
