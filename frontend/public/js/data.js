@@ -79,7 +79,9 @@ const portfolioData = {
         {
             id: 1,
             title: "Déployer un cluster Kubernetes production-ready avec kubeadm",
+            title_en: "Deploy a production-ready Kubernetes cluster with kubeadm",
             excerpt: "Guide complet pour bootstrapper un cluster K8s multi-nœuds avec haute disponibilité, network policies et monitoring intégré.",
+            excerpt_en: "Complete guide to bootstrapping a multi-node K8s cluster with high availability, network policies and integrated monitoring.",
             cover_image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
             content: "## Introduction\n\nCet article couvre l'installation et la configuration d'un cluster Kubernetes production-ready avec kubeadm.\n\n## Prérequis\n\n- 3 VMs Ubuntu 22.04 (1 control-plane, 2 workers)\n- 2 vCPU / 4 GB RAM minimum par nœud\n- Accès root et connectivité réseau entre les nœuds\n\n## Installation de kubeadm\n\n```bash\napt-get update && apt-get install -y kubelet kubeadm kubectl\nkubeadm init --pod-network-cidr=10.244.0.0/16\n```\n\n## Configurer kubectl\n\n```bash\nmkdir -p $HOME/.kube\ncp -i /etc/kubernetes/admin.conf $HOME/.kube/config\n```\n\n## Installer Calico CNI\n\n```bash\nkubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.26.0/manifests/calico.yaml\n```\n\n## Résultat\n\nUn cluster HA prêt pour la production avec Calico CNI, metrics-server et Prometheus stack.",
             category: "Kubernetes",
@@ -91,7 +93,9 @@ const portfolioData = {
         {
             id: 2,
             title: "Infrastructure as Code avec Terraform sur AWS — Bonnes pratiques",
+            title_en: "Infrastructure as Code with Terraform on AWS — Best Practices",
             excerpt: "Structurer des modules Terraform réutilisables, gérer les états distants avec S3+DynamoDB et automatiser les déploiements multi-environnements.",
+            excerpt_en: "Structure reusable Terraform modules, manage remote state with S3+DynamoDB and automate multi-environment deployments.",
             cover_image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
             content: "## Pourquoi structurer son code Terraform ?\n\nUn projet IaC bien structuré réduit la dette technique et facilite la collaboration.\n\n## Structure recommandée\n\n```\nterraform/\n├── modules/\n│   ├── vpc/\n│   ├── eks/\n│   └── rds/\n├── environments/\n│   ├── dev/\n│   ├── staging/\n│   └── prod/\n└── global/\n```\n\n## Remote state avec S3\n\n```hcl\nterraform {\n  backend \"s3\" {\n    bucket         = \"my-tf-state\"\n    key            = \"prod/terraform.tfstate\"\n    region         = \"eu-west-1\"\n    dynamodb_table = \"tf-lock\"\n    encrypt        = true\n  }\n}\n```",
             category: "Terraform",
@@ -103,7 +107,9 @@ const portfolioData = {
         {
             id: 3,
             title: "Pipeline CI/CD complet avec GitLab et ArgoCD (GitOps)",
+            title_en: "Complete CI/CD Pipeline with GitLab and ArgoCD (GitOps)",
             excerpt: "Mettre en place un pipeline de livraison continue GitOps : build Docker, scan Trivy, push registry, sync ArgoCD automatique.",
+            excerpt_en: "Set up a GitOps continuous delivery pipeline: Docker build, Trivy scan, registry push, automatic ArgoCD sync.",
             cover_image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
             content: "## Architecture GitOps\n\nLe pattern GitOps utilise Git comme source de vérité unique pour l'état de l'infrastructure.\n\n## Pipeline .gitlab-ci.yml\n\n```yaml\nstages:\n  - build\n  - test\n  - scan\n  - deploy\n\nbuild:image:\n  stage: build\n  script:\n    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .\n    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA\n\nscan:trivy:\n  stage: scan\n  script:\n    - trivy image --exit-code 1 --severity HIGH,CRITICAL $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA\n```\n\n## Sync ArgoCD\n\nArgoCD surveille le repo Git et synchronise automatiquement les changements vers le cluster.",
             category: "CI/CD",
@@ -115,7 +121,9 @@ const portfolioData = {
         {
             id: 4,
             title: "Monitoring avec Prometheus & Grafana : alertes intelligentes",
+            title_en: "Monitoring with Prometheus & Grafana: smart alerting",
             excerpt: "Configurer Prometheus Alertmanager avec des règles d'alerte pertinentes et des dashboards Grafana pour une observabilité complète.",
+            excerpt_en: "Configure Prometheus Alertmanager with relevant alert rules and Grafana dashboards for complete observability.",
             cover_image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
             content: "## Stack d'observabilité\n\nPrometheus + Grafana + Alertmanager forment le trio incontournable pour monitorer une infrastructure Kubernetes.\n\n## Installation avec Helm\n\n```bash\nhelm repo add prometheus-community https://prometheus-community.github.io/helm-charts\nhelm install kube-prometheus-stack prometheus-community/kube-prometheus-stack \\\n  --namespace monitoring --create-namespace\n```\n\n## Règle d'alerte exemple\n\n```yaml\ngroups:\n- name: kubernetes\n  rules:\n  - alert: PodCrashLooping\n    expr: rate(kube_pod_container_status_restarts_total[15m]) > 0.25\n    for: 5m\n    annotations:\n      summary: \"Pod {{ $labels.pod }} en CrashLoop\"\n```",
             category: "Monitoring",
@@ -127,7 +135,9 @@ const portfolioData = {
         {
             id: 5,
             title: "Automatiser les déploiements avec Ansible — Playbooks avancés",
+            title_en: "Automate deployments with Ansible — Advanced Playbooks",
             excerpt: "Écrire des playbooks Ansible robustes avec roles, variables chiffrées Vault, gestion des erreurs et tests Molecule.",
+            excerpt_en: "Write robust Ansible playbooks with roles, Vault-encrypted variables, error handling and Molecule tests.",
             cover_image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&q=80",
             content: "## Pourquoi Ansible ?\n\nAnsible permet d'automatiser la configuration des serveurs sans agent. Idéal pour les déploiements reproductibles.\n\n## Structure d'un role Ansible\n\n```\nroles/\n└── webserver/\n    ├── tasks/main.yml\n    ├── handlers/main.yml\n    ├── templates/nginx.conf.j2\n    └── vars/main.yml\n```\n\n## Chiffrement avec Vault\n\n```bash\nansible-vault encrypt_string 'mon_secret' --name 'db_password'\nansible-playbook deploy.yml --ask-vault-pass\n```",
             category: "Ansible",
@@ -139,7 +149,9 @@ const portfolioData = {
         {
             id: 6,
             title: "OpenSearch : déploiement HA et gestion des index",
+            title_en: "OpenSearch: HA deployment and index management",
             excerpt: "Déployer un cluster OpenSearch haute disponibilité sur Kubernetes avec snapshots automatiques, ILM policies et sécurité TLS.",
+            excerpt_en: "Deploy a highly available OpenSearch cluster on Kubernetes with automatic snapshots, ILM policies and TLS security.",
             cover_image: "https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=800&q=80",
             content: "## OpenSearch vs Elasticsearch\n\nOpenSearch est le fork open-source maintenu par AWS. Compatible API Elasticsearch 7.10, sans licence commerciale.\n\n## Déploiement sur Kubernetes\n\n```yaml\napiVersion: apps/v1\nkind: StatefulSet\nmetadata:\n  name: opensearch\nspec:\n  replicas: 3\n  template:\n    spec:\n      containers:\n      - name: opensearch\n        image: opensearchproject/opensearch:2.11\n        env:\n        - name: cluster.name\n          value: opensearch-cluster\n```\n\n## Index Lifecycle Management\n\n```json\n{\n  \"policy\": {\n    \"phases\": {\n      \"hot\":    { \"actions\": { \"rollover\": { \"max_size\": \"50gb\" } } },\n      \"delete\": { \"min_age\": \"30d\",  \"actions\": { \"delete\": {} } }\n    }\n  }\n}\n```",
             category: "DevOps",

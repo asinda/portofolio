@@ -44,6 +44,7 @@ function applyLang(lang) {
     window.i18n.setLocale(lang);
     window.i18n.translatePage?.();
   }
+  if (filteredPosts.length) renderBlog(filteredPosts);
 }
 
 langBtn?.addEventListener('click', () => applyLang(currentLang === 'fr' ? 'en' : 'fr'));
@@ -105,19 +106,28 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 // ─── Description hero rotative ───────────────────────────────
 const heroDesc = document.getElementById('heroDesc');
 if (heroDesc) {
-  const phrases = [
-    'DevOps Architect · SRE · Platform Engineering',
-    'Kubernetes & OpenSearch PaaS | Cegedim.cloud',
-    'GitOps · Terraform · Ansible · DevSecOps',
-    'Créatrice de contenus — alice-in-prodland',
-  ];
+  const phrases = {
+    fr: [
+      'DevOps Architect · SRE · Platform Engineering',
+      'Kubernetes & OpenSearch PaaS | Cegedim.cloud',
+      'GitOps · Terraform · Ansible · DevSecOps',
+      'Créatrice de contenus — alice-in-prodland',
+    ],
+    en: [
+      'DevOps Architect · SRE · Platform Engineering',
+      'Kubernetes & OpenSearch PaaS | Cegedim.cloud',
+      'GitOps · Terraform · Ansible · DevSecOps',
+      'Content Creator — alice-in-prodland',
+    ],
+  };
   let idx = 0;
   setInterval(() => {
     heroDesc.style.opacity = '0';
     heroDesc.style.transform = 'translateY(8px)';
     setTimeout(() => {
-      idx = (idx + 1) % phrases.length;
-      heroDesc.textContent = phrases[idx];
+      const list = phrases[currentLang] || phrases.fr;
+      idx = (idx + 1) % list.length;
+      heroDesc.textContent = list[idx];
       heroDesc.style.opacity = '1';
       heroDesc.style.transform = 'translateY(0)';
     }, 280);
@@ -217,9 +227,12 @@ function renderBlog(list) {
     blogGrid.innerHTML = '<div class="no-results" style="grid-column:1/-1"><p>Aucun article disponible.</p></div>';
     return;
   }
+  const readMore = currentLang === 'en' ? 'Read article' : "Lire l'article";
   blogGrid.innerHTML = list.map((post, i) => {
+    const title   = (currentLang === 'en' && post.title_en)   ? post.title_en   : post.title;
+    const excerpt = (currentLang === 'en' && post.excerpt_en) ? post.excerpt_en : (post.excerpt || post.description || '');
     const img = post.cover_image
-      ? `<img src="${post.cover_image}" alt="${post.title}" loading="lazy">`
+      ? `<img src="${post.cover_image}" alt="${title}" loading="lazy">`
       : `<div class="project-image-placeholder"><i class="fas fa-file-alt"></i></div>`;
     return `
       <div class="blog-card reveal" data-index="${i}">
@@ -230,9 +243,9 @@ function renderBlog(list) {
             <span class="blog-date"><i class="fas fa-calendar-alt"></i> ${fmtDate(post.published_at || post.created_at)}</span>
             <span class="blog-read-time"><i class="fas fa-clock"></i> ${post.read_time || 5} min</span>
           </div>
-          <h3 class="blog-card-title">${post.title}</h3>
-          <p class="blog-card-excerpt">${post.excerpt || post.description || ''}</p>
-          <span class="blog-read-more">Lire l'article <i class="fas fa-arrow-right"></i></span>
+          <h3 class="blog-card-title">${title}</h3>
+          <p class="blog-card-excerpt">${excerpt}</p>
+          <span class="blog-read-more">${readMore} <i class="fas fa-arrow-right"></i></span>
         </div>
       </div>`;
   }).join('');
@@ -243,7 +256,9 @@ function renderBlog(list) {
   });
 
   const ctaText = document.querySelector('.blog-cta-text');
-  if (ctaText) ctaText.textContent = 'Retrouvez plus de contenu DevOps & Cloud sur LinkedIn';
+  if (ctaText) ctaText.textContent = currentLang === 'en'
+    ? 'More DevOps & Cloud content on LinkedIn'
+    : 'Retrouvez plus de contenu DevOps & Cloud sur LinkedIn';
 }
 
 function fmtDate(str) {
