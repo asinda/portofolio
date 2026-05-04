@@ -1180,10 +1180,15 @@ const translationsEN = {
         try {
             console.log('🌐 Initialisation du système i18n (bundle)...');
             const i18n = new I18n();
-            const langSwitcher = new LangSwitcher(i18n);
 
-            // Exposer globalement (requis par app.js)
+            // Exposer AVANT LangSwitcher pour que app.js puisse l'utiliser
             window.i18n = i18n;
+
+            try {
+                new LangSwitcher(i18n);
+            } catch (e) {
+                console.warn('LangSwitcher ignoré:', e.message);
+            }
 
             console.log('✅ Système i18n initialisé avec succès');
         } catch (error) {
