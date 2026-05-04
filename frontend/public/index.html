@@ -1,813 +1,729 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ingénieure DevOps avec 7+ ans d'expérience en Cloud (AWS, GCP), Kubernetes, Terraform, Ansible. Spécialiste PaaS chez Cegedim Cloud. Portfolio & projets.">
-    <meta name="keywords" content="DevOps, Cloud Engineer, Kubernetes, AWS, GCP, Terraform, Ansible, CI/CD, Docker, OpenSearch, MongoDB, GitLab, Jenkins, Ingénieure DevOps France">
-    <meta name="author" content="Alice Sindayigaya">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://asinda.github.io/portofolio/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ingénieure DevOps avec 7+ ans d'expérience en Cloud (AWS, GCP), Kubernetes, Terraform, Ansible. Spécialiste PaaS chez Cegedim Cloud.">
+  <meta name="author" content="Alice Sindayigaya">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://asinda.github.io/portofolio/">
+  <title>Alice Sindayigaya | Ingénieure DevOps & Cloud | AWS, Kubernetes, Terraform</title>
 
-    <title>Alice Sindayigaya | Ingénieure DevOps & Cloud | AWS, Kubernetes, Terraform</title>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://asinda.github.io/portofolio/">
+  <meta property="og:title" content="Alice Sindayigaya | Ingénieure DevOps & Cloud">
+  <meta property="og:description" content="Ingénieure DevOps spécialisée en Cloud, Automatisation et Supervision. 7+ ans d'expérience.">
+  <meta property="og:image" content="https://asinda.github.io/portofolio/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#F97316">
 
-    <!-- Open Graph (Facebook, LinkedIn) -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://asinda.github.io/portofolio/">
-    <meta property="og:title" content="Alice Sindayigaya | Ingénieure DevOps & Cloud Engineer">
-    <meta property="og:description" content="Ingénieure DevOps spécialisée en Cloud, Automatisation et Supervision. 7+ ans d'expérience en DevOps, Kubernetes, AWS, Terraform, Ansible.">
-    <meta property="og:image" content="https://asinda.github.io/portofolio/images/og-image.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:locale" content="fr_FR">
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Alice DevOps">
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://asinda.github.io/portofolio/">
-    <meta name="twitter:title" content="Alice Sindayigaya | Ingénieure DevOps">
-    <meta name="twitter:description" content="Ingénieure DevOps spécialisée en Cloud, Automatisation et Supervision. Kubernetes, AWS, Terraform, Ansible.">
-    <meta name="twitter:image" content="https://asinda.github.io/portofolio/images/og-image.jpg">
+  <!-- Google Fonts — Inter uniquement, 2 graisses -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap">
+  </noscript>
 
-    <!-- Theme color pour mobile -->
-    <meta name="theme-color" content="#00a3ff">
-
-    <!-- PWA Manifest -->
-    <link rel="manifest" href="manifest.json">
-    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Alice DevOps">
-
-    <!-- Google Fonts - Optimisés (11 variants → 5) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-
-    <!-- Font Awesome -->
+  <!-- Font Awesome — chargement non-bloquant -->
+  <link rel="preload" as="style"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        onload="this.onload=null;this.rel='stylesheet'">
+  <noscript>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </noscript>
 
-    <!-- Custom CSS - Cityscape Design (BASE - toujours en premier) -->
-    <link rel="stylesheet" href="css/style-cityscape.css">
+  <!-- CSS principal (seul fichier) -->
+  <link rel="stylesheet" href="css/style.css">
 
-    <!-- Responsive Advanced (avant les autres pour éviter conflits) -->
-    <link rel="stylesheet" href="css/responsive-advanced.css">
-
-    <!-- Theme System - Light/Dark Mode -->
-    <link rel="stylesheet" href="css/theme-system.css">
-
-    <!-- Hero Variants - 4 Styles -->
-    <link rel="stylesheet" href="css/hero-variants.css">
-
-    <!-- Effets 3D - Grilles, Néons, Depth -->
-    <link rel="stylesheet" href="css/effects-3d.css">
-
-    <!-- Micro-Interactions Avancées -->
-    <link rel="stylesheet" href="css/micro-interactions.css">
-
-    <!-- Animations Scroll Avancées -->
-    <link rel="stylesheet" href="css/animations-scroll.css">
-
-    <!-- Performance Optimizations (toujours en dernier) -->
-    <link rel="stylesheet" href="css/performance-optimizations.css">
-
-    <!-- Language Toggle Styles -->
-    <link rel="stylesheet" href="css/lang-toggle.css?v=1.0.0">
-
-    <!-- Blog CSS -->
-    <link rel="stylesheet" href="css/blog.css">
-
-    <!-- Marked.js - Markdown Parser -->
-    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
-
-    <!-- Prism.js - Syntax Highlighting -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-docker.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+  <!-- Librairies blog — différées, chargées à la demande -->
+  <script defer src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css"
+        media="print" onload="this.media='all'">
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-yaml.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-docker.min.js"></script>
 </head>
 <body>
-    <!-- Header / Navigation -->
-    <header class="header" id="header">
-        <div class="container">
-            <div class="nav-wrapper">
-                <a href="#" class="logo">
-                    <span class="logo-text" data-i18n="nav.logo">Alice S.</span>
-                </a>
 
-                <nav class="nav" id="nav">
-                    <ul class="nav-list">
-                        <li><a href="#home" class="nav-link" data-i18n="nav.home">Accueil</a></li>
-                        <li><a href="#cv" class="nav-link" data-i18n="nav.cv">CV</a></li>
-                        <li><a href="#projects" class="nav-link" data-i18n="nav.projects">Projets</a></li>
-                        <li><a href="#blog" class="nav-link" data-i18n="nav.blog">Blog & Tutos</a></li>
-                    </ul>
-                </nav>
+  <!-- ═══════════════════ HEADER ═══════════════════ -->
+  <header class="header" id="header">
+    <div class="container">
+      <div class="nav-wrapper">
+        <a href="#home" class="logo">
+          <img src="images/logo.svg" alt="Alice Sindayigaya" width="32" height="32" style="display:inline-block;vertical-align:middle;margin-right:8px;">
+          <span>alice<span style="opacity:0.5">.</span>sh</span>
+        </a>
 
-                <button class="nav-toggle"
-                        id="navToggle"
-                        data-i18n-aria="nav.toggleAriaLabel"
-                        aria-label="Toggle navigation"
-                        aria-expanded="false"
-                        aria-controls="nav">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
+        <nav class="nav" id="nav" aria-label="Navigation principale">
+          <ul class="nav-list">
+            <li><a href="#home"     class="nav-link active" data-i18n="nav.home">Accueil</a></li>
+            <li><a href="#cv"       class="nav-link"        data-i18n="nav.cv">CV</a></li>
+            <li><a href="#projects" class="nav-link"        data-i18n="nav.projects">Projets</a></li>
+            <li><a href="#blog"     class="nav-link"        data-i18n="nav.blog">Blog</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-controls">
+          <button class="icon-btn lang-btn" id="langToggle" aria-label="Changer la langue">FR</button>
+          <button class="icon-btn" id="themeToggle" aria-label="Basculer thème clair/sombre">
+            <i class="fas fa-sun"></i>
+          </button>
+          <button class="nav-toggle" id="navToggle"
+                  aria-label="Menu" aria-expanded="false" aria-controls="nav">
+            <span></span><span></span><span></span>
+          </button>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <span class="hero-label">
-                        <i class="fas fa-code pulse-icon"></i> <span data-i18n="hero.label">Ingénieure DevOps</span>
-                    </span>
-
-                    <h1 class="hero-title">
-                        <span class="hero-greeting" data-i18n="hero.greeting">Bonjour, je suis</span>
-                        <span class="hero-name gradient-text" data-typewriter data-i18n="hero.name">Alice Sindayigaya</span>
-                    </h1>
-
-                    <p class="hero-description rotating-text" data-phrases='[
-                        "Architecte Cloud passionnée | Kubernetes & Terraform",
-                        "Experte DevOps | CI/CD & Automatisation",
-                        "Spécialiste PaaS | OpenSearch & MongoDB",
-                        "Ingénieure Infrastructure | AWS & GCP"
-                    ]'>Architecte Cloud passionnée | Kubernetes & Terraform</p>
-
-                    <div class="hero-cta">
-                        <a href="#cv" class="btn btn-primary btn-magnetic">
-                            <span data-i18n="hero.cta.cv">Découvrir mon CV</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#projects" class="btn btn-secondary btn-magnetic">
-                            <span data-i18n="hero.cta.projects">Mes Projets</span>
-                        </a>
-                        <a href="#blog" class="btn btn-outline btn-magnetic">
-                            <i class="fas fa-book"></i>
-                            <span data-i18n="hero.cta.blog">Blog & Tutos</span>
-                        </a>
-                    </div>
-
-                    <div class="scroll-indicator">
-                        <span data-i18n="hero.scrollIndicator">Scroll Down</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="hero-card">
-                        <div class="card-icon">
-                            <i class="fas fa-cloud"></i>
-                        </div>
-                        <h3 data-i18n="hero.cards.cloud.title">Cloud</h3>
-                        <p data-i18n="hero.cards.cloud.description">AWS, GCP, Kubernetes</p>
-                    </div>
-                    <div class="hero-card">
-                        <div class="card-icon">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h3 data-i18n="hero.cards.automation.title">Automatisation</h3>
-                        <p data-i18n="hero.cards.automation.description">Ansible, Terraform, CI/CD</p>
-                    </div>
-                    <div class="hero-card">
-                        <div class="card-icon">
-                            <i class="fas fa-chart-bar"></i>
-                        </div>
-                        <h3 data-i18n="hero.cards.monitoring.title">Supervision</h3>
-                        <p data-i18n="hero.cards.monitoring.description">ELK, Grafana, Prometheus</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-content">
-                <div class="about-image">
-                    <div class="image-wrapper">
-                        <picture>
-                            <source srcset="images/api-coding.webp" type="image/webp">
-                            <img src="images/api-coding.gif"
-                                 data-i18n-title="about.imageAlt"
-                                 alt="Ingénieure DevOps spécialisée en développement d'API et programmation cloud"
-                                 loading="lazy"
-                                 width="600"
-                                 height="400">
-                        </picture>
-                        <div class="image-decoration"></div>
-                    </div>
-                </div>
-                <div class="about-text">
-                    <span class="section-label" data-i18n="about.label">À propos de moi</span>
-                    <h2 class="section-title" data-i18n="about.title">
-                        Ingénieure DevOps passionnée par l'automatisation et le cloud
-                    </h2>
-                    <p class="section-description" data-i18n="about.paragraphs.0">
-                        Passionnée par l'innovation et l'excellence technique, j'ai développé une expertise solide
-                        en DevOps et Cloud Engineering à travers des expériences enrichissantes. Actuellement
-                        Responsable de Plateforme chez Cegedim Cloud, je conçois et optimise des architectures
-                        PaaS haute performance sur OpenSearch et MongoDB.
-                    </p>
-                    <p class="section-description" data-i18n="about.paragraphs.1">
-                        Mon approche combine rigueur technique, vision stratégique et passion pour l'automatisation.
-                        J'aime relever des défis complexes, partager mes connaissances et contribuer à l'évolution
-                        des pratiques DevOps dans l'écosystème tech.
-                    </p>
-                    <div class="stats">
-                        <div class="stat-item">
-                            <span class="stat-number" data-i18n="about.stats.devops.number">7+</span>
-                            <span class="stat-label" data-i18n="about.stats.devops.label">Années DevOps</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-i18n="about.stats.it.number">15+</span>
-                            <span class="stat-label" data-i18n="about.stats.it.label">Années IT</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-i18n="about.stats.companies.number">5</span>
-                            <span class="stat-label" data-i18n="about.stats.companies.label">Entreprises</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CV Section -->
-    <section class="cv-section" id="cv">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label" data-i18n="cv.label">Parcours Professionnel</span>
-                <h2 class="section-title" data-i18n="cv.title">Mon CV</h2>
-                <p class="section-description" data-i18n="cv.description">
-                    Plus de 7 ans d'expérience en DevOps et Cloud Engineering
-                </p>
-            </div>
-
-            <div class="cv-grid">
-                <!-- Expériences -->
-                <div class="cv-column">
-                    <h3 class="cv-column-title">
-                        <i class="fas fa-briefcase"></i>
-                        <span data-i18n="cv.experience.title">Expériences Professionnelles</span>
-                    </h3>
-                    <div class="cv-timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date" data-i18n="cv.experience.items.0.date">01/2024 - Actuel</div>
-                            <div class="timeline-content">
-                                <h4 data-i18n="cv.experience.items.0.position">Ingénieure DevOps – Responsable PaaS</h4>
-                                <p class="company" data-i18n="cv.experience.items.0.company">CEGEDIM CLOUD - Labège</p>
-                                <ul>
-                                    <li data-i18n="cv.experience.items.0.tasks.0">Développement et optimisation des plateformes PaaS (OpenSearch, MongoDB)</li>
-                                    <li data-i18n="cv.experience.items.0.tasks.1">Architecture cloud hautement disponible, scalable et sécurisée</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-date" data-i18n="cv.experience.items.1.date">09/2021 - 12/2023</div>
-                            <div class="timeline-content">
-                                <h4 data-i18n="cv.experience.items.1.position">Ingénieure DevOps – Elasticsearch</h4>
-                                <p class="company" data-i18n="cv.experience.items.1.company">INETUM - Coperbee pour Airbus DS/Geo</p>
-                                <ul>
-                                    <li data-i18n="cv.experience.items.1.tasks.0">Plateforme de logs ELK Stack avec automatisation Ansible, Terraform</li>
-                                    <li data-i18n="cv.experience.items.1.tasks.1">Supervision avancée avec Centreon, Grafana, Prometheus</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-date" data-i18n="cv.experience.items.2.date">11/2018 - 09/2021</div>
-                            <div class="timeline-content">
-                                <h4 data-i18n="cv.experience.items.2.position">Ingénieure DevOps</h4>
-                                <p class="company" data-i18n="cv.experience.items.2.company">Neosoft & CTS IT - Toulouse</p>
-                                <ul>
-                                    <li data-i18n="cv.experience.items.2.tasks.0">CI/CD : GitLab, Jenkins, SonarQube, Artifactory (BPCE-IT)</li>
-                                    <li data-i18n="cv.experience.items.2.tasks.1">Supervision réseau et automatisation avec Kubernetes, Ansible</li>
-                                </ul>
-                            </div>
-                        </div>
-
-                        <!-- Expériences antérieures en format condensé -->
-                        <div class="timeline-summary">
-                            <div class="summary-badge">
-                                <i class="fas fa-clock"></i>
-                                <div class="summary-content">
-                                    <span class="summary-years" data-i18n="cv.experience.summary.years">2009 - 2018</span>
-                                    <span class="summary-text" data-i18n="cv.experience.summary.text">Expériences diverses : Airbus, ENEDIS, Limagrain, SOGEA-SATOM</span>
-                                    <span class="summary-tags">
-                                        <span class="mini-tag" data-i18n="cv.experience.summary.tags.0">Développement Web</span>
-                                        <span class="mini-tag" data-i18n="cv.experience.summary.tags.1">Management IT</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Formation & Compléments -->
-                <div class="cv-column">
-                    <h3 class="cv-column-title">
-                        <i class="fas fa-graduation-cap"></i>
-                        <span data-i18n="cv.education.title">Formation</span>
-                    </h3>
-                    <div class="cv-timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-date" data-i18n="cv.education.items.0.date">2015 - 2018</div>
-                            <div class="timeline-content">
-                                <h4 data-i18n="cv.education.items.0.degree">Master Informatique (Bac+5)</h4>
-                                <p class="company" data-i18n="cv.education.items.0.school">Université Clermont Auvergne</p>
-                                <p class="mention" data-i18n="cv.education.items.0.mention">Mention Bien</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-date" data-i18n="cv.education.items.1.date">2013 - 2014</div>
-                            <div class="timeline-content">
-                                <h4 data-i18n="cv.education.items.1.degree">Licence Informatique (Bac+3)</h4>
-                                <p class="company" data-i18n="cv.education.items.1.school">Université Blaise Pascal - France</p>
-                                <p class="mention" data-i18n="cv.education.items.1.mention">Mention Bien</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-item">
-                            <div class="timeline-date" data-i18n="cv.education.items.2.date">2004 - 2009</div>
-                            <div class="timeline-content">
-                                <h4 data-i18n="cv.education.items.2.degree">Licence Informatique de Gestion</h4>
-                                <p class="company" data-i18n="cv.education.items.2.school">Université Lumière - Burundi</p>
-                                <p class="mention" data-i18n="cv.education.items.2.mention">Mention Très Bien</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3 class="cv-column-title" style="margin-top: 2rem;">
-                        <i class="fas fa-globe"></i>
-                        <span data-i18n="cv.languages.title">Langues & Loisirs</span>
-                    </h3>
-                    <div class="cv-compact-section">
-                        <div class="compact-item">
-                            <i class="fas fa-language"></i>
-                            <div>
-                                <strong data-i18n="cv.languages.items.0.label">Langues :</strong> <span data-i18n="cv.languages.items.0.value">Français (Courant), Anglais (Intermédiaire)</span>
-                            </div>
-                        </div>
-                        <div class="compact-item">
-                            <i class="fas fa-heart"></i>
-                            <div>
-                                <strong data-i18n="cv.languages.items.1.label">Loisirs :</strong> <span data-i18n="cv.languages.items.1.value">Association humanitaire, Chorale Gospel, Jeux de société</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Compétences & Expertises -->
-            <div class="cv-skills-section">
-                <h3 class="cv-section-subtitle">
-                    <i class="fas fa-tools"></i>
-                    <span data-i18n="cv.skills.title">Compétences & Expertises</span>
-                </h3>
-
-                <div class="skills-categories">
-                    <!-- Cloud & Infrastructure -->
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-cloud"></i>
-                            <h4 data-i18n="cv.skills.categories.0.title">Cloud & Infrastructure</h4>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Kubernetes</span>
-                            <span class="skill-tag">OpenShift</span>
-                            <span class="skill-tag">AWS / GCP / Azure</span>
-                            <span class="skill-tag">OpenStack</span>
-                        </div>
-                    </div>
-
-                    <!-- Automatisation & CI/CD -->
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-infinity"></i>
-                            <h4 data-i18n="cv.skills.categories.1.title">Automatisation & CI/CD</h4>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Ansible</span>
-                            <span class="skill-tag">Terraform</span>
-                            <span class="skill-tag">GitLab CI/CD</span>
-                            <span class="skill-tag">Jenkins</span>
-                            <span class="skill-tag">ArgoCD</span>
-                        </div>
-                    </div>
-
-                    <!-- Monitoring & PaaS -->
-                    <div class="skill-category">
-                        <div class="skill-category-header">
-                            <i class="fas fa-chart-line"></i>
-                            <h4 data-i18n="cv.skills.categories.2.title">Monitoring & PaaS</h4>
-                        </div>
-                        <div class="skill-tags">
-                            <span class="skill-tag">OpenSearch</span>
-                            <span class="skill-tag">ELK Stack</span>
-                            <span class="skill-tag">Grafana</span>
-                            <span class="skill-tag">Prometheus</span>
-                            <span class="skill-tag">MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="cv-actions">
-                <a href="https://www.linkedin.com/in/alicesindayigaya" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-linkedin"></i>
-                    <span data-i18n="cv.actions.linkedinButton">Voir sur LinkedIn</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label" data-i18n="services.label">Expertises</span>
-                <h2 class="section-title" data-i18n="services.title">Domaines de compétences</h2>
-                <p class="section-description" data-i18n="services.description">
-                    Solutions complètes en DevOps, Cloud et Automatisation
-                </p>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3 data-i18n="services.items.0.title">Architecture Cloud</h3>
-                    <p data-i18n="services.items.0.description">
-                        Conception et déploiement d'environnements cloud modernes,
-                        scalables et sécurisés sur AWS, GCP et OpenStack.
-                    </p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.0.features.0">Kubernetes & OpenShift</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.0.features.1">Plateformes PaaS</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.0.features.2">Infrastructure as Code</span></li>
-                    </ul>
-                </div>
-
-                <div class="service-card featured">
-                    <div class="featured-badge" data-i18n="services.items.1.badge">Spécialité</div>
-                    <div class="service-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3 data-i18n="services.items.1.title">Automatisation & CI/CD</h3>
-                    <p data-i18n="services.items.1.description">
-                        Mise en place de pipelines CI/CD complets avec automatisation
-                        du déploiement et de la configuration.
-                    </p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.1.features.0">GitLab, Jenkins, Artifactory</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.1.features.1">Ansible & Terraform</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.1.features.2">Scripts Python & Bash</span></li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3 data-i18n="services.items.2.title">Supervision & Monitoring</h3>
-                    <p data-i18n="services.items.2.description">
-                        Implémentation de solutions de supervision complètes pour
-                        garantir la performance et la disponibilité.
-                    </p>
-                    <ul class="service-features">
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.2.features.0">ELK Stack & OpenSearch</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.2.features.1">Grafana & Prometheus</span></li>
-                        <li><i class="fas fa-check"></i> <span data-i18n="services.items.2.features.2">Centreon & Loki</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects-section" id="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label" data-i18n="projects.label">Réalisations</span>
-                <h2 class="section-title" data-i18n="projects.title">Projets & Cas d'Usage</h2>
-                <p class="section-description" data-i18n="projects.description">
-                    Architectures Cloud, Automatisations et Plateformes que j'ai conçues et déployées
-                </p>
-            </div>
-
-            <!-- Filtres de projets -->
-            <div class="project-filters">
-                <button class="filter-btn active" data-filter="all">
-                    <i class="fas fa-th"></i> <span data-i18n="projects.filters.all">Tous</span>
-                </button>
-                <button class="filter-btn" data-filter="cloud">
-                    <i class="fas fa-cloud"></i> <span data-i18n="projects.filters.cloud">Cloud & PaaS</span>
-                </button>
-                <button class="filter-btn" data-filter="automation">
-                    <i class="fas fa-robot"></i> <span data-i18n="projects.filters.automation">Automatisation</span>
-                </button>
-                <button class="filter-btn" data-filter="monitoring">
-                    <i class="fas fa-chart-line"></i> <span data-i18n="projects.filters.monitoring">Supervision</span>
-                </button>
-                <button class="filter-btn" data-filter="opensource">
-                    <i class="fab fa-github"></i> <span data-i18n="projects.filters.opensource">Open Source</span>
-                </button>
-            </div>
-
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Les projets seront chargés dynamiquement -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="skills">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label" data-i18n="skills.label">Compétences</span>
-                <h2 class="section-title" data-i18n="skills.title">Technologies & Outils</h2>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-cloud"></i> <span data-i18n="skills.categories.0.title">Plateformes Cloud</span></h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Kubernetes</span>
-                        <span class="skill-tag">AWS</span>
-                        <span class="skill-tag">GCP</span>
-                        <span class="skill-tag">OpenShift</span>
-                        <span class="skill-tag">OpenStack</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-cogs"></i> <span data-i18n="skills.categories.1.title">Automatisation</span></h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Ansible</span>
-                        <span class="skill-tag">Terraform</span>
-                        <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Bash</span>
-                        <span class="skill-tag">Java</span>
-                        <span class="skill-tag">PHP</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-chart-bar"></i> <span data-i18n="skills.categories.2.title">Supervision</span></h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">OpenSearch</span>
-                        <span class="skill-tag">ELK Stack</span>
-                        <span class="skill-tag">Grafana</span>
-                        <span class="skill-tag">Prometheus</span>
-                        <span class="skill-tag">Centreon</span>
-                        <span class="skill-tag">Loki</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-sync-alt"></i> <span data-i18n="skills.categories.3.title">CI/CD</span></h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">GitLab</span>
-                        <span class="skill-tag">Jenkins</span>
-                        <span class="skill-tag">Sonar</span>
-                        <span class="skill-tag">Artifactory</span>
-                        <span class="skill-tag">Docker</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-database"></i> <span data-i18n="skills.categories.4.title">Bases de Données</span></h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">OpenSearch</span>
-                        <span class="skill-tag">Elasticsearch</span>
-                        <span class="skill-tag">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3><i class="fas fa-network-wired"></i> <span data-i18n="skills.categories.5.title">Réseau & Cybersécurité</span></h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Spectrum</span>
-                        <span class="skill-tag">Nagios</span>
-                        <span class="skill-tag">Cisco</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog & Tutorials Section -->
-    <section class="blog-section" id="blog">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label" data-i18n="blog.label">Partage de Connaissances</span>
-                <h2 class="section-title" data-i18n="blog.title">Blog & Tutoriels</h2>
-                <p class="section-description" data-i18n="blog.description">
-                    Articles techniques, guides pratiques et retours d'expérience sur DevOps et Cloud
-                </p>
-            </div>
-
-            <!-- Barre de recherche -->
-            <div class="blog-search">
-                <input
-                    type="text"
-                    id="blogSearch"
-                    class="search-input"
-                    placeholder="Rechercher un article..."
-                    data-i18n-placeholder="blog.searchPlaceholder"
-                    aria-label="Rechercher un article">
-                <i class="fas fa-search search-icon"></i>
-            </div>
-
-            <!-- Catégories de blog -->
-            <div class="blog-categories">
-                <button class="category-btn active" data-category="all">
-                    <i class="fas fa-grip-horizontal"></i> <span data-i18n="blog.categories.all">Tous</span>
-                </button>
-                <button class="category-btn" data-category="DevOps">
-                    <i class="fas fa-infinity"></i> <span>DevOps</span>
-                </button>
-                <button class="category-btn" data-category="Cloud">
-                    <i class="fas fa-cloud"></i> <span>Cloud</span>
-                </button>
-                <button class="category-btn" data-category="Kubernetes">
-                    <i class="fas fa-dharmachakra"></i> <span>Kubernetes</span>
-                </button>
-                <button class="category-btn" data-category="CI/CD">
-                    <i class="fas fa-sync-alt"></i> <span>CI/CD</span>
-                </button>
-                <button class="category-btn" data-category="Terraform">
-                    <i class="fas fa-code-branch"></i> <span>Terraform</span>
-                </button>
-                <button class="category-btn" data-category="Ansible">
-                    <i class="fas fa-server"></i> <span>Ansible</span>
-                </button>
-                <button class="category-btn" data-category="Monitoring">
-                    <i class="fas fa-chart-line"></i> <span>Monitoring</span>
-                </button>
-                <button class="category-btn" data-category="Automation">
-                    <i class="fas fa-robot"></i> <span>Automation</span>
-                </button>
-            </div>
-
-            <div class="blog-grid" id="blogGrid">
-                <!-- Les articles seront chargés dynamiquement depuis l'API -->
-            </div>
-
-            <div class="blog-cta">
-                <p class="blog-cta-text" data-i18n="blog.cta.text">Section en construction - Articles techniques à venir prochainement !</p>
-                <a href="https://www.linkedin.com/in/alicesindayigaya" target="_blank" class="btn btn-primary">
-                    <i class="fab fa-linkedin"></i>
-                    <span data-i18n="blog.cta.button">Suivez-moi sur LinkedIn</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <h3 data-i18n="footer.brand.name">Alice Sindayigaya</h3>
-                    <p data-i18n="footer.brand.description">Ingénieure DevOps spécialisée en Cloud, Automatisation et Supervision. Passionnée par la création d'infrastructures modernes et scalables.</p>
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/alicesindayigaya" target="_blank" data-i18n-aria="footer.social.linkedinAria" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://github.com/asinda" target="_blank" data-i18n-aria="footer.social.githubAria" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="mailto:alicesindayigaya@gmail.com" data-i18n-aria="footer.social.emailAria" aria-label="Email">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="footer-links">
-                    <h4 data-i18n="footer.navigation.title">Navigation</h4>
-                    <ul>
-                        <li><a href="#home" data-i18n="footer.navigation.links.0.text">Accueil</a></li>
-                        <li><a href="#cv" data-i18n="footer.navigation.links.1.text">Mon CV</a></li>
-                        <li><a href="#projects" data-i18n="footer.navigation.links.2.text">Projets</a></li>
-                        <li><a href="#blog" data-i18n="footer.navigation.links.3.text">Blog & Tutos</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-links">
-                    <h4 data-i18n="footer.expertise.title">Expertises</h4>
-                    <ul>
-                        <li><a href="#services" data-i18n="footer.expertise.links.0.text">Cloud & PaaS</a></li>
-                        <li><a href="#services" data-i18n="footer.expertise.links.1.text">Automatisation</a></li>
-                        <li><a href="#services" data-i18n="footer.expertise.links.2.text">Supervision</a></li>
-                        <li><a href="#skills" data-i18n="footer.expertise.links.3.text">Compétences</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p><span data-i18n="footer.bottom.copyright">&copy; 2025 Alice Sindayigaya. Tous droits réservés.</span> | <a href="admin.html" style="color: inherit; opacity: 0.5; text-decoration: none;" title="Administration" data-i18n="footer.bottom.admin">Admin</a></p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="backToTop" data-i18n-aria="common.buttons.backToTop" aria-label="Retour en haut de la page">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-
-    <!-- Modal Blog Detail -->
-    <div id="blogModal" class="modal blog-modal" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="modal-overlay"></div>
-        <div class="modal-content blog-detail">
-            <button class="modal-close" aria-label="Fermer le modal">
-                <i class="fas fa-times"></i>
-            </button>
-
-            <article class="tutorial-content">
-                <header class="tutorial-header">
-                    <div class="tutorial-meta">
-                        <span class="category-badge"></span>
-                        <span class="read-time">
-                            <i class="fas fa-clock"></i> <span class="read-time-value"></span> min
-                        </span>
-                        <span class="views">
-                            <i class="fas fa-eye"></i> <span class="views-value"></span> vues
-                        </span>
-                        <span class="published-date">
-                            <i class="fas fa-calendar"></i> <span class="date-value"></span>
-                        </span>
-                    </div>
-                    <h1 class="tutorial-title"></h1>
-                    <p class="tutorial-excerpt"></p>
-                    <div class="tutorial-tags"></div>
-                </header>
-
-                <div class="tutorial-body markdown-content">
-                    <!-- Markdown rendu ici -->
-                </div>
-
-                <footer class="tutorial-footer">
-                    <div class="tutorial-navigation">
-                        <button class="btn-nav btn-prev" disabled>
-                            <i class="fas fa-chevron-left"></i>
-                            <span data-i18n="blog.previous">Article précédent</span>
-                        </button>
-                        <button class="btn-nav btn-next">
-                            <span data-i18n="blog.next">Article suivant</span>
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </footer>
-            </article>
-        </div>
+      </div>
     </div>
+  </header>
 
-    <!-- Scripts -->
-    <!-- I18n System (Bundle) - Doit être chargé en premier -->
-    <script src="js/i18n-bundle.js?v=4.0.0"></script>
+  <!-- ═══════════════════ HERO ═══════════════════ -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="container">
+      <div class="hero-content">
 
-    <!-- GSAP Core + Plugins (CDN) -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+        <div class="hero-text">
+          <span class="hero-label">
+            <i class="fas fa-terminal"></i>
+            <span>DevOps Architect · SRE · Platform Engineering</span>
+          </span>
 
-    <!-- SplitType pour animations texte -->
-    <script src="https://unpkg.com/split-type"></script>
+          <h1 class="hero-title">
+            <span class="hero-greeting">Bonjour, je suis</span>
+            <span class="gradient-text">Alice Sindayigaya</span>
+          </h1>
 
-    <!-- Vanilla-tilt pour effets 3D -->
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.8.1/dist/vanilla-tilt.min.js"></script>
+          <p class="hero-description" id="heroDesc">
+            Architecte Cloud passionnée | Kubernetes &amp; Terraform
+          </p>
 
-    <!-- Portfolio Scripts -->
-    <script src="js/theme-switcher.js"></script>
-    <script src="js/canvas-effects.js"></script>
-    <script src="js/hero-variants.js"></script>
-    <script src="js/micro-interactions.js"></script>
-    <script src="js/parallax-layers.js"></script>
-    <script src="js/scroll-reveals.js"></script>
-    <script src="js/performance-monitor.js"></script>
-    <script src="js/data.js"></script>
-    <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
+          <div class="hero-cta">
+            <a href="#cv" class="btn btn-primary">
+              <span data-i18n="hero.cta.cv">Découvrir mon CV</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              <span data-i18n="hero.cta.projects">Mes Projets</span>
+            </a>
+            <a href="#blog" class="btn btn-outline">
+              <i class="fas fa-book-open"></i>
+              <span data-i18n="hero.cta.blog">Blog & Tutos</span>
+            </a>
+          </div>
 
-    <!-- SVG Workaround pour extensions bloquant fichiers locaux (AdBlock, uBlock, etc.) -->
-    <script src="js/svg-loader-workaround.js"></script>
+          <div class="scroll-indicator">
+            <span data-i18n="hero.scrollIndicator">Défiler</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+        </div>
 
-    <!-- Blog Script -->
-    <script src="js/blog.js?v=2.0.0" type="module"></script>
+        <!-- Cartes flottantes droite -->
+        <div class="hero-cards">
+          <div class="hero-card reveal reveal-delay-1">
+            <div class="card-icon"><i class="fas fa-cloud"></i></div>
+            <div>
+              <h3 data-i18n="hero.cards.cloud.title">Cloud</h3>
+              <p data-i18n="hero.cards.cloud.description">AWS, GCP, Kubernetes</p>
+            </div>
+          </div>
+          <div class="hero-card reveal reveal-delay-2">
+            <div class="card-icon"><i class="fas fa-cogs"></i></div>
+            <div>
+              <h3 data-i18n="hero.cards.automation.title">Automatisation</h3>
+              <p data-i18n="hero.cards.automation.description">Ansible, Terraform, CI/CD</p>
+            </div>
+          </div>
+          <div class="hero-card reveal reveal-delay-3">
+            <div class="card-icon"><i class="fas fa-chart-bar"></i></div>
+            <div>
+              <h3 data-i18n="hero.cards.monitoring.title">Supervision</h3>
+              <p data-i18n="hero.cards.monitoring.description">ELK, Grafana, Prometheus</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ ABOUT ═══════════════════ -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-image reveal">
+          <div class="image-wrapper">
+            <picture>
+              <source srcset="images/api-coding.webp" type="image/webp">
+              <img src="images/api-coding.gif"
+                   alt="Ingénieure DevOps en développement cloud"
+                   loading="lazy" width="600" height="400">
+            </picture>
+          </div>
+        </div>
+        <div class="about-text reveal reveal-delay-1">
+          <span class="section-label" data-i18n="about.label">À propos de moi</span>
+          <h2 class="section-title" data-i18n="about.title">
+            Ingénieure DevOps passionnée par l'automatisation et le cloud
+          </h2>
+          <p class="section-description">
+            Ingénieure DevOps/SRE avec 10+ ans d'expérience dans des environnements critiques.
+            Actuellement Responsable de Plateforme chez Cegedim Cloud, je pilote bout-en-bout
+            les plateformes PaaS OpenSearch et MongoDB — de l'architecture à la documentation,
+            avec DevSecOps intégré (Trivy, Vault, SBOM/SLSA).
+          </p>
+          <p class="section-description">
+            Créatrice de <strong style="color:var(--primary)">alice-in-prodland</strong> — marque de
+            produits digitaux DevOps/SRE (guides CKA bilingues, prompt packs IA, scripts Kubernetes)
+            distribués sur Gumroad et TikTok. Nationalité française, éligible habilitation II 901.
+          </p>
+          <div class="stats">
+            <div class="stat-item">
+              <span class="stat-number">10+</span>
+              <span class="stat-label">Années DevOps</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">15+</span>
+              <span class="stat-label">Années IT</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-number">6</span>
+              <span class="stat-label">Entreprises</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CV ═══════════════════ -->
+  <section class="cv-section" id="cv">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label" data-i18n="cv.label">Parcours Professionnel</span>
+        <h2 class="section-title" data-i18n="cv.title">Mon CV</h2>
+        <p class="section-description" data-i18n="cv.description">
+          Plus de 7 ans d'expérience en DevOps et Cloud Engineering
+        </p>
+      </div>
+
+      <div class="cv-grid">
+        <!-- Expériences -->
+        <div class="cv-column reveal">
+          <h3 class="cv-column-title">
+            <i class="fas fa-briefcase"></i>
+            <span data-i18n="cv.experience.title">Expériences Professionnelles</span>
+          </h3>
+          <div class="cv-timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">Janv. 2024 → Présent</div>
+              <div class="timeline-content">
+                <h4>Ingénieure DevOps — Responsable de plateforme</h4>
+                <p class="company">Cegedim.cloud · Labège (CDI)</p>
+                <ul>
+                  <li>Pilotage PaaS OpenSearch & MongoDB — architecture, déploiement, exploitation 24/7</li>
+                  <li>MongoDB 8.0 Ops Manager HA : replica sets, sharding, sauvegardes PBM vs Rubrik</li>
+                  <li>Pipelines GitLab CI/CD full-IaC (Terraform + Ansible) avec DevSecOps : Trivy, Vault, SBOM/SLSA</li>
+                  <li>Observabilité Prometheus / Grafana / Loki — alerting vers Zoom Chat via webhooks</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Sept. 2021 → Déc. 2023</div>
+              <div class="timeline-content">
+                <h4>Ingénieure DevOps — Plateforme ELK / Mission Critical</h4>
+                <p class="company">Inetum · Mission Airbus DS/Geo · Toulouse (CDI)</p>
+                <ul>
+                  <li>Exploitation plateforme de logs Mission Critical ELK — incidents P1/P2 en autonomie</li>
+                  <li>Automatisation complète : Ansible, Terraform, Python, Bash</li>
+                  <li>Supervision multi-niveaux : Centreon, Grafana, Prometheus (17 checks documentés)</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Avr. 2021 → Sept. 2021</div>
+              <div class="timeline-content">
+                <h4>Ingénieure DevOps — CI/CD</h4>
+                <p class="company">Neosoft · Mission BPCE-IT · Toulouse (CDI)</p>
+                <ul>
+                  <li>Déploiement chaîne CI/CD (GitLab, SonarQube, Artifactory, Jenkins) pour SI bancaire</li>
+                  <li>Support et formation des équipes développement à l'adoption des pipelines</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Nov. 2018 → Avr. 2021</div>
+              <div class="timeline-content">
+                <h4>Ingénieure DevOps — Infrastructure & Cybersécurité</h4>
+                <p class="company">CTS IT · Toulouse (CDI)</p>
+                <ul>
+                  <li>Supervision réseau & cybersécurité : Spectrum, Centreon, Nagios, AWS, OpenShift</li>
+                  <li>Automatisation déploiements Cisco via Ansible, GitLab CI et Kubernetes</li>
+                  <li>Développement d'outils Python de contrôle de conformité réseau</li>
+                </ul>
+              </div>
+            </div>
+            <div class="timeline-summary">
+              <div class="summary-content">
+                <span class="summary-years">2009 — 2018</span>
+                <span class="summary-text">Airbus Operations (stage Flask/DevOps) · SOGEA-SATOM Burundi (Resp. IT, 6 techniciens)</span>
+                <span class="summary-tags">
+                  <span class="mini-tag">Python / Flask</span>
+                  <span class="mini-tag">Management IT</span>
+                  <span class="mini-tag">GitLab · Jenkins</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Formation -->
+        <div class="cv-column reveal reveal-delay-1">
+          <h3 class="cv-column-title">
+            <i class="fas fa-graduation-cap"></i>
+            <span data-i18n="cv.education.title">Formation</span>
+          </h3>
+          <div class="cv-timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">2015 — 2018</div>
+              <div class="timeline-content">
+                <h4>Master Informatique (Bac+5)</h4>
+                <p class="company">Université Clermont Auvergne</p>
+                <p class="mention">Mention Bien</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2013 — 2014</div>
+              <div class="timeline-content">
+                <h4>Licence Informatique (Bac+3)</h4>
+                <p class="company">Université Blaise Pascal · France</p>
+                <p class="mention">Mention Bien</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">2004 — 2009</div>
+              <div class="timeline-content">
+                <h4>Licence Informatique de Gestion</h4>
+                <p class="company">Université Lumière · Burundi</p>
+                <p class="mention">Mention Très Bien</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="cv-column-title" style="margin-top:2.5rem">
+            <i class="fas fa-globe"></i>
+            <span>Langues & Loisirs</span>
+          </h3>
+          <div class="cv-compact-section">
+            <div class="compact-item">
+              <i class="fas fa-language"></i>
+              <div><strong>Langues :</strong> Français (Courant), Anglais (Intermédiaire)</div>
+            </div>
+            <div class="compact-item">
+              <i class="fas fa-heart"></i>
+              <div><strong>Loisirs :</strong> Association humanitaire, Chorale Gospel, Jeux de société</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compétences -->
+      <div class="cv-skills-section reveal">
+        <h3 class="cv-section-subtitle">
+          <i class="fas fa-tools"></i> Compétences & Expertises
+        </h3>
+        <div class="skills-categories">
+          <div class="skill-category">
+            <div class="skill-category-header">
+              <i class="fas fa-cloud"></i><h4>Cloud & Infrastructure</h4>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">OpenShift</span>
+              <span class="skill-tag">AWS / GCP / Azure</span>
+              <span class="skill-tag">OpenStack</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-category-header">
+              <i class="fas fa-infinity"></i><h4>Automatisation & CI/CD</h4>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Ansible</span>
+              <span class="skill-tag">Terraform</span>
+              <span class="skill-tag">GitLab CI/CD</span>
+              <span class="skill-tag">Jenkins</span>
+              <span class="skill-tag">ArgoCD</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <div class="skill-category-header">
+              <i class="fas fa-chart-line"></i><h4>Monitoring & PaaS</h4>
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">OpenSearch</span>
+              <span class="skill-tag">ELK Stack</span>
+              <span class="skill-tag">Grafana</span>
+              <span class="skill-tag">Prometheus</span>
+              <span class="skill-tag">MongoDB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-actions reveal">
+        <a href="https://www.linkedin.com/in/alicesindayigaya" target="_blank" rel="noopener"
+           class="btn btn-primary">
+          <i class="fab fa-linkedin"></i>
+          <span>Voir sur LinkedIn</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SERVICES ═══════════════════ -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label" data-i18n="services.label">Expertises</span>
+        <h2 class="section-title" data-i18n="services.title">Domaines de compétences</h2>
+        <p class="section-description" data-i18n="services.description">
+          Solutions complètes en DevOps, Cloud et Automatisation
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon"><i class="fas fa-cloud"></i></div>
+          <h3 data-i18n="services.items.0.title">Architecture Cloud</h3>
+          <p data-i18n="services.items.0.description">
+            Conception et déploiement d'environnements cloud modernes, scalables et sécurisés
+            sur AWS, GCP et OpenStack.
+          </p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> <span>Kubernetes & OpenShift</span></li>
+            <li><i class="fas fa-check"></i> <span>Plateformes PaaS</span></li>
+            <li><i class="fas fa-check"></i> <span>Infrastructure as Code</span></li>
+          </ul>
+        </div>
+        <div class="service-card featured reveal reveal-delay-1">
+          <div class="featured-badge" data-i18n="services.items.1.badge">Spécialité</div>
+          <div class="service-icon"><i class="fas fa-cogs"></i></div>
+          <h3 data-i18n="services.items.1.title">Automatisation & CI/CD</h3>
+          <p data-i18n="services.items.1.description">
+            Mise en place de pipelines CI/CD complets avec automatisation du déploiement
+            et de la configuration.
+          </p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> <span>GitLab, Jenkins, Artifactory</span></li>
+            <li><i class="fas fa-check"></i> <span>Ansible & Terraform</span></li>
+            <li><i class="fas fa-check"></i> <span>Scripts Python & Bash</span></li>
+          </ul>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+          <h3 data-i18n="services.items.2.title">Supervision & Monitoring</h3>
+          <p data-i18n="services.items.2.description">
+            Implémentation de solutions de supervision complètes pour garantir la performance
+            et la disponibilité.
+          </p>
+          <ul class="service-features">
+            <li><i class="fas fa-check"></i> <span>ELK Stack & OpenSearch</span></li>
+            <li><i class="fas fa-check"></i> <span>Grafana & Prometheus</span></li>
+            <li><i class="fas fa-check"></i> <span>Centreon & Loki</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ PROJECTS ═══════════════════ -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label" data-i18n="projects.label">Réalisations</span>
+        <h2 class="section-title" data-i18n="projects.title">Projets & Cas d'Usage</h2>
+        <p class="section-description" data-i18n="projects.description">
+          Architectures Cloud, Automatisations et Plateformes que j'ai conçues et déployées
+        </p>
+      </div>
+      <div class="project-filters reveal">
+        <button class="filter-btn active" data-filter="all">
+          <i class="fas fa-th"></i> <span>Tous</span>
+        </button>
+        <button class="filter-btn" data-filter="saas">
+          <i class="fas fa-rocket"></i> <span>SaaS</span>
+        </button>
+        <button class="filter-btn" data-filter="ia">
+          <i class="fas fa-brain"></i> <span>IA</span>
+        </button>
+        <button class="filter-btn" data-filter="web">
+          <i class="fas fa-globe"></i> <span>Web</span>
+        </button>
+        <button class="filter-btn" data-filter="devops">
+          <i class="fas fa-server"></i> <span>DevOps</span>
+        </button>
+      </div>
+      <div class="projects-grid" id="projectsGrid">
+        <div class="loading-spinner">
+          <div class="spinner"></div><span>Chargement des projets…</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SKILLS ═══════════════════ -->
+  <section class="skills" id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label" data-i18n="skills.label">Compétences</span>
+        <h2 class="section-title" data-i18n="skills.title">Technologies & Outils</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category reveal">
+          <h3><i class="fas fa-cloud"></i> <span>Cloud & Infrastructure</span></h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Kubernetes</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">GCP</span>
+            <span class="skill-tag">OpenShift</span>
+            <span class="skill-tag">OpenStack</span>
+            <span class="skill-tag">Docker</span>
+          </div>
+        </div>
+        <div class="skill-category reveal reveal-delay-1">
+          <h3><i class="fas fa-cogs"></i> <span>Automatisation & IaC</span></h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Ansible</span>
+            <span class="skill-tag">Terraform</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Bash</span>
+            <span class="skill-tag">GitLab CI/CD</span>
+            <span class="skill-tag">ArgoCD</span>
+          </div>
+        </div>
+        <div class="skill-category reveal reveal-delay-2">
+          <h3><i class="fas fa-chart-bar"></i> <span>Monitoring & PaaS</span></h3>
+          <div class="skill-tags">
+            <span class="skill-tag">OpenSearch</span>
+            <span class="skill-tag">ELK Stack</span>
+            <span class="skill-tag">Grafana</span>
+            <span class="skill-tag">Prometheus</span>
+            <span class="skill-tag">Loki</span>
+            <span class="skill-tag">MongoDB</span>
+          </div>
+        </div>
+        <div class="skill-category reveal">
+          <h3><i class="fas fa-code"></i> <span>Développement Web</span></h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Next.js</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Tailwind CSS</span>
+            <span class="skill-tag">Prisma</span>
+          </div>
+        </div>
+        <div class="skill-category reveal reveal-delay-1">
+          <h3><i class="fas fa-brain"></i> <span>IA & APIs</span></h3>
+          <div class="skill-tags">
+            <span class="skill-tag">OpenAI GPT-4</span>
+            <span class="skill-tag">Anthropic Claude</span>
+            <span class="skill-tag">ElevenLabs</span>
+            <span class="skill-tag">Whisper</span>
+            <span class="skill-tag">Supabase</span>
+            <span class="skill-tag">Stripe</span>
+          </div>
+        </div>
+        <div class="skill-category reveal reveal-delay-2">
+          <h3><i class="fas fa-database"></i> <span>Bases de Données</span></h3>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">Redis</span>
+            <span class="skill-tag">Elasticsearch</span>
+            <span class="skill-tag">Supabase</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ BLOG ═══════════════════ -->
+  <section class="blog-section" id="blog">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label" data-i18n="blog.label">Partage de Connaissances</span>
+        <h2 class="section-title" data-i18n="blog.title">Blog & Tutoriels</h2>
+        <p class="section-description" data-i18n="blog.description">
+          Articles techniques, guides pratiques et retours d'expérience DevOps & Cloud
+        </p>
+      </div>
+
+      <div class="blog-search">
+        <input type="search" id="blogSearch" class="search-input"
+               placeholder="Rechercher un article…" aria-label="Rechercher un article">
+        <i class="fas fa-search search-icon"></i>
+      </div>
+
+      <div class="blog-categories">
+        <button class="category-btn active" data-category="all">
+          <i class="fas fa-grip-horizontal"></i> Tous
+        </button>
+        <button class="category-btn" data-category="DevOps">
+          <i class="fas fa-infinity"></i> DevOps
+        </button>
+        <button class="category-btn" data-category="Cloud">
+          <i class="fas fa-cloud"></i> Cloud
+        </button>
+        <button class="category-btn" data-category="Kubernetes">
+          <i class="fas fa-dharmachakra"></i> Kubernetes
+        </button>
+        <button class="category-btn" data-category="CI/CD">
+          <i class="fas fa-sync-alt"></i> CI/CD
+        </button>
+        <button class="category-btn" data-category="Terraform">
+          <i class="fas fa-code-branch"></i> Terraform
+        </button>
+        <button class="category-btn" data-category="Ansible">
+          <i class="fas fa-server"></i> Ansible
+        </button>
+        <button class="category-btn" data-category="Monitoring">
+          <i class="fas fa-chart-line"></i> Monitoring
+        </button>
+      </div>
+
+      <div class="blog-grid" id="blogGrid">
+        <div class="loading-spinner" style="grid-column:1/-1">
+          <div class="spinner"></div><span>Chargement des articles…</span>
+        </div>
+      </div>
+
+      <div class="blog-cta">
+        <p class="blog-cta-text" data-i18n="blog.cta.text">
+          Articles techniques à venir — suivez l'actualité sur LinkedIn !
+        </p>
+        <a href="https://www.linkedin.com/in/alicesindayigaya" target="_blank" rel="noopener"
+           class="btn btn-primary">
+          <i class="fab fa-linkedin"></i>
+          <span>Suivez-moi sur LinkedIn</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FOOTER ═══════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <h3>Alice Sindayigaya</h3>
+          <p>Ingénieure DevOps spécialisée en Cloud, Automatisation et Supervision.
+             Passionnée par la création d'infrastructures modernes et scalables.</p>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/alicesindayigaya" target="_blank" rel="noopener"
+               aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/asinda" target="_blank" rel="noopener"
+               aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:alicesindayigaya@gmail.com" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#home">Accueil</a></li>
+            <li><a href="#cv">Mon CV</a></li>
+            <li><a href="#projects">Projets</a></li>
+            <li><a href="#blog">Blog & Tutos</a></li>
+          </ul>
+        </div>
+        <div class="footer-links">
+          <h4>Expertises</h4>
+          <ul>
+            <li><a href="#services">Cloud & PaaS</a></li>
+            <li><a href="#services">Automatisation</a></li>
+            <li><a href="#services">Supervision</a></li>
+            <li><a href="#skills">Compétences</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Alice Sindayigaya · Tous droits réservés.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="Retour en haut">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- ═══════════════════ MODAL BLOG ═══════════════════ -->
+  <div id="blogModal" class="modal" aria-hidden="true" role="dialog" aria-modal="true"
+       aria-labelledby="modalTitle">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose" aria-label="Fermer">
+        <i class="fas fa-times"></i>
+      </button>
+      <article class="tutorial-content">
+        <header class="tutorial-header">
+          <div class="tutorial-meta">
+            <span class="category-badge"></span>
+            <span class="read-time">
+              <i class="fas fa-clock"></i> <span class="read-time-value"></span> min
+            </span>
+            <span class="views">
+              <i class="fas fa-eye"></i> <span class="views-value"></span> vues
+            </span>
+            <span class="published-date">
+              <i class="fas fa-calendar-alt"></i> <span class="date-value"></span>
+            </span>
+          </div>
+          <h1 class="tutorial-title" id="modalTitle"></h1>
+          <p class="tutorial-excerpt"></p>
+          <div class="tutorial-tags"></div>
+        </header>
+        <div class="tutorial-body markdown-content"></div>
+        <footer class="tutorial-footer">
+          <div class="tutorial-navigation">
+            <button class="btn-nav btn-prev" disabled>
+              <i class="fas fa-chevron-left"></i> Article précédent
+            </button>
+            <button class="btn-nav btn-next">
+              Article suivant <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </footer>
+      </article>
+    </div>
+  </div>
+
+  <!-- ═══════════════════ SCRIPTS ═══════════════════ -->
+  <!-- i18n en premier (synchrone) -->
+  <script src="js/i18n-bundle.js?v=4.0.0"></script>
+  <!-- Données statiques de fallback -->
+  <script src="js/apiConfig.js"></script>
+  <script src="js/data.js"></script>
+  <!-- App consolidée (async, DOMContentLoaded) -->
+  <script src="js/app.js?v=1.0.0" defer></script>
+
 </body>
 </html>
-<!-- Trigger deploy sam.  8 nov. 2025 15:36:54 -->

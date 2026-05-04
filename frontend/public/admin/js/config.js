@@ -36,6 +36,9 @@ window.SupabaseConfig = {
         SKILLS_LANGUAGES: 'skills_languages',
         SKILLS_SOFT: 'skills_soft',
         CERTIFICATIONS: 'certifications',
+        BLOG_POSTS: 'blog_posts',
+        BLOG_COMMENTS: 'blog_comments',
+        BLOG_TAGS: 'blog_tags',
         MEDIA: 'media'
     },
     STORAGE_BUCKETS: {

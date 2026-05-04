@@ -909,3 +909,120 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
+
+/* ===================================
+   Badges de statut
+   =================================== */
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-right: 8px;
+}
+
+.badge-success {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--admin-success);
+}
+
+.badge-warning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--admin-warning);
+}
+
+.badge-danger {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--admin-danger);
+}
+
+.badge-secondary {
+    background-color: rgba(100, 116, 139, 0.1);
+    color: var(--admin-text-secondary);
+}
+
+/* ===================================
+   Groupes de filtres
+   =================================== */
+.filter-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.filter-select {
+    padding: 8px 16px;
+    border: 1px solid var(--admin-border);
+    border-radius: 8px;
+    font-size: 0.875rem;
+    color: var(--admin-text);
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-select:hover {
+    border-color: var(--admin-primary);
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--admin-primary);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* ===================================
+   Section actions améliorées
+   =================================== */
+.section-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* ===================================
+   Modal agrandi pour éditeur Markdown
+   =================================== */
+.modal-content {
+    max-width: 900px;
+}
+
+#postContent,
+#postExcerpt {
+    font-family: 'Courier New', monospace;
+    resize: vertical;
+}
+
+/* ===================================
+   Responsive pour nouveaux éléments
+   =================================== */
+@media (max-width: 768px) {
+    .filter-group {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .filter-select {
+        width: 100%;
+    }
+
+    .section-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .section-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

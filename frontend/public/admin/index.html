@@ -79,6 +79,12 @@
                 <a href="#certifications" class="nav-item" data-section="certifications">
                     <i class="fas fa-certificate"></i> Certifications
                 </a>
+                <a href="#blog" class="nav-item" data-section="blog">
+                    <i class="fas fa-blog"></i> Blog & Articles
+                </a>
+                <a href="#comments" class="nav-item" data-section="comments">
+                    <i class="fas fa-comments"></i> Commentaires
+                </a>
                 <a href="#media" class="nav-item" data-section="media">
                     <i class="fas fa-images"></i> Médias
                 </a>
@@ -119,6 +125,16 @@
                             <p>Projets</p>
                         </div>
                         <div class="stat-card">
+                            <i class="fas fa-blog"></i>
+                            <h3 id="statsBlogPosts">0</h3>
+                            <p>Articles Blog</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-comments"></i>
+                            <h3 id="statsComments">0</h3>
+                            <p>Commentaires</p>
+                        </div>
+                        <div class="stat-card">
                             <i class="fas fa-code"></i>
                             <h3 id="statsSkills">0</h3>
                             <p>Compétences</p>
@@ -141,7 +157,9 @@
                                 <li><strong>Projets</strong> : Portfolio de projets</li>
                                 <li><strong>Compétences</strong> : Compétences techniques et interpersonnelles</li>
                                 <li><strong>Certifications</strong> : Certifications et réalisations</li>
-                                <li><strong>Médias</strong> : Gestion des images</li>
+                                <li><strong>Blog & Articles</strong> : Gestion des articles techniques et tutoriels</li>
+                                <li><strong>Commentaires</strong> : Modération des commentaires sur les articles</li>
+                                <li><strong>Médias</strong> : Gestion des images et fichiers</li>
                             </ul>
                         </div>
                     </div>
@@ -276,6 +294,54 @@
                         </button>
                     </div>
                     <div id="certificationsList" class="items-list"></div>
+                </section>
+
+                <!-- Blog & Articles -->
+                <section class="content-section" id="section-blog">
+                    <div class="section-actions">
+                        <button class="btn btn-primary" id="addBlogPostBtn">
+                            <i class="fas fa-plus"></i> Nouvel article
+                        </button>
+                        <div class="filter-group">
+                            <select id="blogStatusFilter" class="filter-select">
+                                <option value="all">Tous les statuts</option>
+                                <option value="published">Publiés</option>
+                                <option value="draft">Brouillons</option>
+                                <option value="archived">Archivés</option>
+                            </select>
+                            <select id="blogCategoryFilter" class="filter-select">
+                                <option value="all">Toutes catégories</option>
+                                <option value="DevOps">DevOps</option>
+                                <option value="Cloud">Cloud</option>
+                                <option value="Kubernetes">Kubernetes</option>
+                                <option value="Terraform">Terraform</option>
+                                <option value="Ansible">Ansible</option>
+                                <option value="CI/CD">CI/CD</option>
+                                <option value="Monitoring">Monitoring</option>
+                                <option value="Automation">Automation</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="blogPostsList" class="items-list"></div>
+                </section>
+
+                <!-- Commentaires -->
+                <section class="content-section" id="section-comments">
+                    <div class="section-actions">
+                        <button class="btn btn-success" id="approveAllBtn">
+                            <i class="fas fa-check-double"></i> Tout approuver
+                        </button>
+                        <div class="filter-group">
+                            <select id="commentsStatusFilter" class="filter-select">
+                                <option value="all">Tous</option>
+                                <option value="pending">En attente</option>
+                                <option value="approved">Approuvés</option>
+                                <option value="spam">Spam</option>
+                                <option value="rejected">Rejetés</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div id="commentsList" class="items-list"></div>
                 </section>
 
                 <!-- Médias -->
