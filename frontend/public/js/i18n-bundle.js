@@ -82,23 +82,13 @@ const translationsFR = {
     about: {
         label: "À propos de moi",
         title: "Ingénieure DevOps passionnée par l'automatisation et le cloud",
-        paragraphs: [
-            "Passionnée par l'innovation et l'excellence technique, j'ai développé une expertise solide en DevOps et Cloud Engineering à travers des expériences enrichissantes. Actuellement Responsable de Plateforme chez Cegedim Cloud, je conçois et optimise des architectures PaaS haute performance sur OpenSearch et MongoDB.",
-            "Mon approche combine rigueur technique, vision stratégique et passion pour l'automatisation. J'aime relever des défis complexes, partager mes connaissances et contribuer à l'évolution des pratiques DevOps dans l'écosystème tech."
-        ],
+        p1: "Ingénieure DevOps/SRE avec 10+ ans d'expérience dans des environnements critiques. Actuellement Responsable de Plateforme chez Cegedim Cloud, je pilote bout-en-bout les plateformes PaaS OpenSearch et MongoDB — de l'architecture à la documentation, avec DevSecOps intégré (Trivy, Vault, SBOM/SLSA).",
+        p2a: "Créatrice de ",
+        p2b: " — marque de produits digitaux DevOps/SRE (guides CKA bilingues, prompt packs IA, scripts Kubernetes) distribués sur Gumroad et TikTok. Nationalité française, éligible habilitation II 901.",
         stats: {
-            devops: {
-                number: "7+",
-                label: "Années DevOps"
-            },
-            it: {
-                number: "15+",
-                label: "Années IT"
-            },
-            companies: {
-                number: "5",
-                label: "Entreprises"
-            }
+            devops: "Années DevOps",
+            it: "Années IT",
+            companies: "Entreprises"
         },
         imageAlt: "Ingénieure DevOps spécialisée en développement d'API et programmation cloud"
     },
@@ -212,6 +202,58 @@ const translationsFR = {
             ]
         },
 
+        exp1: {
+            date: "Janv. 2024 → Présent",
+            title: "Ingénieure DevOps — Responsable de plateforme",
+            company: "Cegedim.cloud · Labège (CDI)",
+            t1: "Pilotage PaaS OpenSearch & MongoDB — architecture, déploiement, exploitation 24/7",
+            t2: "MongoDB 8.0 Ops Manager HA : replica sets, sharding, sauvegardes PBM vs Rubrik",
+            t3: "Pipelines GitLab CI/CD full-IaC (Terraform + Ansible) avec DevSecOps : Trivy, Vault, SBOM/SLSA",
+            t4: "Observabilité Prometheus / Grafana / Loki — alerting vers Zoom Chat via webhooks"
+        },
+        exp2: {
+            date: "Sept. 2021 → Déc. 2023",
+            title: "Ingénieure DevOps — Plateforme ELK / Mission Critical",
+            company: "Inetum · Mission Airbus DS/Geo · Toulouse (CDI)",
+            t1: "Exploitation plateforme de logs Mission Critical ELK — incidents P1/P2 en autonomie",
+            t2: "Automatisation complète : Ansible, Terraform, Python, Bash",
+            t3: "Supervision multi-niveaux : Centreon, Grafana, Prometheus (17 checks documentés)"
+        },
+        exp3: {
+            date: "Avr. 2021 → Sept. 2021",
+            title: "Ingénieure DevOps — CI/CD",
+            company: "Neosoft · Mission BPCE-IT · Toulouse (CDI)",
+            t1: "Déploiement chaîne CI/CD (GitLab, SonarQube, Artifactory, Jenkins) pour SI bancaire",
+            t2: "Support et formation des équipes développement à l'adoption des pipelines"
+        },
+        exp4: {
+            date: "Nov. 2018 → Avr. 2021",
+            title: "Ingénieure DevOps — Infrastructure & Cybersécurité",
+            company: "CTS IT · Toulouse (CDI)",
+            t1: "Supervision réseau & cybersécurité : Spectrum, Centreon, Nagios, AWS, OpenShift",
+            t2: "Automatisation déploiements Cisco via Ansible, GitLab CI et Kubernetes",
+            t3: "Développement d'outils Python de contrôle de conformité réseau"
+        },
+        summary: {
+            text: "Airbus Operations (stage Flask/DevOps) · SOGEA-SATOM Burundi (Resp. IT, 6 techniciens)",
+            tag2: "Management IT"
+        },
+        edu1: { degree: "Master Informatique (Bac+5)", mention: "Mention Bien" },
+        edu2: { degree: "Licence Informatique (Bac+3)", mention: "Mention Bien" },
+        edu3: { degree: "Licence Informatique de Gestion", mention: "Mention Très Bien" },
+        langs: {
+            title: "Langues & Loisirs",
+            langLabel: "Langues :",
+            langValue: "Français (Courant), Anglais (Intermédiaire)",
+            hobbiesLabel: "Loisirs :",
+            hobbiesValue: "Association humanitaire, Chorale Gospel, Jeux de société"
+        },
+        skills: {
+            title: "Compétences & Expertises",
+            cat1: "Cloud & Infrastructure",
+            cat2: "Automatisation & CI/CD",
+            cat3: "Monitoring & PaaS"
+        },
         actions: {
             linkedinButton: "Voir sur LinkedIn"
         }
@@ -284,39 +326,12 @@ const translationsFR = {
     skills: {
         label: "Compétences",
         title: "Technologies & Outils",
-
-        categories: [
-            {
-                icon: "fa-cloud",
-                title: "Plateformes Cloud",
-                skills: ["Kubernetes", "AWS", "GCP", "OpenShift", "OpenStack"]
-            },
-            {
-                icon: "fa-cogs",
-                title: "Automatisation",
-                skills: ["Ansible", "Terraform", "Python", "Bash", "Java", "PHP"]
-            },
-            {
-                icon: "fa-chart-bar",
-                title: "Supervision",
-                skills: ["OpenSearch", "ELK Stack", "Grafana", "Prometheus", "Centreon", "Loki"]
-            },
-            {
-                icon: "fa-sync-alt",
-                title: "CI/CD",
-                skills: ["GitLab", "Jenkins", "Sonar", "Artifactory", "Docker"]
-            },
-            {
-                icon: "fa-database",
-                title: "Bases de Données",
-                skills: ["MongoDB", "OpenSearch", "Elasticsearch", "PostgreSQL"]
-            },
-            {
-                icon: "fa-network-wired",
-                title: "Réseau & Cybersécurité",
-                skills: ["Spectrum", "Nagios", "Cisco"]
-            }
-        ]
+        cat1: "Cloud & Infrastructure",
+        cat2: "Automatisation & IaC",
+        cat3: "Monitoring & PaaS",
+        cat4: "Développement Web",
+        cat5: "IA & APIs",
+        cat6: "Bases de Données"
     },
 
     // ============================================
@@ -418,8 +433,22 @@ const translationsFR = {
             ]
         },
 
+        brand: {
+            description: "Ingénieure DevOps spécialisée en Cloud, Automatisation et Supervision. Passionnée par la création d'infrastructures modernes et scalables."
+        },
+        nav: {
+            title: "Navigation",
+            cv: "Mon CV"
+        },
+        expertise: {
+            title: "Expertises",
+            l1: "Cloud & PaaS",
+            l2: "Automatisation",
+            l3: "Supervision",
+            l4: "Compétences"
+        },
         bottom: {
-            copyright: "© 2025 Alice Sindayigaya. Tous droits réservés.",
+            copyright: "© 2025 Alice Sindayigaya · Tous droits réservés.",
             admin: "Admin"
         },
 
@@ -568,26 +597,16 @@ const translationsEN = {
     // ============================================
     about: {
         label: "About Me",
-        title: "DevOps Engineer passionate about automation and cloud",
-        paragraphs: [
-            "Passionate about innovation and technical excellence, I have developed solid expertise in DevOps and Cloud Engineering through enriching experiences. Currently Platform Manager at Cegedim Cloud, I design and optimize high-performance PaaS architectures on OpenSearch and MongoDB.",
-            "My approach combines technical rigor, strategic vision, and passion for automation. I enjoy tackling complex challenges, sharing knowledge, and contributing to the evolution of DevOps practices in the tech ecosystem."
-        ],
+        title: "DevOps/SRE Engineer passionate about automation and cloud",
+        p1: "DevOps/SRE Engineer with 10+ years of experience in critical environments. Currently Platform Manager at Cegedim Cloud, I drive end-to-end PaaS platforms for OpenSearch and MongoDB — from architecture to documentation, with integrated DevSecOps (Trivy, Vault, SBOM/SLSA).",
+        p2a: "Creator of ",
+        p2b: " — a digital DevOps/SRE product brand (bilingual CKA guides, AI prompt packs, Kubernetes scripts) distributed on Gumroad and TikTok. French national, eligible for security clearance II 901.",
         stats: {
-            devops: {
-                number: "7+",
-                label: "Years DevOps"
-            },
-            it: {
-                number: "15+",
-                label: "Years IT"
-            },
-            companies: {
-                number: "5",
-                label: "Companies"
-            }
+            devops: "Years DevOps",
+            it: "Years IT",
+            companies: "Companies"
         },
-        imageAlt: "DevOps Engineer specialized in API development and cloud programming"
+        imageAlt: "DevOps/SRE Engineer specialized in cloud infrastructure and platform engineering"
     },
 
     // ============================================
@@ -699,6 +718,58 @@ const translationsEN = {
             ]
         },
 
+        exp1: {
+            date: "Jan. 2024 → Present",
+            title: "DevOps Engineer — Platform Manager",
+            company: "Cegedim.cloud · Labège (Permanent)",
+            t1: "PaaS management for OpenSearch & MongoDB — architecture, deployment, 24/7 operations",
+            t2: "MongoDB 8.0 Ops Manager HA: replica sets, sharding, PBM vs Rubrik backups",
+            t3: "GitLab CI/CD full-IaC pipelines (Terraform + Ansible) with DevSecOps: Trivy, Vault, SBOM/SLSA",
+            t4: "Prometheus / Grafana / Loki observability — alerting via Zoom Chat webhooks"
+        },
+        exp2: {
+            date: "Sep. 2021 → Dec. 2023",
+            title: "DevOps Engineer — ELK Platform / Mission Critical",
+            company: "Inetum · Airbus DS/Geo Mission · Toulouse (Permanent)",
+            t1: "Mission Critical ELK log platform operations — autonomous P1/P2 incident handling",
+            t2: "Full automation: Ansible, Terraform, Python, Bash",
+            t3: "Multi-level monitoring: Centreon, Grafana, Prometheus (17 documented checks)"
+        },
+        exp3: {
+            date: "Apr. 2021 → Sep. 2021",
+            title: "DevOps Engineer — CI/CD",
+            company: "Neosoft · BPCE-IT Mission · Toulouse (Permanent)",
+            t1: "CI/CD chain deployment (GitLab, SonarQube, Artifactory, Jenkins) for banking IT",
+            t2: "Dev team support and training on pipeline adoption"
+        },
+        exp4: {
+            date: "Nov. 2018 → Apr. 2021",
+            title: "DevOps Engineer — Infrastructure & Cybersecurity",
+            company: "CTS IT · Toulouse (Permanent)",
+            t1: "Network & cybersecurity monitoring: Spectrum, Centreon, Nagios, AWS, OpenShift",
+            t2: "Cisco deployment automation via Ansible, GitLab CI and Kubernetes",
+            t3: "Python tools development for network compliance checking"
+        },
+        summary: {
+            text: "Airbus Operations (Flask/DevOps internship) · SOGEA-SATOM Burundi (IT Manager, 6 technicians)",
+            tag2: "IT Management"
+        },
+        edu1: { degree: "Master's in Computer Science (Bac+5)", mention: "With Honors" },
+        edu2: { degree: "Bachelor's in Computer Science (Bac+3)", mention: "With Honors" },
+        edu3: { degree: "Bachelor's in IT Management", mention: "With High Honors" },
+        langs: {
+            title: "Languages & Hobbies",
+            langLabel: "Languages:",
+            langValue: "French (Fluent), English (Intermediate)",
+            hobbiesLabel: "Hobbies:",
+            hobbiesValue: "Humanitarian association, Gospel Choir, Board games"
+        },
+        skills: {
+            title: "Skills & Expertise",
+            cat1: "Cloud & Infrastructure",
+            cat2: "Automation & CI/CD",
+            cat3: "Monitoring & PaaS"
+        },
         actions: {
             linkedinButton: "View on LinkedIn"
         }
@@ -771,39 +842,12 @@ const translationsEN = {
     skills: {
         label: "Skills",
         title: "Technologies & Tools",
-
-        categories: [
-            {
-                icon: "fa-cloud",
-                title: "Cloud Platforms",
-                skills: ["Kubernetes", "AWS", "GCP", "OpenShift", "OpenStack"]
-            },
-            {
-                icon: "fa-cogs",
-                title: "Automation",
-                skills: ["Ansible", "Terraform", "Python", "Bash", "Java", "PHP"]
-            },
-            {
-                icon: "fa-chart-bar",
-                title: "Monitoring",
-                skills: ["OpenSearch", "ELK Stack", "Grafana", "Prometheus", "Centreon", "Loki"]
-            },
-            {
-                icon: "fa-sync-alt",
-                title: "CI/CD",
-                skills: ["GitLab", "Jenkins", "Sonar", "Artifactory", "Docker"]
-            },
-            {
-                icon: "fa-database",
-                title: "Databases",
-                skills: ["MongoDB", "OpenSearch", "Elasticsearch", "PostgreSQL"]
-            },
-            {
-                icon: "fa-network-wired",
-                title: "Network & Cybersecurity",
-                skills: ["Spectrum", "Nagios", "Cisco"]
-            }
-        ]
+        cat1: "Cloud & Infrastructure",
+        cat2: "Automation & IaC",
+        cat3: "Monitoring & PaaS",
+        cat4: "Web Development",
+        cat5: "AI & APIs",
+        cat6: "Databases"
     },
 
     // ============================================
@@ -885,28 +929,19 @@ const translationsEN = {
             description: "DevOps Engineer specialized in Cloud, Automation and Monitoring. Passionate about creating modern and scalable infrastructures."
         },
 
-        navigation: {
+        nav: {
             title: "Navigation",
-            links: [
-                { text: "Home", href: "#home" },
-                { text: "My Resume", href: "#cv" },
-                { text: "Projects", href: "#projects" },
-                { text: "Blog & Tutorials", href: "#blog" }
-            ]
+            cv: "My Resume"
         },
-
         expertise: {
             title: "Expertise",
-            links: [
-                { text: "Cloud & PaaS", href: "#services" },
-                { text: "Automation", href: "#services" },
-                { text: "Monitoring", href: "#services" },
-                { text: "Skills", href: "#skills" }
-            ]
+            l1: "Cloud & PaaS",
+            l2: "Automation",
+            l3: "Monitoring",
+            l4: "Skills"
         },
-
         bottom: {
-            copyright: "© 2025 Alice Sindayigaya. All rights reserved.",
+            copyright: "© 2025 Alice Sindayigaya · All rights reserved.",
             admin: "Admin"
         },
 
