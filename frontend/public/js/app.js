@@ -40,9 +40,8 @@ function applyLang(lang) {
   localStorage.setItem(LANG_KEY, lang);
   if (langBtn) langBtn.textContent = lang.toUpperCase();
   document.documentElement.setAttribute('lang', lang);
-  if (window.i18n?.setLocale) {
-    window.i18n.setLocale(lang);
-    window.i18n.translatePage?.();
+  if (window.i18n?.switchLanguage) {
+    window.i18n.switchLanguage(lang);
   }
   if (filteredPosts.length) renderBlog(filteredPosts);
 }

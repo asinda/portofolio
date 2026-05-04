@@ -1084,6 +1084,9 @@ const translationsEN = {
         }
 
         createSwitcher() {
+            // Le bouton #langToggle est déjà dans le HTML et géré par app.js
+            if (document.getElementById('langToggle')) return;
+
             const header = document.querySelector('.header .container');
             if (!header) return;
 
@@ -1144,11 +1147,8 @@ const translationsEN = {
             const i18n = new I18n();
             const langSwitcher = new LangSwitcher(i18n);
 
-            // Exposer globalement pour debugging
-            if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-                window.i18n = i18n;
-                window.langSwitcher = langSwitcher;
-            }
+            // Exposer globalement (requis par app.js)
+            window.i18n = i18n;
 
             console.log('✅ Système i18n initialisé avec succès');
         } catch (error) {
