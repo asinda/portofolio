@@ -4,7 +4,9 @@ const portfolioData = {
         {
             id: 1,
             title: "JobTaillor — Générateur de CV intelligent",
+            title_en: "JobTaillor — Intelligent CV Generator",
             description: "SaaS d'aide à la candidature : l'IA analyse une offre d'emploi et réécrit votre CV en mettant en avant les compétences pertinentes. Le candidat obtient un document PDF prêt à envoyer en moins de 2 minutes. Stack : Next.js 15, GPT-4, Supabase, Stripe pour les abonnements, Clerk pour l'authentification et PostHog pour le suivi des conversions.",
+            description_en: "Job application SaaS: AI analyzes a job posting and rewrites your resume highlighting relevant skills. Candidates get a ready-to-send PDF in under 2 minutes. Stack: Next.js 15, GPT-4, Supabase, Stripe for subscriptions, Clerk for authentication and PostHog for conversion tracking.",
             category: "SaaS",
             image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=80",
             technologies: ["Next.js 15", "TypeScript", "OpenAI GPT-4", "Supabase", "Stripe", "Clerk"],
@@ -13,7 +15,9 @@ const portfolioData = {
         {
             id: 2,
             title: "Klip — Studio de contenu vidéo IA",
+            title_en: "Klip — AI Video Content Studio",
             description: "SaaS qui transforme une vidéo YouTube en série de clips TikTok prêts à publier. Le pipeline importe la vidéo avec yt-dlp, la découpe via FFmpeg, génère les sous-titres avec Whisper et ajoute une voix-off ElevenLabs. Les jobs sont orchestrés par BullMQ sur Redis, les fichiers stockés sur AWS S3, et l'ensemble est exportable en ZIP depuis l'interface Next.js.",
+            description_en: "SaaS that transforms a YouTube video into a series of publish-ready TikTok clips. The pipeline imports the video with yt-dlp, splits it with FFmpeg, generates subtitles with Whisper and adds ElevenLabs voiceover. Jobs are orchestrated by BullMQ on Redis, files stored on AWS S3, exportable as ZIP from the Next.js interface.",
             category: "SaaS",
             image: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&q=80",
             technologies: ["Next.js 14", "TypeScript", "FFmpeg", "OpenAI Whisper", "ElevenLabs", "AWS S3", "BullMQ"],
@@ -22,7 +26,9 @@ const portfolioData = {
         {
             id: 3,
             title: "ijwi — Plateforme éducative multilingue IA",
+            title_en: "ijwi — Multilingual AI Educational Platform",
             description: "Application de storytelling biblique interactif pour enfants de 3 à 14 ans, disponible en 5 langues (français, anglais, kinyarwanda, suédois, swahili). Chaque histoire est accompagnée d'un chat pédagogique propulsé par Claude d'Anthropic et de quizzes adaptatifs. L'internationalisation est gérée avec next-intl et les données persistées sur Supabase.",
+            description_en: "Interactive biblical storytelling app for children aged 3–14, available in 5 languages (French, English, Kinyarwanda, Swedish, Swahili). Each story includes a pedagogical chat powered by Anthropic Claude and adaptive quizzes. Internationalization managed with next-intl, data persisted on Supabase.",
             category: "IA",
             image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80",
             technologies: ["Next.js 14", "TypeScript", "Anthropic Claude", "Supabase", "next-intl", "Tailwind CSS"],
@@ -31,7 +37,9 @@ const portfolioData = {
         {
             id: 4,
             title: "ijwi Studio — Orchestrateur de médias IA",
+            title_en: "ijwi Studio — AI Media Orchestrator",
             description: "Outil de production visuelle qui orchestre plusieurs APIs d'IA générative en parallèle pour créer illustrations et animations de scènes bibliques. Leonardo.ai produit les images fixes, Luma Dream Machine génère les vidéos et Fal.ai traite les animations. L'état global est géré par Zustand, la suite de tests couvre les flux e2e avec Playwright et les unitaires avec Vitest.",
+            description_en: "Visual production tool that orchestrates multiple generative AI APIs in parallel to create illustrations and animations of biblical scenes. Leonardo.ai produces still images, Luma Dream Machine generates videos, Fal.ai handles animations. Global state managed by Zustand, test suite covers e2e flows with Playwright and unit tests with Vitest.",
             category: "IA",
             image: "https://images.unsplash.com/photo-1655720031554-a929595ffad7?w=800&q=80",
             technologies: ["Next.js 16", "TypeScript", "Leonardo.ai", "Luma AI", "Fal.ai", "Zustand", "Playwright"],
@@ -40,7 +48,9 @@ const portfolioData = {
         {
             id: 5,
             title: "Solutions PaaS — Kubernetes & OpenSearch",
+            title_en: "PaaS Solutions — Kubernetes & OpenSearch",
             description: "Responsable de la conception et de l'opération des plateformes PaaS chez Cegedim Cloud : clusters OpenSearch multi-nœuds, bases MongoDB managées et services de messagerie. L'infrastructure haute disponibilité est provisionnée via Terraform, configurée avec Ansible et supervisée 24/7 par une stack Prometheus/Grafana avec alerting Alertmanager.",
+            description_en: "Responsible for designing and operating PaaS platforms at Cegedim Cloud: multi-node OpenSearch clusters, managed MongoDB databases and messaging services. High availability infrastructure provisioned via Terraform, configured with Ansible and monitored 24/7 by a Prometheus/Grafana stack with Alertmanager alerting.",
             category: "DevOps",
             image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&q=80",
             technologies: ["Kubernetes", "OpenSearch", "MongoDB", "Terraform", "Ansible", "Prometheus"],
@@ -49,7 +59,9 @@ const portfolioData = {
         {
             id: 6,
             title: "Pipeline CI/CD GitOps — GitLab & ArgoCD",
+            title_en: "GitOps CI/CD Pipeline — GitLab & ArgoCD",
             description: "Mise en place d'une chaîne de livraison continue GitOps pour les équipes Airbus DS. Chaque commit déclenche : build Docker, analyse SonarQube, scan de vulnérabilités Trivy, push vers Artifactory et synchronisation automatique ArgoCD sur le cluster Kubernetes cible. Les déploiements en production utilisent la stratégie blue-green pour garantir zéro interruption de service.",
+            description_en: "Implementation of a GitOps continuous delivery chain for Airbus DS teams. Each commit triggers: Docker build, SonarQube analysis, Trivy vulnerability scan, push to Artifactory and automatic ArgoCD sync on the target Kubernetes cluster. Production deployments use blue-green strategy to guarantee zero service interruption.",
             category: "DevOps",
             image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
             technologies: ["GitLab CI/CD", "ArgoCD", "Docker", "SonarQube", "Trivy", "Artifactory"],
@@ -58,7 +70,9 @@ const portfolioData = {
         {
             id: 7,
             title: "Observabilité complète — ELK, Grafana & Prometheus",
+            title_en: "Full Observability Stack — ELK, Grafana & Prometheus",
             description: "Déploiement d'une stack d'observabilité full-stack pour superviser 50+ microservices chez Inetum/Airbus Geo. Logstash centralise les logs vers Elasticsearch, Kibana expose les dashboards métiers, Prometheus scrape les métriques applicatives et Grafana unifie la visualisation. Alertmanager achemine les alertes critiques vers Slack et PagerDuty avec des règles de routage par équipe.",
+            description_en: "Deployment of a full observability stack to monitor 50+ microservices at Inetum/Airbus Geo. Logstash centralizes logs to Elasticsearch, Kibana exposes business dashboards, Prometheus scrapes application metrics and Grafana unifies visualization. Alertmanager routes critical alerts to Slack and PagerDuty with team-based routing rules.",
             category: "DevOps",
             image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
             technologies: ["ELK Stack", "Grafana", "Prometheus", "Loki", "Alertmanager", "OpenSearch"],
@@ -67,7 +81,9 @@ const portfolioData = {
         {
             id: 8,
             title: "alice-in-prodland — Marque de contenus DevOps/SRE",
+            title_en: "alice-in-prodland — DevOps/SRE Content Brand",
             description: "Marque de produits digitaux DevOps/SRE : cours CKA bilingue (FR+EN) en 8 chapitres généré avec Python/ReportLab, prompt packs IA et scripts Kubernetes vendus sur Gumroad. Contenu faceless publié sur TikTok, LinkedIn et YouTube avec voix clonée via ElevenLabs. Pipeline de production automatisé : rédaction → mise en page PDF → publication Gumroad → clip vidéo IA.",
+            description_en: "Digital DevOps/SRE product brand: bilingual CKA course (FR+EN) in 8 chapters generated with Python/ReportLab, AI prompt packs and Kubernetes scripts sold on Gumroad. Faceless content published on TikTok, LinkedIn and YouTube with AI-cloned voice via ElevenLabs. Automated production pipeline: writing → PDF layout → Gumroad publish → AI video clip.",
             category: "SaaS",
             image: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80",
             technologies: ["Python", "ReportLab", "ElevenLabs", "Gumroad", "Next.js", "TikTok API"],

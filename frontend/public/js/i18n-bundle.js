@@ -313,10 +313,7 @@ const translationsFR = {
 
         filters: {
             all: "Tous",
-            cloud: "Cloud & PaaS",
-            automation: "Automatisation",
-            monitoring: "Supervision",
-            opensource: "Open Source"
+            ia: "IA"
         }
     },
 
@@ -829,10 +826,7 @@ const translationsEN = {
 
         filters: {
             all: "All",
-            cloud: "Cloud & PaaS",
-            automation: "Automation",
-            monitoring: "Monitoring",
-            opensource: "Open Source"
+            ia: "AI"
         }
     },
 

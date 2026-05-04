@@ -43,6 +43,11 @@ function applyLang(lang) {
   if (window.i18n?.switchLanguage) {
     window.i18n.switchLanguage(lang);
   }
+  if (allProjects.length) {
+    const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+    const filtered = activeFilter === 'all' ? allProjects : allProjects.filter(p => (p.category || '').toLowerCase() === activeFilter);
+    renderProjects(filtered);
+  }
   if (filteredPosts.length) renderBlog(filteredPosts);
 }
 
@@ -157,13 +162,15 @@ async function loadProjects() {
 function renderProjects(list) {
   if (!projectsGrid) return;
   if (!list.length) {
-    projectsGrid.innerHTML = '<div class="no-results"><p>Aucun projet disponible.</p></div>';
+    projectsGrid.innerHTML = `<div class="no-results"><p>${currentLang === 'en' ? 'No projects available.' : 'Aucun projet disponible.'}</p></div>`;
     return;
   }
   projectsGrid.innerHTML = list.map(p => {
-    const tags = (p.tags || p.tech_stack || p.technologies || []).slice(0, 4).map(t => `<span class="skill-tag">${t}</span>`).join('');
-    const img  = p.image
-      ? `<img src="${p.image}" alt="${p.title}" loading="lazy">`
+    const title = (currentLang === 'en' && p.title_en) ? p.title_en : p.title;
+    const desc  = (currentLang === 'en' && p.description_en) ? p.description_en : (p.description || '');
+    const tags  = (p.tags || p.tech_stack || p.technologies || []).slice(0, 4).map(t => `<span class="skill-tag">${t}</span>`).join('');
+    const img   = p.image
+      ? `<img src="${p.image}" alt="${title}" loading="lazy">`
       : `<div class="project-image-placeholder"><i class="fas fa-code"></i></div>`;
     return `
       <div class="project-card reveal" data-category="${(p.category || '').toLowerCase()}">
@@ -173,8 +180,8 @@ function renderProjects(list) {
             <span class="project-category">${p.category || 'Projet'}</span>
             ${p.year ? `<span class="project-year">${p.year}</span>` : ''}
           </div>
-          <h3 class="project-title">${p.title}</h3>
-          <p class="project-description">${p.description || ''}</p>
+          <h3 class="project-title">${title}</h3>
+          <p class="project-description">${desc}</p>
           <div class="project-footer">
             <div class="project-tags">${tags}</div>
             <i class="fas fa-arrow-right project-arrow"></i>
