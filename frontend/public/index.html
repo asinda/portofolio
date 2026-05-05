@@ -106,7 +106,7 @@
           </span>
 
           <h1 class="hero-title">
-            <span class="hero-greeting">Bonjour, je suis</span>
+            <span class="hero-greeting" data-i18n="hero.greeting">Bonjour, je suis</span>
             <span class="gradient-text">Alice Sindayigaya</span>
           </h1>
 
@@ -479,7 +479,7 @@
       </div>
       <div class="projects-grid" id="projectsGrid">
         <div class="loading-spinner">
-          <div class="spinner"></div><span>Chargement des projets…</span>
+          <div class="spinner"></div><span data-i18n="projects.loading">Chargement des projets…</span>
         </div>
       </div>
     </div>
@@ -575,13 +575,14 @@
 
       <div class="blog-search">
         <input type="search" id="blogSearch" class="search-input"
-               placeholder="Rechercher un article…" aria-label="Rechercher un article">
+               placeholder="Rechercher un article…" aria-label="Rechercher un article"
+               data-i18n-placeholder="blog.searchPlaceholder">
         <i class="fas fa-search search-icon"></i>
       </div>
 
       <div class="blog-categories">
         <button class="category-btn active" data-category="all">
-          <i class="fas fa-grip-horizontal"></i> Tous
+          <i class="fas fa-grip-horizontal"></i> <span data-i18n="blog.categories.all">Tous</span>
         </button>
         <button class="category-btn" data-category="DevOps">
           <i class="fas fa-infinity"></i> DevOps
@@ -608,7 +609,7 @@
 
       <div class="blog-grid" id="blogGrid">
         <div class="loading-spinner" style="grid-column:1/-1">
-          <div class="spinner"></div><span>Chargement des articles…</span>
+          <div class="spinner"></div><span data-i18n="blog.loading">Chargement des articles…</span>
         </div>
       </div>
 
@@ -690,10 +691,10 @@
           <div class="tutorial-meta">
             <span class="category-badge"></span>
             <span class="read-time">
-              <i class="fas fa-clock"></i> <span class="read-time-value"></span> min
+              <i class="fas fa-clock"></i> <span class="read-time-value"></span> <span data-i18n="common.time.min">min</span>
             </span>
             <span class="views">
-              <i class="fas fa-eye"></i> <span class="views-value"></span> vues
+              <i class="fas fa-eye"></i> <span class="views-value"></span> <span data-i18n="blog.meta.views">vues</span>
             </span>
             <span class="published-date">
               <i class="fas fa-calendar-alt"></i> <span class="date-value"></span>
@@ -707,10 +708,10 @@
         <footer class="tutorial-footer">
           <div class="tutorial-navigation">
             <button class="btn-nav btn-prev" disabled>
-              <i class="fas fa-chevron-left"></i> Article précédent
+              <i class="fas fa-chevron-left"></i> <span data-i18n="blog.previous">Article précédent</span>
             </button>
             <button class="btn-nav btn-next">
-              Article suivant <i class="fas fa-chevron-right"></i>
+              <span data-i18n="blog.next">Article suivant</span> <i class="fas fa-chevron-right"></i>
             </button>
           </div>
         </footer>

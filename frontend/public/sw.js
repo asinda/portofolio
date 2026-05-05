@@ -4,7 +4,7 @@
  * Version auto-incrémentée à chaque déploiement via timestamp
  */
 
-const CACHE_VERSION = 'v2025-05-04';
+const CACHE_VERSION = 'v2026-05-05';
 const CACHE_NAME = `portfolio-alice-${CACHE_VERSION}`;
 
 // ─── Installation : pré-cacher uniquement les fichiers qui existent ──────────
@@ -21,16 +21,22 @@ self.addEventListener('install', (event) => {
   );
 });
 
-// ─── Activation : purger tous les anciens caches ─────────────────────────────
+// ─── Activation : purger anciens caches + recharger les onglets ouverts ──────
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys
-          .filter(k => k.startsWith('portfolio-alice-') && k !== CACHE_NAME)
-          .map(k => caches.delete(k))
-      )
-    ).then(() => self.clients.claim())
+    caches.keys().then(keys => {
+      const old = keys.filter(k => k.startsWith('portfolio-alice-') && k !== CACHE_NAME);
+      return Promise.all(old.map(k => caches.delete(k)))
+        .then(() => self.clients.claim())
+        .then(() => {
+          if (!old.length) return; // première installation, pas de mise à jour
+          return self.clients.matchAll({ type: 'window' }).then(clients =>
+            Promise.all(clients.map(c => {
+              try { return c.navigate(c.url); } catch { return Promise.resolve(); }
+            }))
+          );
+        });
+    })
   );
 });
 

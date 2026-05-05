@@ -394,11 +394,21 @@ const translationsFR = {
             button: "Suivez-moi sur LinkedIn"
         },
 
+        loading: "Chargement des articles…",
+
         meta: {
             date: "Date",
             readTime: "Temps de lecture",
-            readArticle: "Lire l'article"
+            readArticle: "Lire l'article",
+            views: "vues"
         }
+    },
+
+    // ============================================
+    // PROJETS
+    // ============================================
+    projects: {
+        loading: "Chargement des projets…"
     },
 
     // ============================================
@@ -907,11 +917,21 @@ const translationsEN = {
             button: "Follow me on LinkedIn"
         },
 
+        loading: "Loading articles…",
+
         meta: {
             date: "Date",
             readTime: "Read time",
-            readArticle: "Read article"
+            readArticle: "Read article",
+            views: "views"
         }
+    },
+
+    // ============================================
+    // PROJECTS
+    // ============================================
+    projects: {
+        loading: "Loading projects…"
     },
 
     // ============================================
@@ -1070,10 +1090,11 @@ const translationsEN = {
         }
 
         translateElements() {
-            const elements = document.querySelectorAll('[data-i18n]');
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                el.textContent = this.t(key);
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.textContent = this.t(el.getAttribute('data-i18n'));
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                el.placeholder = this.t(el.getAttribute('data-i18n-placeholder'));
             });
         }
 
