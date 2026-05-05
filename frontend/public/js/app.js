@@ -357,6 +357,10 @@ function debounce(fn, delay) {
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/portofolio/sw.js').catch(() => {});
+    // Recharger automatiquement quand un nouveau SW prend le contrôle
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      window.location.reload();
+    });
   });
 }
 
